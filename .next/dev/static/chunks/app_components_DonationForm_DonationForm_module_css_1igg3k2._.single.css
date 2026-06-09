@@ -1,0 +1,233 @@
+/* [project]/app/components/DonationForm/DonationForm.module.css [app-client] (css) */
+.DonationForm-module__Xj1ebq__donationForm {
+  -webkit-backdrop-filter: blur(16px);
+  max-width: 600px;
+  box-shadow: var(--glass-shadow);
+  background: #ffffffd9;
+  border: 1px solid #ffffff59;
+  border-radius: 14px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.DonationForm-module__Xj1ebq__title {
+  color: #096380;
+  text-align: center;
+  margin-bottom: .5rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.DonationForm-module__Xj1ebq__subtitle {
+  color: #555;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.DonationForm-module__Xj1ebq__form {
+  flex-direction: column;
+  gap: 2rem;
+  display: flex;
+}
+
+.DonationForm-module__Xj1ebq__section {
+  flex-direction: column;
+  gap: 1rem;
+  display: flex;
+}
+
+.DonationForm-module__Xj1ebq__sectionTitle {
+  color: #096380;
+  margin-bottom: .5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.DonationForm-module__Xj1ebq__amountOptions {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  display: grid;
+}
+
+.DonationForm-module__Xj1ebq__amountButton {
+  color: #333;
+  cursor: pointer;
+  background: #fff;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  min-width: 48px;
+  min-height: 48px;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: all .3s;
+}
+
+.DonationForm-module__Xj1ebq__amountButton:hover {
+  background: #f0f8ff;
+  border-color: #096380;
+}
+
+.DonationForm-module__Xj1ebq__amountButton.DonationForm-module__Xj1ebq__active {
+  color: #fff;
+  background: #096380;
+  border-color: #096380;
+}
+
+.DonationForm-module__Xj1ebq__customAmount {
+  text-align: center;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+  font-size: 1rem;
+  transition: all .3s;
+}
+
+.DonationForm-module__Xj1ebq__customAmount:hover, .DonationForm-module__Xj1ebq__customAmount:focus {
+  border-color: #096380;
+  outline: none;
+}
+
+.DonationForm-module__Xj1ebq__customAmount.DonationForm-module__Xj1ebq__active {
+  background: #f0f8ff;
+  border-color: #096380;
+}
+
+.DonationForm-module__Xj1ebq__inputGroup {
+  flex-direction: column;
+  gap: .5rem;
+  display: flex;
+}
+
+.DonationForm-module__Xj1ebq__label {
+  color: #333;
+  font-size: .9rem;
+  font-weight: bold;
+}
+
+.DonationForm-module__Xj1ebq__input {
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: .75rem;
+  font-size: 1rem;
+  transition: all .3s;
+}
+
+.DonationForm-module__Xj1ebq__input:hover, .DonationForm-module__Xj1ebq__input:focus {
+  border-color: #096380;
+  outline: none;
+}
+
+.DonationForm-module__Xj1ebq__textarea {
+  resize: vertical;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: .75rem;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all .3s;
+}
+
+.DonationForm-module__Xj1ebq__textarea:hover, .DonationForm-module__Xj1ebq__textarea:focus {
+  border-color: #096380;
+  outline: none;
+}
+
+.DonationForm-module__Xj1ebq__submitSection {
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  display: flex;
+}
+
+.DonationForm-module__Xj1ebq__submitButton {
+  color: #fff;
+  cursor: pointer;
+  background: #096380;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  min-width: 48px;
+  min-height: 48px;
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: all .3s;
+}
+
+.DonationForm-module__Xj1ebq__submitButton:hover:not(:disabled) {
+  background: #075060;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px #0963804d;
+}
+
+.DonationForm-module__Xj1ebq__submitButton:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+.DonationForm-module__Xj1ebq__disclaimer {
+  color: #777;
+  text-align: center;
+  font-size: .85rem;
+  line-height: 1.5;
+}
+
+.DonationForm-module__Xj1ebq__successMessage {
+  text-align: center;
+  background: #fff;
+  border-radius: 12px;
+  padding: 3rem;
+  box-shadow: 0 4px 20px #0000001a;
+}
+
+.DonationForm-module__Xj1ebq__successIcon {
+  color: #4caf50;
+  margin-bottom: 1rem;
+  font-size: 4rem;
+  animation: .5s DonationForm-module__Xj1ebq__successPulse;
+}
+
+@keyframes DonationForm-module__Xj1ebq__successPulse {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.DonationForm-module__Xj1ebq__successTitle {
+  color: #096380;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.DonationForm-module__Xj1ebq__successText {
+  color: #555;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .DonationForm-module__Xj1ebq__donationForm {
+    padding: 1.5rem;
+  }
+
+  .DonationForm-module__Xj1ebq__title {
+    font-size: 1.5rem;
+  }
+
+  .DonationForm-module__Xj1ebq__amountOptions {
+    grid-template-columns: 1fr;
+  }
+}
+
+/*# sourceMappingURL=app_components_DonationForm_DonationForm_module_css_1igg3k2._.single.css.map*/

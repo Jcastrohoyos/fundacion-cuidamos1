@@ -1,0 +1,213 @@
+/* [project]/app/components/Footer/Footer.module.css [app-client] (css) */
+.Footer-module__JGhRua__footer {
+  color: #fff;
+  background: linear-gradient(#096380 0%, #075060 100%);
+  padding: 64px 0 32px;
+  line-height: 1.6;
+  position: relative;
+}
+
+.Footer-module__JGhRua__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.Footer-module__JGhRua__mainContent {
+  text-align: center;
+  border-bottom: 1px solid #ffffff1f;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+}
+
+.Footer-module__JGhRua__logoContainer {
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  display: flex;
+}
+
+.Footer-module__JGhRua__logoImage {
+  object-fit: contain;
+  width: auto;
+  max-width: 120px;
+  height: auto;
+  max-height: 40px;
+}
+
+.Footer-module__JGhRua__title {
+  letter-spacing: -.01em;
+  margin-bottom: .5rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.Footer-module__JGhRua__subtitle {
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  opacity: .75;
+  margin-bottom: .5rem;
+  font-size: .95rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.Footer-module__JGhRua__description {
+  opacity: .6;
+  font-size: .9rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.Footer-module__JGhRua__meta {
+  flex-direction: column;
+  align-items: center;
+  gap: .2rem;
+  margin-top: .75rem;
+  display: flex;
+}
+
+.Footer-module__JGhRua__nit, .Footer-module__JGhRua__location {
+  opacity: .55;
+  letter-spacing: .01em;
+  font-size: .8rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.Footer-module__JGhRua__location {
+  align-items: center;
+  gap: .4rem;
+  display: inline-flex;
+}
+
+.Footer-module__JGhRua__location:before {
+  content: "";
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z'/%3E%3C/svg%3E") center / contain no-repeat;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+
+.Footer-module__JGhRua__documents, .Footer-module__JGhRua__policies {
+  margin-bottom: 2.5rem;
+}
+
+.Footer-module__JGhRua__documents {
+  border-right: 1px solid #ffffff14;
+}
+
+.Footer-module__JGhRua__sectionIcon {
+  color: #096380;
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+}
+
+.Footer-module__JGhRua__sectionTitle {
+  color: #ffffffe6;
+  text-align: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  display: inline-flex;
+}
+
+.Footer-module__JGhRua__list {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: .5rem 1.5rem;
+  padding: 0;
+  list-style: none;
+  display: grid;
+}
+
+.Footer-module__JGhRua__list li {
+  padding: 0;
+}
+
+.Footer-module__JGhRua__link {
+  color: #fff;
+  opacity: .85;
+  font-size: .875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: opacity .2s, transform .2s;
+  display: inline-block;
+}
+
+.Footer-module__JGhRua__link:hover {
+  opacity: 1;
+  text-underline-offset: 3px;
+  text-decoration: underline;
+  transform: translateX(3px);
+}
+
+.Footer-module__JGhRua__bottom {
+  text-align: center;
+  border-top: 1px solid #ffffff1a;
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+}
+
+.Footer-module__JGhRua__copyright {
+  opacity: .45;
+  font-size: .75rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+@media (min-width: 768px) {
+  .Footer-module__JGhRua__documents {
+    padding-right: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .Footer-module__JGhRua__footer {
+    padding: 48px 0 28px;
+  }
+
+  .Footer-module__JGhRua__mainContent {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .Footer-module__JGhRua__title {
+    font-size: 1.5rem;
+  }
+
+  .Footer-module__JGhRua__subtitle {
+    font-size: .85rem;
+  }
+
+  .Footer-module__JGhRua__list {
+    grid-template-columns: 1fr;
+    gap: .5rem;
+  }
+
+  .Footer-module__JGhRua__documents, .Footer-module__JGhRua__policies {
+    margin-bottom: 2rem;
+  }
+
+  .Footer-module__JGhRua__documents {
+    border-right: none;
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .Footer-module__JGhRua__title {
+    font-size: 1.35rem;
+  }
+
+  .Footer-module__JGhRua__sectionTitle {
+    letter-spacing: .06em;
+    font-size: .8rem;
+  }
+}
+
+/*# sourceMappingURL=app_components_Footer_Footer_module_css_1igg3k2._.single.css.map*/

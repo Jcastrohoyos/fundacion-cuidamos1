@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/app/components/Impacto/Impacto.module.css"],"sourcesContent":[".impacto {\n  padding: 80px 0;\n  background-color: #f3f0f0;\n}\n\n.container {\n  max-width: 1343px;\n  margin: 0 auto;\n  padding: 0 20px;\n}\n\n.title {\n  font-size: 2.5rem;\n  font-weight: bold;\n  margin-bottom: 0.5rem;\n  color: #096380;\n  text-align: center;\n}\n\n.subtitle {\n  font-size: 1.5rem;\n  margin-bottom: 3rem;\n  color: #333;\n  text-align: center;\n}\n\n.grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));\n  gap: 2rem;\n}\n\n.card {\n  background: rgba(255, 255, 255, 0.85);\n  backdrop-filter: blur(16px);\n  -webkit-backdrop-filter: blur(16px);\n  padding: 2rem;\n  border-radius: 14px;\n  border: 1px solid rgba(255, 255, 255, 0.35);\n  box-shadow: var(--glass-shadow);\n}\n\n.cardTitle {\n  font-size: 1.25rem;\n  font-weight: bold;\n  margin-bottom: 1rem;\n  color: #096380;\n}\n\n.cardText {\n  font-size: 1rem;\n  line-height: 1.6;\n  color: #555;\n}\n"],"names":[],"mappings":"AAAA;;;;;AAKA;;;;;;AAMA;;;;;;;;AAQA;;;;;;;AAOA;;;;;;AAMA;;;;;;;;;AAUA;;;;;;;AAOA"}}]
+}

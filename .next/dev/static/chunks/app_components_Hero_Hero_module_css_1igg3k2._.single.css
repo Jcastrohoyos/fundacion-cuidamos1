@@ -1,0 +1,58 @@
+/* [project]/app/components/Hero/Hero.module.css [app-client] (css) */
+.Hero-module__PycF7W__hero {
+  color: #fff;
+  background-image: linear-gradient(#09a7db6e, #075060b3), url("/images/0267c625c129de790d7b0e1c5fde4394.png");
+  justify-content: center;
+  align-items: center;
+  min-height: 652px;
+  padding-top: 130px;
+  display: flex;
+}
+
+.Hero-module__PycF7W__container {
+  width: 100%;
+  max-width: 1343px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.Hero-module__PycF7W__content {
+  text-align: center;
+}
+
+@keyframes Hero-module__PycF7W__float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.Hero-module__PycF7W__logoWrapper {
+  margin-bottom: 2rem;
+}
+
+.Hero-module__PycF7W__logo {
+  max-width: 180px;
+  animation: 3s ease-in-out infinite Hero-module__PycF7W__float;
+}
+
+.Hero-module__PycF7W__title {
+  margin-bottom: 1rem;
+  font-size: 3.5rem;
+  font-weight: bold;
+}
+
+.Hero-module__PycF7W__subtitle {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.Hero-module__PycF7W__description {
+  opacity: .9;
+  font-size: 1.5rem;
+}
+
+/*# sourceMappingURL=app_components_Hero_Hero_module_css_1igg3k2._.single.css.map*/

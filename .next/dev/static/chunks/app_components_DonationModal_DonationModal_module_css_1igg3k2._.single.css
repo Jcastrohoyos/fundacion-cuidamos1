@@ -1,0 +1,115 @@
+/* [project]/app/components/DonationModal/DonationModal.module.css [app-client] (css) */
+.DonationModal-module__bHyBSa__stickyButton {
+  z-index: 999;
+  -webkit-backdrop-filter: blur(16px);
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(135deg, #096380d9, #0a7a9ce6);
+  border: 1px solid #ffffff40;
+  border-radius: 50px;
+  align-items: center;
+  gap: .5rem;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: all .3s;
+  animation: 2s infinite DonationModal-module__bHyBSa__pulse;
+  display: flex;
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  right: auto;
+  box-shadow: 0 8px 24px #09638066;
+}
+
+.DonationModal-module__bHyBSa__stickyButton:hover {
+  background: linear-gradient(135deg, #075060e6, #096380f2);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px #09638099;
+}
+
+.DonationModal-module__bHyBSa__buttonIcon {
+  font-size: 1.5rem;
+  animation: 1.5s infinite DonationModal-module__bHyBSa__heartbeat;
+}
+
+@keyframes DonationModal-module__bHyBSa__pulse {
+  0%, 100% {
+    box-shadow: 0 8px 24px #09638066;
+  }
+
+  50% {
+    box-shadow: 0 8px 32px #096380b3;
+  }
+}
+
+@keyframes DonationModal-module__bHyBSa__heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  25%, 75% {
+    transform: scale(1.15);
+  }
+}
+
+.DonationModal-module__bHyBSa__modalOverlay {
+  z-index: 9999;
+  -webkit-backdrop-filter: blur(6px);
+  background: #000000a6;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  display: flex;
+  position: fixed;
+  inset: 0;
+}
+
+.DonationModal-module__bHyBSa__modalWrapper {
+  -webkit-backdrop-filter: blur(20px);
+  background: #ffffffeb;
+  border: 1px solid #ffffff59;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 700px;
+  max-height: 90vh;
+  position: relative;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px #00000040;
+}
+
+.DonationModal-module__bHyBSa__closeButton {
+  z-index: 10000;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  color: #096380;
+  width: 40px;
+  height: 40px;
+  box-shadow: #09638026;
+  background: #ffffffe6;
+  border: 1px solid #fff6;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  transition: all .3s;
+  display: flex;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.DonationModal-module__bHyBSa__closeButton:hover {
+  color: #fff;
+  background: #096380;
+  border-color: #0000;
+  transform: rotate(90deg);
+}
+
+.DonationModal-module__bHyBSa__modalContent {
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+/*# sourceMappingURL=app_components_DonationModal_DonationModal_module_css_1igg3k2._.single.css.map*/

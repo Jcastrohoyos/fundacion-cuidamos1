@@ -1,0 +1,92 @@
+/* [project]/app/components/Contacto/Contacto.module.css [app-client] (css) */
+.Contacto-module___M18Sq__contacto {
+  background-color: #f3f0f0;
+  padding: 80px 0;
+}
+
+.Contacto-module___M18Sq__container {
+  max-width: 1343px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.Contacto-module___M18Sq__title {
+  color: #096380;
+  text-align: center;
+  margin-bottom: .5rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.Contacto-module___M18Sq__subtitle {
+  color: #555;
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 1.2rem;
+}
+
+.Contacto-module___M18Sq__content {
+  -webkit-backdrop-filter: blur(20px);
+  background: #ffffffeb;
+  border: 1px solid #fff6;
+  border-radius: 14px;
+  padding: 3rem;
+  box-shadow: 0 10px 40px #00000014;
+}
+
+.Contacto-module___M18Sq__sectionTitle {
+  color: #096380;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.Contacto-module___M18Sq__contactInfo {
+  flex-direction: column;
+  gap: 2rem;
+  display: flex;
+}
+
+.Contacto-module___M18Sq__contactItem {
+  background: #f9f9f9;
+  border-radius: 8px;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  display: flex;
+}
+
+.Contacto-module___M18Sq__iconWrap {
+  color: #fff;
+  background: #096380;
+  border-radius: 10px;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+}
+
+.Contacto-module___M18Sq__label {
+  color: #096380;
+  text-transform: uppercase;
+  margin-bottom: .5rem;
+  font-size: .9rem;
+  font-weight: bold;
+}
+
+.Contacto-module___M18Sq__link {
+  color: #096380;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: color .3s;
+}
+
+.Contacto-module___M18Sq__link:hover {
+  color: #075060;
+  text-decoration: underline;
+}
+
+/*# sourceMappingURL=app_components_Contacto_Contacto_module_css_1igg3k2._.single.css.map*/

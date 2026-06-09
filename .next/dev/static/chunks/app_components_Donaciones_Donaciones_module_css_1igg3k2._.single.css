@@ -1,0 +1,38 @@
+/* [project]/app/components/Donaciones/Donaciones.module.css [app-client] (css) */
+.Donaciones-module__2ZlT-a__donaciones {
+  text-align: center;
+  background-color: #f3f0f0;
+  padding: 80px 0;
+}
+
+.Donaciones-module__2ZlT-a__container {
+  max-width: 1343px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.Donaciones-module__2ZlT-a__title {
+  color: #096380;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.Donaciones-module__2ZlT-a__button {
+  color: #fff;
+  background-color: #096380;
+  border-radius: 8px;
+  min-width: 48px;
+  min-height: 48px;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: background-color .3s;
+  display: inline-block;
+}
+
+.Donaciones-module__2ZlT-a__button:hover {
+  background-color: #075060;
+}
+
+/*# sourceMappingURL=app_components_Donaciones_Donaciones_module_css_1igg3k2._.single.css.map*/
