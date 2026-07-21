@@ -30,13 +30,6 @@ export default function ComoApoyarnos() {
       delay: 0.4,
       ease: 'power3.out'
     })
-    gsap.from('.como-button', {
-      opacity: 0,
-      scale: 0.9,
-      duration: 0.5,
-      delay: 1,
-      ease: 'back.out(1.7)'
-    })
   }, { scope: containerRef })
 
   return (
@@ -64,7 +57,7 @@ export default function ComoApoyarnos() {
           </div>
           
           <div className={`${styles.card} como-card`}>
-            <h3 className={styles.cardTitle}>Bonos de apoyo</h3>
+            <h3 className={styles.cardTitle}>Bonos de Alimentación para Cuidadores</h3>
             <p className={styles.cardText}>
               Otra forma de colaborar es adquiriendo nuestros bonos de apoyo, que pueden llevar el nombre de un ser querido y ser entregados para conmemorar o celebrar fechas importantes. Estos bonos ofrecen a las familias una manera significativa de honrar a sus seres queridos o celebrar momentos.
             </p>
@@ -72,10 +65,32 @@ export default function ComoApoyarnos() {
               Para solicitarlo, contáctanos a través de Instagram o nuestro correo.
             </p>
           </div>
+
+          <div className={`${styles.card} como-card`}>
+            <h3 className={styles.cardTitle}>Kits de aseo para cuidadores</h3>
+            <p className={styles.cardText}>
+              Ayúdanos a entregar kits de aseo personal a los cuidadores que acompañan a los niños y niñas durante su tratamiento. Estos kits les brindan bienestar y dignidad en los momentos más difíciles.
+            </p>
+          </div>
+
+          <div className={`${styles.card} como-card`}>
+            <h3 className={styles.cardTitle}>Gorros para niños con Cáncer</h3>
+            <p className={styles.cardText}>
+              Contribuye con la compra de gorros para los niños y niñas con cáncer, brindándoles calidez y alegría durante su tratamiento.
+            </p>
+          </div>
         </div>
         
         <div className={styles.cta}>
-          <a href="#contacto" className={`${styles.button} como-button`}>Dona aquí</a>
+          <p className={styles.clickText}>¡Haz clic aquí para donar!</p>
+          <a 
+            href="https://docs.google.com/forms/d/e/1FAIpQLSct44ShJq2kK0DELwxdJBMrpYaGQdYpi1ZbNKFyzrjCNWCQcg/viewform?usp=header"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${styles.button} como-button`}
+          >
+            Dona aquí
+          </a>
         </div>
       </div>
     </section>

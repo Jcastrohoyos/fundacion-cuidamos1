@@ -1,56 +1,148 @@
 /* [project]/app/components/Impacto/Impacto.module.css [app-client] (css) */
-.Impacto-module__4B_lEW__impacto {
-  background-color: #f3f0f0;
-  padding: 80px 0;
+.Impacto-module__4B_lEW__section {
+  background-color: var(--color-white);
+  padding: 6rem 0;
 }
 
 .Impacto-module__4B_lEW__container {
-  max-width: 1343px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 2rem;
+}
+
+.Impacto-module__4B_lEW__header {
+  margin-bottom: 3rem;
+}
+
+.Impacto-module__4B_lEW__label {
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: .75rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  display: block;
 }
 
 .Impacto-module__4B_lEW__title {
-  color: #096380;
-  text-align: center;
-  margin-bottom: .5rem;
-  font-size: 2.5rem;
-  font-weight: bold;
+  color: var(--color-primary);
+  letter-spacing: -.02em;
+  margin: 0;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 800;
+  line-height: 1.2;
+  display: inline-block;
+  position: relative;
 }
 
-.Impacto-module__4B_lEW__subtitle {
-  color: #333;
-  text-align: center;
-  margin-bottom: 3rem;
-  font-size: 1.5rem;
+.Impacto-module__4B_lEW__title:after {
+  content: "";
+  background: var(--color-secondary);
+  border-radius: 2px;
+  width: 80px;
+  height: 4px;
+  margin-top: .75rem;
+  display: block;
 }
 
-.Impacto-module__4B_lEW__grid {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+.Impacto-module__4B_lEW__body {
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: 2.5rem 4rem;
   display: grid;
 }
 
-.Impacto-module__4B_lEW__card {
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: var(--glass-shadow);
-  background: #ffffffd9;
-  border: 1px solid #ffffff59;
-  border-radius: 14px;
-  padding: 2rem;
+.Impacto-module__4B_lEW__leftCol {
+  flex-direction: column;
+  gap: 1.25rem;
+  display: flex;
 }
 
-.Impacto-module__4B_lEW__cardTitle {
-  color: #096380;
-  margin-bottom: 1rem;
-  font-size: 1.25rem;
-  font-weight: bold;
+.Impacto-module__4B_lEW__block {
+  background: var(--color-bg);
+  border-left: 4px solid var(--color-primary);
+  border-radius: 12px;
+  padding: 1.5rem 1.75rem;
 }
 
-.Impacto-module__4B_lEW__cardText {
-  color: #555;
-  font-size: 1rem;
-  line-height: 1.6;
+.Impacto-module__4B_lEW__blockAccent {
+  background: var(--color-primary);
+  border-left: none;
+  border-radius: 12px;
+  padding: 1.5rem 1.75rem;
+}
+
+.Impacto-module__4B_lEW__blockAccent .Impacto-module__4B_lEW__blockText {
+  color: #ffffffeb;
+}
+
+.Impacto-module__4B_lEW__blockAccent .Impacto-module__4B_lEW__blockText strong {
+  color: #fff;
+}
+
+.Impacto-module__4B_lEW__blockText {
+  color: var(--color-text);
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.Impacto-module__4B_lEW__blockText strong {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.Impacto-module__4B_lEW__rightCol {
+  flex-direction: column;
+  gap: 2rem;
+  display: flex;
+}
+
+.Impacto-module__4B_lEW__subsection {
+  border-bottom: 1px solid #0000000f;
+  padding-bottom: 2rem;
+}
+
+.Impacto-module__4B_lEW__subsection:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.Impacto-module__4B_lEW__subsectionTitle {
+  color: var(--color-primary);
+  margin-bottom: .85rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.Impacto-module__4B_lEW__subsectionText {
+  color: var(--color-text-light);
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.85;
+}
+
+.Impacto-module__4B_lEW__subsectionText strong {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .Impacto-module__4B_lEW__body {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .Impacto-module__4B_lEW__section {
+    padding: 4rem 0;
+  }
+
+  .Impacto-module__4B_lEW__block, .Impacto-module__4B_lEW__blockAccent {
+    padding: 1.25rem;
+  }
 }
 
 /*# sourceMappingURL=app_components_Impacto_Impacto_module_css_1igg3k2._.single.css.map*/

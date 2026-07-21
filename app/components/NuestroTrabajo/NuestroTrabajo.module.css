@@ -1,0 +1,174 @@
+/* ============================================
+   NUESTRO TRABAJO
+   ============================================ */
+
+.section {
+  padding: 6rem 0;
+  background-color: #f4f9fb;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ── Two-column header ── */
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem 5rem;
+  align-items: end;
+  margin-bottom: 3.5rem;
+}
+
+.headerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.label {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  display: block;
+}
+
+.title {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0;
+  position: relative;
+  display: inline-block;
+}
+
+.title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--color-secondary);
+  margin-top: 0.75rem;
+  border-radius: 2px;
+}
+
+.headerRight {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 0.25rem;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  line-height: 1.75;
+  color: var(--color-text-light);
+  margin: 0;
+}
+
+/* ── 3-column card grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid rgba(14, 154, 175, 0.12);
+  border-radius: 14px;
+  padding: 2rem 1.75rem;
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(14, 154, 175, 0.12);
+  border-color: rgba(14, 154, 175, 0.3);
+}
+
+/* First card: accent background like in the design */
+.card:first-child {
+  background: linear-gradient(145deg, #0e9aaf 0%, #0b7d8f 100%);
+  border-color: transparent;
+  color: #fff;
+}
+
+.card:first-child .cardTitle {
+  color: #ffffff;
+}
+
+.card:first-child .cardText {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.card:first-child .iconWrapper {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+.iconWrapper {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: #e6f5f8;
+  color: #0e9aaf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cardTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0d2d3a;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.cardText {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #5a7a85;
+  margin: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 4rem 0;
+  }
+
+  .header {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 3rem 0;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+}

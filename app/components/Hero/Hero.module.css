@@ -1,23 +1,83 @@
 .hero {
-  background-image: linear-gradient(rgba(9, 167, 219, 0.432), rgba(7, 80, 96, 0.7)),
-    url('/images/0267c625c129de790d7b0e1c5fde4394.png');
-  min-height: 652px;
+  background-color: var(--color-primary);
+  min-height: 85vh;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  padding-top: 130px;
+  padding: 0 0 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(184, 169, 201, 0.15) 0%, transparent 60%);
+  pointer-events: none;
 }
 
 .container {
-  max-width: 1343px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
   width: 100%;
 }
 
 .content {
-  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  align-items: center;
+  place-items: center;
+}
+
+.circularLogo {
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+}
+
+.logoImage {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.textSection {
+  text-align: left;
+  padding-left: 0;
+  justify-self: center;
+}
+
+.welcome {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+  font-style: italic;
+}
+
+.title {
+  font-size: clamp(3rem, 7vw, 5rem);
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-weight: 400;
+  opacity: 0.9;
 }
 
 @keyframes float {
@@ -25,31 +85,70 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
 }
 
-.logoWrapper {
-  margin-bottom: 2rem;
+@media (max-width: 1024px) {
+  .hero {
+    min-height: 70vh;
+    padding: 0 0 50px;
+  }
+
+  .content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .textSection {
+    text-align: center;
+    padding-left: 0;
+  }
+
+  .circularLogo {
+    max-width: 300px;
+  }
+
+  .title {
+    font-size: clamp(2.5rem, 10vw, 4rem);
+  }
+
+  .subtitle {
+    font-size: clamp(1.1rem, 4vw, 1.4rem);
+  }
 }
 
-.logo {
-  max-width: 180px;
-  animation: float 3s ease-in-out infinite;
+@media (max-width: 768px) {
+  .hero {
+    min-height: 60vh;
+    padding: 0 0 40px;
+  }
+
+  .circularLogo {
+    max-width: 250px;
+  }
+
+  .title {
+    font-size: clamp(2rem, 12vw, 3rem);
+  }
+
+  .subtitle {
+    font-size: clamp(0.95rem, 5vw, 1.2rem);
+  }
+
+  .welcome {
+    font-size: 1.1rem;
+  }
 }
 
-.title {
-  font-size: 3.5rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
+@media (max-width: 480px) {
+  .hero {
+    min-height: 50vh;
+    padding: 0 0 30px;
+  }
 
-.subtitle {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.description {
-  font-size: 1.5rem;
-  opacity: 0.9;
+  .circularLogo {
+    max-width: 200px;
+  }
 }

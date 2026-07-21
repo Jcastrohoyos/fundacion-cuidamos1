@@ -1,71 +1,154 @@
 /* [project]/app/components/Empresa/Empresa.module.css [app-client] (css) */
-.Empresa-module__cYq-qa__empresa {
-  background-color: #f3f0f0;
+.Empresa-module__cYq-qa__section {
+  background-color: var(--color-bg);
   padding: 80px 0;
 }
 
-.Empresa-module__cYq-qa__container {
-  max-width: 1343px;
+.Empresa-module__cYq-qa__layout {
+  grid-template-columns: 1fr 1.6fr 1fr;
+  align-items: start;
+  gap: 2rem;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
+  display: grid;
 }
 
-.Empresa-module__cYq-qa__title {
-  color: #096380;
-  text-align: center;
-  margin-bottom: .5rem;
-  font-size: 2.5rem;
-  font-weight: bold;
+.Empresa-module__cYq-qa__imageWrapper {
+  align-self: start;
+  position: sticky;
+  top: 100px;
 }
 
-.Empresa-module__cYq-qa__subtitle {
-  color: #333;
-  text-align: center;
-  margin-bottom: 3rem;
-  font-size: 1.5rem;
+.Empresa-module__cYq-qa__sideImage {
+  object-fit: cover;
+  filter: grayscale();
+  opacity: .85;
+  border-radius: 16px;
+  width: 100%;
+  height: auto;
+  max-height: 520px;
 }
 
 .Empresa-module__cYq-qa__content {
-  background: #fff;
-  border-radius: 8px;
-  padding: 3rem;
-  box-shadow: 0 2px 8px #0000001a;
+  flex-direction: column;
+  gap: .5rem;
+  display: flex;
 }
 
-.Empresa-module__cYq-qa__sectionTitle {
-  color: #096380;
+.Empresa-module__cYq-qa__title {
+  color: var(--color-primary);
+  letter-spacing: -.02em;
   text-align: center;
-  margin-bottom: .5rem;
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-.Empresa-module__cYq-qa__sectionSubtitle {
-  color: #333;
-  text-align: center;
-  margin-bottom: 2rem;
-  font-size: 1.5rem;
-}
-
-.Empresa-module__cYq-qa__list {
-  padding: 0;
-  list-style: none;
-}
-
-.Empresa-module__cYq-qa__listItem {
-  margin-bottom: 1rem;
-  padding-left: 2rem;
-  font-size: 1.1rem;
-  line-height: 1.8;
+  margin-bottom: .75rem;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 800;
+  display: block;
   position: relative;
 }
 
-.Empresa-module__cYq-qa__listItem:before {
-  content: "✓";
-  color: #096380;
-  font-weight: bold;
-  position: absolute;
-  left: 0;
+.Empresa-module__cYq-qa__title:after {
+  content: "";
+  background: var(--color-secondary);
+  border-radius: 2px;
+  width: 80px;
+  height: 4px;
+  margin: .75rem auto 0;
+  display: block;
+}
+
+.Empresa-module__cYq-qa__subtitle {
+  color: var(--color-text);
+  text-align: center;
+  margin-bottom: 2.5rem;
+  font-size: 1.2rem;
+  line-height: 1.7;
+}
+
+.Empresa-module__cYq-qa__grid {
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  display: grid;
+}
+
+.Empresa-module__cYq-qa__benefit {
+  background-color: var(--color-white);
+  border-radius: 12px;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  transition: transform .3s, box-shadow .3s;
+  display: flex;
+}
+
+.Empresa-module__cYq-qa__benefit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px #0000000f;
+}
+
+.Empresa-module__cYq-qa__iconWrapper {
+  background-color: var(--color-secondary-light);
+  width: 48px;
+  min-width: 48px;
+  height: 48px;
+  color: var(--color-primary);
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.Empresa-module__cYq-qa__benefitText {
+  color: var(--color-text-light);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+  .Empresa-module__cYq-qa__layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .Empresa-module__cYq-qa__imageWrapper {
+    display: none;
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .Empresa-module__cYq-qa__section {
+    padding: 50px 0;
+  }
+
+  .Empresa-module__cYq-qa__grid {
+    gap: 1rem;
+  }
+
+  .Empresa-module__cYq-qa__benefit {
+    padding: 1.25rem;
+  }
+
+  .Empresa-module__cYq-qa__iconWrapper {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+  }
+
+  .Empresa-module__cYq-qa__iconWrapper svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .Empresa-module__cYq-qa__section {
+    padding: 40px 0;
+  }
+
+  .Empresa-module__cYq-qa__benefitText {
+    font-size: 1.05rem;
+  }
 }
 
 /*# sourceMappingURL=app_components_Empresa_Empresa_module_css_1igg3k2._.single.css.map*/

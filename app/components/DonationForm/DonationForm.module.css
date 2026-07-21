@@ -2,24 +2,21 @@
   max-width: 600px;
   margin: 0 auto;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: var(--glass-shadow);
+  background-color: var(--color-white);
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
 .title {
   font-size: 2rem;
   font-weight: bold;
-  color: #096380;
+  color: var(--color-primary);
   margin-bottom: 0.5rem;
   text-align: center;
 }
 
 .subtitle {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #555;
   margin-bottom: 2rem;
   text-align: center;
@@ -40,7 +37,7 @@
 .sectionTitle {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #096380;
+  color: var(--color-primary);
   margin-bottom: 0.5rem;
 }
 
@@ -65,13 +62,13 @@
 }
 
 .amountButton:hover {
-  border-color: #096380;
+  border-color: var(--color-primary);
   background: #f0f8ff;
 }
 
 .amountButton.active {
-  border-color: #096380;
-  background: #096380;
+  border-color: var(--color-primary);
+  background: var(--color-primary);
   color: white;
 }
 
@@ -86,12 +83,12 @@
 
 .customAmount:hover,
 .customAmount:focus {
-  border-color: #096380;
+  border-color: var(--color-primary);
   outline: none;
 }
 
 .customAmount.active {
-  border-color: #096380;
+  border-color: var(--color-primary);
   background: #f0f8ff;
 }
 
@@ -102,7 +99,7 @@
 }
 
 .label {
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   font-weight: bold;
   color: #333;
 }
@@ -117,7 +114,7 @@
 
 .input:hover,
 .input:focus {
-  border-color: #096380;
+  border-color: var(--color-primary);
   outline: none;
 }
 
@@ -133,7 +130,7 @@
 
 .textarea:hover,
 .textarea:focus {
-  border-color: #096380;
+  border-color: var(--color-primary);
   outline: none;
 }
 
@@ -146,7 +143,7 @@
 
 .submitButton {
   padding: 1rem 3rem;
-  background: #096380;
+  background: var(--color-primary);
   color: white;
   border: none;
   border-radius: 8px;
@@ -160,7 +157,7 @@
 }
 
 .submitButton:hover:not(:disabled) {
-  background: #075060;
+  background: var(--color-primary-dark);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(9, 99, 128, 0.3);
 }
@@ -171,7 +168,7 @@
 }
 
 .disclaimer {
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: #777;
   text-align: center;
   line-height: 1.5;
@@ -207,7 +204,7 @@
 .successTitle {
   font-size: 1.8rem;
   font-weight: bold;
-  color: #096380;
+  color: var(--color-primary);
   margin-bottom: 1rem;
 }
 
@@ -226,7 +223,84 @@
     font-size: 1.5rem;
   }
 
+  .subtitle {
+    font-size: 1rem;
+  }
+
   .amountOptions {
     grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .amountButton {
+    padding: 0.85rem;
+    font-size: 1rem;
+  }
+
+  .input,
+  .textarea {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .donationForm {
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .form {
+    gap: 1.5rem;
+  }
+
+  .sectionTitle {
+    font-size: 1rem;
+  }
+
+  .amountButton {
+    padding: 0.7rem;
+    font-size: 1.05rem;
+    min-height: 42px;
+  }
+
+  .customAmount {
+    padding: 0.75rem;
+    font-size: 1.05rem;
+  }
+
+  .input {
+    padding: 0.6rem;
+    font-size: 1.05rem;
+  }
+
+  .textarea {
+    padding: 0.6rem;
+    font-size: 1.05rem;
+  }
+
+  .submitButton {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+
+  .successTitle {
+    font-size: 1.4rem;
+  }
+
+  .successText {
+    font-size: 1rem;
+  }
+
+  .successMessage {
+    padding: 2rem;
   }
 }

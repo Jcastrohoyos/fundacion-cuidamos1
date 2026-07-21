@@ -49,30 +49,16 @@ export default function Galeria() {
         </p>
         
         <div className={styles.grid}>
-          <div className={styles.imageCard}>
-            <img src="/images/0267c625c129de790d7b0e1c5fde4394.png" alt="Arte infantil 1" className={`${styles.image} galeria-image`} />
-          </div>
-          <div className={styles.imageCard}>
-            <img src="/images/2ee906b211c51714073c31b069d8fc7b.png" alt="Arte infantil 2" className={`${styles.image} galeria-image`} />
-          </div>
-          <div className={styles.imageCard}>
-            <img src="/images/7cdf687235a2650c469b8e0ac4df404f.png" alt="Arte infantil 3" className={`${styles.image} galeria-image`} />
-          </div>
-          <div className={styles.imageCard}>
-            <img src="/images/a7dea2e1c25ce4da0a8370ed18669162.png" alt="Arte infantil 4" className={`${styles.image} galeria-image`} />
-          </div>
-          <div className={styles.imageCard}>
-            <img src="/images/ae959f725aa0b0abff727533c624b6f1.png" alt="Arte infantil 5" className={`${styles.image} galeria-image`} />
-          </div>
-          <div className={styles.imageCard}>
-            <img src="/images/caeb75fed24d79e7813536016e9ec11a.png" alt="Arte infantil 6" className={`${styles.image} galeria-image`} />
-          </div>
-          <div className={styles.imageCard}>
-            <img src="/images/dbea80a1c61166d9930598c24b32af04.png" alt="Arte infantil 7" className={`${styles.image} galeria-image`} />
-          </div>
-          <div className={styles.imageCard}>
-            <img src="/images/dfea31785dd3a81af75e8caeb57aaa62.png" alt="Arte infantil 8" className={`${styles.image} galeria-image`} />
-          </div>
+          {[1, 2, 3, 4, 5, 6].map((n) => (
+            <div key={n} className={styles.imageCard}>
+              <img
+                src={`/images/galeria${n}.webp`}
+                alt={`Arte infantil ${n}`}
+                className={`${styles.image} galeria-image`}
+                loading="lazy"
+              />
+            </div>
+          ))}
         </div>
       </div>
     </section>

@@ -1,7 +1,7 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Poppins, Inter } from 'next/font/google'
 import DonationModal from './components/DonationModal/DonationModal'
-import CotizacionModal from './components/CotizacionModal/CotizacionModal'
+import WhatsAppButton from './components/WhatsAppButton/WhatsAppButton'
 import './globals.css'
 
 const poppins = Poppins({
@@ -17,6 +17,13 @@ const inter = Inter({
   variable: '--font-inter',
   display: 'swap',
 })
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://fundacioncuidamosconamor.org'),
@@ -63,12 +70,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-    userScalable: true,
-  },
 }
 
 export default function RootLayout({
@@ -81,8 +82,8 @@ export default function RootLayout({
       <body className="font-sans">
         <a href="#main-content" className="skipToContent">Saltar al contenido principal</a>
         <main id="main-content">{children}</main>
+        <WhatsAppButton />
         <DonationModal />
-        <CotizacionModal />
       </body>
     </html>
   )

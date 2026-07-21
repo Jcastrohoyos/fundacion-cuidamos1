@@ -1,23 +1,39 @@
 .navbar {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  background: linear-gradient(180deg, #096380 0%, #075060 100%);
+  inset: 0 auto auto 0;
+  width: 100vw;
+  max-width: 100vw;
+  margin: 0;
+  background-color: var(--color-johnson);
   z-index: 1000;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  padding: 12px 0;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .container {
-  max-width: 1343px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 70px;
+  height: 90px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-primary);
+  font-size: 0.95rem;
+  font-weight: 600;
 }
 
 .logo {
@@ -26,51 +42,16 @@
 }
 
 .logoImage {
-  width: auto;
-  height: auto;
-  max-width: 200px;
-  max-height: 65px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  transition: transform 0.3s ease;
   transform-origin: center;
 }
 
 .logo:hover .logoImage {
-  transform: scale(1.08);
+  transform: scale(1.05);
 }
-
-.container {
-  max-width: 1343px;
-  margin: 0 auto;
-  padding:20px;
- 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 80px;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  padding: 20px 0;
-}
-
-.logoImage {
-  width: auto;
-  height: auto;
-  max-width: 200px;
-  max-height: 75px;
-  object-fit: contain;
-  transition: transform 0.3s ease, filter 0.3s ease;
-  transform-origin: center;
-}
-
-.logo:hover .logoImage {
-  transform: scale(1.08);
-}
-
-
 
 .menuToggle {
   display: none;
@@ -84,14 +65,14 @@
 .hamburger {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
 }
 
 .hamburger span {
   display: block;
-  width: 25px;
-  height: 3px;
-  background-color: white;
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-primary);
   transition: all 0.3s ease;
 }
 
@@ -112,59 +93,95 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 2rem;
+  gap: 0.75rem;
   align-items: center;
+}
+
+.navRight {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.iconLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  color: white;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-decoration: none;
+}
+
+.iconLink:hover {
+  background-color: var(--color-primary-dark);
+  transform: scale(1.05);
+}
+
+.donateButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.25rem;
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.donateButton:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-1px);
 }
 
 .navLink {
   background: none;
   border: none;
-  color: white;
+  color: var(--color-text);
   font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
-  padding: 0.75rem 1rem;
+  padding: 0.5rem 1rem;
   min-height: 44px;
   min-width: 44px;
   transition: color 0.3s ease;
   text-decoration: none;
   position: relative;
+  white-space: nowrap;
 }
 
 .navLink:hover {
-  color: #f0f0f0;
+  color: var(--color-primary);
 }
 
 .navLink.active {
-  color: #f0f0f0;
+  color: var(--color-primary);
 }
 
 .navLink.active::after {
   content: '';
   position: absolute;
   bottom: 0;
-  left: 0;
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
   height: 2px;
-  background: white;
-}
-
-.ctaButton {
-  background-color: white;
-  color: #096380;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  min-height: 44px;
-  min-width: 44px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-}
-
-.ctaButton:hover {
-  background-color: #f0f0f0;
-  transform: translateY(-2px);
+  background: var(--color-primary);
+  border-radius: 1px;
 }
 
 @media (max-width: 768px) {
@@ -172,19 +189,39 @@
     display: flex;
   }
 
+  .container {
+    height: 76px;
+  }
+
+  .left {
+    gap: 10px;
+  }
+
+  .location span {
+    font-size: 0.9rem;
+  }
+
+  .logoImage {
+    width: 46px;
+    height: 46px;
+  }
+
   .menu {
     position: absolute;
-    top: 70px;
+    top: 72px;
     left: 0;
     right: 0;
-    background-color: #096380;
+    background-color: var(--color-white);
     flex-direction: column;
-    padding: 2rem;
-    gap: 1rem;
+    padding: 1rem;
+    gap: 0.25rem;
     transform: translateY(-100%);
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    max-height: calc(100vh - 72px);
+    overflow-y: auto;
   }
 
   .menu.open {
@@ -194,8 +231,61 @@
   }
 
   .navLink,
-  .ctaButton {
+  .donateButton {
     width: 100%;
     text-align: center;
+  }
+
+  .navRight {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .navActions {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 0.5rem;
+    border-top: 1px solid #eee;
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0;
+  }
+
+  .container {
+    padding: 0 16px;
+    height: 68px;
+  }
+
+  .location span {
+    display: none;
+  }
+
+  .logoImage {
+    width: 40px;
+    height: 40px;
+  }
+
+  .navLink {
+    font-size: 1rem;
+    padding: 0.6rem 0.8rem;
+    min-height: 44px;
+  }
+
+  .donateButton {
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+    min-height: 44px;
+  }
+
+  .menu {
+    top: 64px;
+    padding: 0.75rem;
+    max-height: calc(100vh - 64px);
   }
 }

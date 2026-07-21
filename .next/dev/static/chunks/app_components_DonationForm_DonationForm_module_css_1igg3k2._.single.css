@@ -1,17 +1,15 @@
 /* [project]/app/components/DonationForm/DonationForm.module.css [app-client] (css) */
 .DonationForm-module__Xj1ebq__donationForm {
-  -webkit-backdrop-filter: blur(16px);
+  background-color: var(--color-white);
+  border-radius: 16px;
   max-width: 600px;
-  box-shadow: var(--glass-shadow);
-  background: #ffffffd9;
-  border: 1px solid #ffffff59;
-  border-radius: 14px;
   margin: 0 auto;
   padding: 2rem;
+  box-shadow: 0 10px 40px #0000001a;
 }
 
 .DonationForm-module__Xj1ebq__title {
-  color: #096380;
+  color: var(--color-primary);
   text-align: center;
   margin-bottom: .5rem;
   font-size: 2rem;
@@ -22,7 +20,7 @@
   color: #555;
   text-align: center;
   margin-bottom: 2rem;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .DonationForm-module__Xj1ebq__form {
@@ -38,7 +36,7 @@
 }
 
 .DonationForm-module__Xj1ebq__sectionTitle {
-  color: #096380;
+  color: var(--color-primary);
   margin-bottom: .5rem;
   font-size: 1.2rem;
   font-weight: bold;
@@ -65,14 +63,14 @@
 }
 
 .DonationForm-module__Xj1ebq__amountButton:hover {
+  border-color: var(--color-primary);
   background: #f0f8ff;
-  border-color: #096380;
 }
 
 .DonationForm-module__Xj1ebq__amountButton.DonationForm-module__Xj1ebq__active {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
   color: #fff;
-  background: #096380;
-  border-color: #096380;
 }
 
 .DonationForm-module__Xj1ebq__customAmount {
@@ -85,13 +83,13 @@
 }
 
 .DonationForm-module__Xj1ebq__customAmount:hover, .DonationForm-module__Xj1ebq__customAmount:focus {
-  border-color: #096380;
+  border-color: var(--color-primary);
   outline: none;
 }
 
 .DonationForm-module__Xj1ebq__customAmount.DonationForm-module__Xj1ebq__active {
+  border-color: var(--color-primary);
   background: #f0f8ff;
-  border-color: #096380;
 }
 
 .DonationForm-module__Xj1ebq__inputGroup {
@@ -102,7 +100,7 @@
 
 .DonationForm-module__Xj1ebq__label {
   color: #333;
-  font-size: .9rem;
+  font-size: 1.05rem;
   font-weight: bold;
 }
 
@@ -115,7 +113,7 @@
 }
 
 .DonationForm-module__Xj1ebq__input:hover, .DonationForm-module__Xj1ebq__input:focus {
-  border-color: #096380;
+  border-color: var(--color-primary);
   outline: none;
 }
 
@@ -130,7 +128,7 @@
 }
 
 .DonationForm-module__Xj1ebq__textarea:hover, .DonationForm-module__Xj1ebq__textarea:focus {
-  border-color: #096380;
+  border-color: var(--color-primary);
   outline: none;
 }
 
@@ -142,9 +140,9 @@
 }
 
 .DonationForm-module__Xj1ebq__submitButton {
+  background: var(--color-primary);
   color: #fff;
   cursor: pointer;
-  background: #096380;
   border: none;
   border-radius: 8px;
   width: 100%;
@@ -157,7 +155,7 @@
 }
 
 .DonationForm-module__Xj1ebq__submitButton:hover:not(:disabled) {
-  background: #075060;
+  background: var(--color-primary-dark);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px #0963804d;
 }
@@ -170,7 +168,7 @@
 .DonationForm-module__Xj1ebq__disclaimer {
   color: #777;
   text-align: center;
-  font-size: .85rem;
+  font-size: 1rem;
   line-height: 1.5;
 }
 
@@ -204,7 +202,7 @@
 }
 
 .DonationForm-module__Xj1ebq__successTitle {
-  color: #096380;
+  color: var(--color-primary);
   margin-bottom: 1rem;
   font-size: 1.8rem;
   font-weight: bold;
@@ -225,8 +223,79 @@
     font-size: 1.5rem;
   }
 
+  .DonationForm-module__Xj1ebq__subtitle {
+    font-size: 1rem;
+  }
+
   .DonationForm-module__Xj1ebq__amountOptions {
     grid-template-columns: 1fr;
+    gap: .75rem;
+  }
+
+  .DonationForm-module__Xj1ebq__amountButton {
+    padding: .85rem;
+    font-size: 1rem;
+  }
+
+  .DonationForm-module__Xj1ebq__input, .DonationForm-module__Xj1ebq__textarea {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .DonationForm-module__Xj1ebq__donationForm {
+    border-radius: 10px;
+    padding: 1rem;
+  }
+
+  .DonationForm-module__Xj1ebq__title {
+    font-size: 1.25rem;
+  }
+
+  .DonationForm-module__Xj1ebq__subtitle {
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+  }
+
+  .DonationForm-module__Xj1ebq__form {
+    gap: 1.5rem;
+  }
+
+  .DonationForm-module__Xj1ebq__sectionTitle {
+    font-size: 1rem;
+  }
+
+  .DonationForm-module__Xj1ebq__amountButton {
+    min-height: 42px;
+    padding: .7rem;
+    font-size: 1.05rem;
+  }
+
+  .DonationForm-module__Xj1ebq__customAmount {
+    padding: .75rem;
+    font-size: 1.05rem;
+  }
+
+  .DonationForm-module__Xj1ebq__input, .DonationForm-module__Xj1ebq__textarea {
+    padding: .6rem;
+    font-size: 1.05rem;
+  }
+
+  .DonationForm-module__Xj1ebq__submitButton {
+    padding: .8rem 2rem;
+    font-size: 1rem;
+  }
+
+  .DonationForm-module__Xj1ebq__successTitle {
+    font-size: 1.4rem;
+  }
+
+  .DonationForm-module__Xj1ebq__successText {
+    font-size: 1rem;
+  }
+
+  .DonationForm-module__Xj1ebq__successMessage {
+    padding: 2rem;
   }
 }
 

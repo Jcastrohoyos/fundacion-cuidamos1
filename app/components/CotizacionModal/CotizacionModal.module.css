@@ -123,7 +123,7 @@
 
 .note {
   color: #666;
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   margin: 10px 0 16px;
 }
 
@@ -139,4 +139,84 @@
 }
 .primaryAction:hover {
   background: #075060;
+}
+
+@media (max-width: 768px) {
+  .ctaButton {
+    bottom: 80px;
+    left: 20px;
+    padding: 0.7rem 1.2rem;
+    font-size: 1rem;
+  }
+
+  .modalWrapper {
+    max-width: 95%;
+    max-height: 85vh;
+  }
+
+  .modalContent {
+    padding: 16px;
+  }
+
+  .heading {
+    font-size: 1.3rem;
+  }
+
+  .item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .totalRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .totalValue {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ctaButton {
+    bottom: 70px;
+    left: 16px;
+    padding: 0.6rem 1rem;
+    font-size: 0.95rem;
+    border-radius: 40px;
+  }
+
+  .modalOverlay {
+    padding: 10px;
+  }
+
+  .modalWrapper {
+    max-width: 100%;
+    max-height: 90vh;
+  }
+
+  .modalContent {
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+  .heading {
+    font-size: 1.15rem;
+  }
+
+  .lead {
+    font-size: 1.05rem;
+  }
+
+  .labelItem,
+  .valueItem {
+    font-size: 1.05rem;
+  }
+
+  .primaryAction {
+    padding: 0.7rem;
+  font-size: 1.1rem;
+  }
 }

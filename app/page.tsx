@@ -1,8 +1,12 @@
 import Navbar from './components/Navbar/Navbar'
 import Hero from './components/Hero/Hero'
+import SobreNosotros from './components/SobreNosotros/SobreNosotros'
+import StatsBanner from './components/StatsBanner/StatsBanner'
+import NuestroTrabajo from './components/NuestroTrabajo/NuestroTrabajo'
 import Impacto from './components/Impacto/Impacto'
 import Datos from './components/Datos/Datos'
 import ComoApoyarnos from './components/ComoApoyarnos/ComoApoyarnos'
+import Donaciones from './components/Donaciones/Donaciones'
 import Empresa from './components/Empresa/Empresa'
 import Galeria from './components/Galeria/Galeria'
 import Contacto from './components/Contacto/Contacto'
@@ -12,18 +16,22 @@ import BackToTop from './components/BackToTop/BackToTop'
 
 export default function Home() {
   return (
-    <main>
+    <>
       <Navbar />
       <Hero />
+      <SobreNosotros />
+      <StatsBanner />
+      <NuestroTrabajo />
       <Impacto />
       <Datos />
       <ComoApoyarnos />
+      <Donaciones />
       <Empresa />
       <Galeria />
       <Contacto />
       <Aliados />
       <Footer />
       <BackToTop />
-    </main>
+    </>
   )
 }

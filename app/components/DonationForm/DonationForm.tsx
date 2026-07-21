@@ -15,8 +15,6 @@ export default function DonationForm({ onClose }: { onClose?: () => void }) {
     customAmount: '',
     message: ''
   })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
 
   useGSAP(() => {
     gsap.from('.donation-form-item', {
@@ -38,69 +36,23 @@ export default function DonationForm({ onClose }: { onClose?: () => void }) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
 
-    try {
-      const finalAmount = formData.amount === 'custom' ? formData.customAmount : formData.amount
+    const finalAmount = formData.amount === 'custom' ? formData.customAmount : formData.amount
+    const numericAmount = parseFloat(finalAmount)
 
-      const response = await fetch('/api/payments', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          amount: finalAmount,
-          message: formData.message
-        }),
-      })
-
-      const data = await response.json()
-
-      if (response.ok && data.success) {
-        if (data.data.checkout_url) {
-          window.location.href = data.data.checkout_url
-        } else {
-          setIsSubmitting(false)
-          setSubmitted(true)
-
-          setTimeout(() => {
-            if (onClose) onClose()
-            setSubmitted(false)
-            setFormData({
-              name: '',
-              email: '',
-              phone: '',
-              amount: '',
-              customAmount: '',
-              message: ''
-            })
-          }, 3000)
-        }
-      } else {
-        throw new Error(data.error || 'Error al procesar el pago')
-      }
-    } catch (error) {
-      console.error('Error al procesar donación:', error)
-      alert('Error al procesar la donación. Por favor intenta nuevamente.')
-      setIsSubmitting(false)
+    if (!numericAmount || numericAmount <= 0) {
+      alert('Selecciona un monto válido para donar.')
+      return
     }
+
+    const wompiLink = process.env.NEXT_PUBLIC_WOMPI_DONATION_LINK
+      || 'https://checkout.wompi.co/l/test_VPOS_wIY2x7'
+
+    window.open(wompiLink, '_blank', 'noopener,noreferrer')
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
-
-  if (submitted) {
-    return (
-      <div className={styles.successMessage} ref={containerRef}>
-        <div className={styles.successIcon}>✓</div>
-        <h3 className={styles.successTitle}>¡Gracias por tu donación!</h3>
-        <p className={styles.successText}>Tu aporte hará una gran diferencia en la vida de muchos niños y familias.</p>
-      </div>
-    )
   }
 
   return (
@@ -192,9 +144,8 @@ export default function DonationForm({ onClose }: { onClose?: () => void }) {
           <button
             type="submit"
             className={styles.submitButton}
-            disabled={isSubmitting}
           >
-            {isSubmitting ? 'Procesando...' : 'Donar Ahora'}
+            Donar Ahora
           </button>
           <p className={styles.disclaimer}>
             Tu donación es segura y privada. Aceptamos tarjetas de crédito, débito y transferencias bancarias.

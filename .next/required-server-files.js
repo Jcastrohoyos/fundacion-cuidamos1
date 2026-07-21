@@ -105,7 +105,7 @@ self.__SERVER_FILES_MANIFEST={
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "C:\\Users\\blackrender\\fundacion-cuidamos",
+    "outputFileTracingRoot": "D:\\paginas y programacion\\fc",
     "cacheComponents": false,
     "cacheLife": {
       "default": {
@@ -305,11 +305,11 @@ self.__SERVER_FILES_MANIFEST={
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.js",
     "turbopack": {
-      "root": "C:\\Users\\blackrender\\fundacion-cuidamos"
+      "root": "D:\\paginas y programacion\\fc"
     },
     "distDirRoot": ".next"
   },
-  "appDir": "C:\\Users\\blackrender\\fundacion-cuidamos",
+  "appDir": "D:\\paginas y programacion\\fc",
   "relativeAppDir": "",
   "files": [
     ".next\\package.json",

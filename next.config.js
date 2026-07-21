@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
   turbopack: {
     root: __dirname,
   },
@@ -7,7 +8,6 @@ const nextConfig = {
     remotePatterns: [],
     unoptimized: true,
   },
-  output: 'export',
 }
 
 module.exports = nextConfig

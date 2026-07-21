@@ -1,79 +1,147 @@
 /* [project]/app/components/ComoApoyarnos/ComoApoyarnos.module.css [app-client] (css) */
 .ComoApoyarnos-module__kdZHKa__comoApoyarnos {
-  background-color: #f3f0f0;
+  background-color: var(--color-white);
   padding: 80px 0;
 }
 
 .ComoApoyarnos-module__kdZHKa__container {
-  max-width: 1343px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
 }
 
 .ComoApoyarnos-module__kdZHKa__title {
-  color: #096380;
+  color: var(--color-primary);
+  letter-spacing: -.02em;
   text-align: center;
-  margin-bottom: .5rem;
-  font-size: 2.5rem;
-  font-weight: bold;
+  margin-bottom: .75rem;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 800;
+  display: block;
+  position: relative;
+}
+
+.ComoApoyarnos-module__kdZHKa__title:after {
+  content: "";
+  background: var(--color-secondary);
+  border-radius: 2px;
+  width: 80px;
+  height: 4px;
+  margin: .75rem auto 0;
+  display: block;
 }
 
 .ComoApoyarnos-module__kdZHKa__subtitle {
-  color: #333;
+  color: var(--color-text);
   text-align: center;
   margin-bottom: 3rem;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  line-height: 1.7;
 }
 
 .ComoApoyarnos-module__kdZHKa__grid {
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-bottom: 3rem;
   display: grid;
 }
 
 .ComoApoyarnos-module__kdZHKa__card {
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: var(--glass-shadow);
-  background: #ffffffd9;
-  border: 1px solid #ffffff59;
-  border-radius: 14px;
+  background-color: var(--color-bg);
+  border-radius: 12px;
   padding: 2rem;
+  transition: transform .3s, box-shadow .3s;
+}
+
+.ComoApoyarnos-module__kdZHKa__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px #00000014;
 }
 
 .ComoApoyarnos-module__kdZHKa__cardTitle {
-  color: #096380;
+  color: var(--color-primary);
   margin-bottom: 1rem;
-  font-size: 1.25rem;
-  font-weight: bold;
+  font-size: 1.15rem;
+  font-weight: 700;
 }
 
 .ComoApoyarnos-module__kdZHKa__cardText {
-  color: #555;
+  color: var(--color-text-light);
   margin-bottom: 1rem;
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.ComoApoyarnos-module__kdZHKa__cardText:last-child {
+  margin-bottom: 0;
 }
 
 .ComoApoyarnos-module__kdZHKa__cta {
   text-align: center;
 }
 
+.ComoApoyarnos-module__kdZHKa__clickText {
+  color: var(--color-text-light);
+  margin-bottom: .75rem;
+  font-size: 1rem;
+}
+
 .ComoApoyarnos-module__kdZHKa__button {
+  background-color: var(--color-primary);
   color: #fff;
-  background-color: #096380;
-  border-radius: 8px;
+  z-index: 100;
+  opacity: 1;
+  border: 2px solid var(--color-primary);
+  border-radius: 24px;
   min-width: 48px;
   min-height: 48px;
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  transition: background-color .3s;
+  padding: .875rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all .3s;
   display: inline-block;
+  position: relative;
+  box-shadow: 0 4px 12px #0c7b934d;
 }
 
 .ComoApoyarnos-module__kdZHKa__button:hover {
-  background-color: #075060;
+  background-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px #0c7b934d;
+}
+
+@media (max-width: 1024px) {
+  .ComoApoyarnos-module__kdZHKa__grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .ComoApoyarnos-module__kdZHKa__comoApoyarnos {
+    padding: 50px 0;
+  }
+
+  .ComoApoyarnos-module__kdZHKa__card {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ComoApoyarnos-module__kdZHKa__comoApoyarnos {
+    padding: 40px 0;
+  }
+
+  .ComoApoyarnos-module__kdZHKa__card {
+    padding: 1.25rem;
+  }
+
+  .ComoApoyarnos-module__kdZHKa__button {
+    text-align: center;
+    width: 100%;
+  }
 }
 
 /*# sourceMappingURL=app_components_ComoApoyarnos_ComoApoyarnos_module_css_1igg3k2._.single.css.map*/

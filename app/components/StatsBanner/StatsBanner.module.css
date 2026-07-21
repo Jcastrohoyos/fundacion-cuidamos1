@@ -1,0 +1,100 @@
+/* ============================================
+   STATS BANNER — teal full-width strip
+   ============================================ */
+
+.banner {
+  background: linear-gradient(100deg, #063d4d 0%, #0a5e73 50%, #063d4d 100%);
+  background-image:
+    url('/images/ESTADISTICAR1.webp'),
+    linear-gradient(100deg, #063d4d 0%, #0a5e73 50%, #063d4d 100%);
+  background-blend-mode: overlay;
+  background-size: cover;
+  background-position: center;
+  padding: 4rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle dark veil so text is always readable */
+.banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 40, 52, 0.62);
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 0.75rem;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.number {
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1;
+  margin-bottom: 0.6rem;
+  font-family: var(--font-poppins), sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.label {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.5;
+}
+
+/* vertical divider between items */
+.divider {
+  position: absolute;
+  right: 0;
+  top: 10%;
+  height: 80%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .inner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem 0;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .item:nth-child(1),
+  .item:nth-child(2) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding-bottom: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner {
+    padding: 3rem 1.5rem;
+  }
+
+  .number {
+    font-size: 2.4rem;
+  }
+}
