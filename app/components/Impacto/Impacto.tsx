@@ -72,29 +72,30 @@ export default function Impacto() {
 
             <div className={`${styles.block} impacto-block`}>
               <p className={styles.blockText}>
-                Hasta junio de 2026 hemos distribuido <strong>4.074 bonos de alimentación</strong> a
-                <strong> 1.019 beneficiarios</strong> registrados, beneficiando indirectamente a{' '}
-                <strong>1.628 miembros de familia</strong>. En total histórico hemos entregado{' '}
-                <strong>31.692 bonos</strong> a <strong>8.614 beneficiarios</strong>.
+                <strong>305 bonos de alimentación</strong> entregados semanalmente a cuidadores de niños
+                con cáncer, brindando un alivio económico para que puedan permanecer al lado de sus hijos
+                durante el tratamiento.
               </p>
             </div>
 
             <div className={`${styles.block} impacto-block`}>
               <p className={styles.blockText}>
-                Hasta la fecha hemos distribuido aprox. <strong>71 kits de higiene</strong> en lo que
-                va de 2026, sumando un total histórico de <strong>538 kits de higiene</strong>{' '}
-                entregados semanalmente a familias de bajos ingresos recién llegadas al hospital.
-                Esta actividad busca mejorar el bienestar, la higiene y el autocuidado del cuidador.
+                <strong>Kits de higiene personal</strong> que promueven el bienestar y el autocuidado de
+                las familias que atraviesan esta difícil situación.
               </p>
             </div>
 
             <div className={`${styles.blockAccent} impacto-block`}>
               <p className={styles.blockText}>
-                Distribuimos <strong>125 gorros tejidos</strong> a mano por voluntarias en lo que va
-                de 2026, sumando un total histórico de <strong>1.115 gorros</strong> entregados a
-                niños en tratamiento contra el cáncer que pierden su cabello. Esto aumenta su
-                autoestima, los protege del frío y les hace sentir valorados al saber que una red de
-                mujeres se preocupa por su bienestar.
+                <strong>Gorros tejidos a mano por voluntarias</strong>, elaborados con amor para brindar
+                abrigo, fortalecer la autoestima y acompañar a los niños durante su tratamiento.
+              </p>
+            </div>
+
+            <div className={`${styles.block} impacto-block`}>
+              <p className={styles.blockText}>
+                <strong>21 familias</strong> que han recibido bonos por más de un mes, evidenciando un
+                acompañamiento sostenido que fortalece la estabilidad de quienes más lo necesitan.
               </p>
             </div>
 
@@ -105,26 +106,20 @@ export default function Impacto() {
 
             <div className={`${styles.subsection} impacto-block`}>
               <h3 className={styles.subsectionTitle}>
-                Desarrollo de actividades recreativas y educativas
+                Actividades recreativas y educativas
               </h3>
               <p className={styles.subsectionText}>
-                Hemos entregado materiales recreativos a <strong>1.019 familias</strong> con un niño
-                hospitalizado en lo que va de 2026. Hemos organizado <strong>88 actividades</strong> con una participación
-                promedio de 12 niños por sesión que reciben tratamiento ambulatorio. Cada niño recibe materiales para una actividad
-                recreativa, reforzando habilidades, abordando emociones y distrayéndolos durante el
-                tratamiento.
+                Actividades recreativas y educativas que ofrecen espacios de aprendizaje,
+                entretenimiento y expresión emocional para los niños mientras reciben atención médica.
               </p>
             </div>
 
             <div className={`${styles.subsection} impacto-block`}>
-              <h3 className={styles.subsectionTitle}>Apoyo psicosocial a las familias</h3>
+              <h3 className={styles.subsectionTitle}>Talleres de apoyo psicosocial</h3>
               <p className={styles.subsectionText}>
-                Hemos realizado más de <strong>88 talleres</strong> con una participación promedio de
-                siete cuidadores: padres o tíos, entre otros, de niños que asisten a quimioterapia
-                ambulatoria. Estas sesiones, dirigidas por una psicóloga infantil y familiar,
-                proporcionan pautas para gestionar el comportamiento de los niños, manejar sus
-                emociones y permiten a las familias compartir experiencias con quienes están pasando
-                por una experiencia similar.
+                Talleres de apoyo psicosocial, dirigidos por profesionales, donde los cuidadores
+                y niños reciben orientación, herramientas y acompañamiento emocional para afrontar
+                el proceso de la enfermedad.
               </p>
             </div>
 

@@ -59,7 +59,7 @@
 }
 
 .welcome {
-  font-size: 1.1rem;
+  font-size: 1.35rem;
   font-weight: 500;
   margin-bottom: 1rem;
   opacity: 0.9;
@@ -67,7 +67,7 @@
 }
 
 .title {
-  font-size: clamp(3rem, 7vw, 5rem);
+  font-size: clamp(3.5rem, 8vw, 6rem);
   font-weight: 800;
   line-height: 1;
   margin-bottom: 1.5rem;
@@ -75,7 +75,7 @@
 }
 
 .subtitle {
-  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
   font-weight: 400;
   opacity: 0.9;
 }
@@ -111,11 +111,11 @@
   }
 
   .title {
-    font-size: clamp(2.5rem, 10vw, 4rem);
+    font-size: clamp(2.8rem, 10vw, 4.5rem);
   }
 
   .subtitle {
-    font-size: clamp(1.1rem, 4vw, 1.4rem);
+    font-size: clamp(1.3rem, 4vw, 1.6rem);
   }
 }
 
@@ -130,15 +130,15 @@
   }
 
   .title {
-    font-size: clamp(2rem, 12vw, 3rem);
+    font-size: clamp(2.2rem, 12vw, 3.5rem);
   }
 
   .subtitle {
-    font-size: clamp(0.95rem, 5vw, 1.2rem);
+    font-size: clamp(1.1rem, 5vw, 1.4rem);
   }
 
   .welcome {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
   }
 }
 

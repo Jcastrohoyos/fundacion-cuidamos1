@@ -7,121 +7,22 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
+  display: flex;
+  justify-content: center;
 }
 
-.title {
-  font-size: clamp(2rem, 4.5vw, 3rem);
-  font-weight: 800;
-  margin-bottom: 0.75rem;
-  color: var(--color-primary);
-  letter-spacing: -0.02em;
-  text-align: center;
-  position: relative;
-  display: block;
+.datosWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-.title::after {
-  content: '';
-  display: block;
-  width: 80px;
-  height: 4px;
-  background: var(--color-secondary);
-  margin: 0.75rem auto 0;
-  border-radius: 2px;
-}
-
-.subtitle {
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  margin-bottom: 3rem;
-  color: var(--color-primary);
-  text-align: center;
-  font-weight: 600;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-}
-
-.stat {
-  text-align: center;
-  background-color: var(--color-white);
-  padding: 2rem 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  opacity: 0;
-  transform: translateY(30px);
-  position: relative;
-  overflow: hidden;
-}
-
-.stat:hover {
-  transform: translateY(-4px);
+.datosImage {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  border-radius: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-}
-
-/* Image background */
-.imgWrapper {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.bgImage {
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.stat:hover .bgImage {
-  transform: scale(1.06);
-}
-
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(7, 80, 96, 0.55) 0%,
-    rgba(7, 80, 96, 0.75) 100%
-  );
-}
-
-/* Content sits above image */
-.cardContent {
-  position: relative;
-  z-index: 1;
-}
-
-/* When card has image, flip text colors to white */
-.imgWrapper ~ .cardContent .percentage {
-  color: #ffffff;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-.imgWrapper ~ .cardContent .label {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.percentage {
-  font-size: 2.8rem;
-  font-weight: 800;
-  color: var(--color-primary);
-  margin-bottom: 0.5rem;
-  font-family: var(--font-poppins), sans-serif;
-}
-
-.label {
-  font-size: 1.05rem;
-  color: var(--color-text-light);
-  line-height: 1.4;
-}
-
-@media (max-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 @media (max-width: 768px) {
@@ -129,20 +30,8 @@
     padding: 50px 0;
   }
 
-  .grid {
-    gap: 1rem;
-  }
-
-  .stat {
-    padding: 1.5rem 1rem;
-  }
-
-  .percentage {
-    font-size: 2.2rem;
-  }
-
-  .label {
-    font-size: 1rem;
+  .container {
+    padding: 0 16px;
   }
 }
 
@@ -151,20 +40,7 @@
     padding: 40px 0;
   }
 
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-  }
-
-  .stat {
-    padding: 1.25rem 0.75rem;
-  }
-
-  .percentage {
-    font-size: 1.8rem;
-  }
-
-  .label {
-    font-size: 0.9rem;
+  .datosImage {
+    border-radius: 12px;
   }
 }

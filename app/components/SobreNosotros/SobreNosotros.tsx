@@ -4,7 +4,7 @@ import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import Image from 'next/image'
-import { Calendar, Stethoscope } from 'lucide-react'
+import { Calendar } from 'lucide-react'
 import styles from './SobreNosotros.module.css'
 
 const teamMembers = [
@@ -22,11 +22,6 @@ const stats = [
     icon: Calendar,
     value: 'Octubre 2022',
     label: 'Nuestra labor empezó en',
-  },
-  {
-    icon: Stethoscope,
-    value: 'Hospital HOMI',
-    label: 'Colaboramos actualmente con el',
   },
 ]
 
@@ -88,13 +83,15 @@ export default function SobreNosotros() {
             <h2 className={`${styles.title} sobre-title`}>Unidas por la esperanza</h2>
             
             <div className={`${styles.description} sobre-description`}>
-              <p>Somos un grupo de mujeres de diversas profesiones, unidas con el objetivo de ayudar a familias con necesidad</p>
+              <p>Somos un grupo de mujeres unidas por un mismo propósito: llevar alimento, esperanza y apoyo a las familias de niños con cáncer, para que puedan concentrarse en lo más importante: acompañar a sus hijos durante su tratamiento.</p>
             </div>
 
             <p className={`${styles.text} sobre-text`}>
               Nuestro propósito es brindar apoyo integral a familias en situación de vulnerabilidad. 
               A través de nuestra Fundación, trabajamos con dedicación para ofrecer soluciones que 
               transformen vidas, proporcionando cuidado, nutrición y apoyo emocional a quienes más lo necesitan.
+              Cada donación se transforma en un bono de alimentación que brinda alivio, fortaleza y esperanza
+              a quienes más lo necesitan.
             </p>
 
             <div className={styles.stats}>

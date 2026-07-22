@@ -10,19 +10,19 @@ import styles from './Empresa.module.css'
 const benefits = [
   {
     icon: Building2,
-    text: 'Deducción de impuesto de renta según la normativa vigente.'
+    text: 'Con tu apoyo, ayudas a brindar alimentación y acompañamiento a cuidadores de niños con cáncer.'
   },
   {
     icon: TrendingUp,
-    text: 'Fortalece tu Responsabilidad Social Empresarial (RSE) respaldando un proyecto con impacto social comprobado.'
+    text: 'Si eres empresa, puedes acceder a beneficios tributarios de acuerdo con la normativa vigente.'
   },
   {
     icon: Shield,
-    text: 'Vincúlate a una causa transparente, con reportes claros sobre el destino de los recursos y sus resultados.'
+    text: 'Tu aporte respalda una causa transparente, con un impacto social real y reportes claros sobre el uso de los recursos.'
   },
   {
     icon: Award,
-    text: 'Potencia la reputación de tu marca al asociarla con el bienestar de cuidadores y familias en situación vulnerable.'
+    text: 'Cada donación se convierte en esperanza, bienestar y apoyo para las familias que más lo necesitan.'
   }
 ]
 
@@ -76,7 +76,7 @@ export default function Empresa() {
         </div>
 
         <div className={styles.content}>
-          <h2 className={`${styles.title} empresa-title`}>Tu empresa puede hacer la diferencia</h2>
+          <h2 className={`${styles.title} empresa-title`}>Tú puedes hacer la diferencia</h2>
           <h3 className={`${styles.subtitle} empresa-subtitle`}>Beneficios para empresas</h3>
 
           <div className={styles.grid}>

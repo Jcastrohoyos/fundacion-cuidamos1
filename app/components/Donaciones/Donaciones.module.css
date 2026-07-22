@@ -31,7 +31,7 @@
 }
 
 .title {
-  font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+  font-size: clamp(1.6rem, 3vw, 2rem);
   color: white;
   margin-bottom: 1rem;
   font-weight: 500;
@@ -39,7 +39,7 @@
 }
 
 .subtitle {
-  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
   color: white;
   font-weight: 800;
   margin-bottom: 1rem;
@@ -59,7 +59,7 @@
 }
 
 .tagline {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 2rem;
   font-style: italic;
@@ -69,26 +69,39 @@
 .button {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background-color: #ffffff;
-  color: var(--color-primary);
-  padding: 1rem 2.5rem;
-  border-radius: 30px;
-  font-size: 1.1rem;
-  font-weight: 700;
+  gap: 12px;
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 50%, #FF6B6B 100%);
+  background-size: 200% 200%;
+  color: #ffffff;
+  padding: 1.25rem 3.5rem;
+  border-radius: 50px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
   transition: all 0.3s ease;
   text-decoration: none;
   opacity: 1;
   z-index: 100;
   position: relative;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: none;
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+  animation: pulse-glow 2s ease-in-out infinite;
 }
 
 .button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  background-color: var(--color-secondary-light);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 35px rgba(255, 107, 107, 0.5);
+  background-position: 100% 100%;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+  }
+  50% {
+    box-shadow: 0 6px 30px rgba(255, 107, 107, 0.6);
+  }
 }
 
 @media (max-width: 768px) {
@@ -105,6 +118,7 @@
   .button {
     width: 100%;
     justify-content: center;
-    padding: 0.875rem 2rem;
+    padding: 1.1rem 2rem;
+    font-size: 1.2rem;
   }
 }

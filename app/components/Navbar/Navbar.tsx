@@ -4,8 +4,16 @@ import { useRef, useState, useEffect } from 'react'
 import Image from 'next/image'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import { Mail, Camera, MapPin } from 'lucide-react'
+import { Mail, Camera } from 'lucide-react'
 import styles from './Navbar.module.css'
+
+function FacebookIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+    </svg>
+  )
+}
 
 export default function Navbar() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -50,21 +58,25 @@ export default function Navbar() {
   return (
     <nav className={styles.navbar} ref={containerRef}>
       <div className={styles.container}>
-        <div className={styles.left}>
+        <div className={styles.logoArea}>
           <div className={styles.logo}>
             <Image
               src="/images/logo2.webp"
               alt="Fundacion Cuidamos con Amor"
-              width={50}
-              height={50}
+              width={88}
+              height={88}
               className={styles.logoImage}
               priority
             />
           </div>
-          <div className={styles.location}>
-            <MapPin size={16} />
-            <span>Bogota, Colombia</span>
-          </div>
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSct44ShJq2kK0DELwxdJBMrpYaGQdYpi1ZbNKFyzrjCNWCQcg/viewform?usp=header"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.donateButtonHeader}
+          >
+            Dona aquí
+          </a>
         </div>
 
         <button
@@ -130,6 +142,15 @@ export default function Navbar() {
                 <Mail size={18} />
               </a>
               <a
+                href="https://www.facebook.com/profile.php?id=61590375045310"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.iconLink}
+                aria-label="Facebook"
+              >
+                <FacebookIcon />
+              </a>
+              <a
                 href="https://www.instagram.com/cuidamosconamor_fundacion/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -137,14 +158,6 @@ export default function Navbar() {
                 aria-label="Seguir en Instagram"
               >
                 <Camera size={18} />
-              </a>
-              <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSct44ShJq2kK0DELwxdJBMrpYaGQdYpi1ZbNKFyzrjCNWCQcg/viewform?usp=header"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.donateButton}
-              >
-                Dona aqui
               </a>
             </div>
           </li>

@@ -9,9 +9,9 @@ import styles from './NuestroTrabajo.module.css'
 const pillars = [
   {
     Icon: ClipboardList,
-    title: 'Nutrición y autocuidado de los cuidadores',
+    title: 'Nutrición y autocuidado para los cuidadores',
     description:
-      'En colaboración con HOMI, priorizamos a las familias más necesitadas, proporcionando bonos de alimentación para los cuidadores, garantizando una o dos almuerzos semanales. Entregamos kits de aseo personal para los cuidadores y gorros tejidos a mano por voluntarias para los niños.',
+      'Brindamos bonos de alimentación a los cuidadores de niños con cáncer, además de kits de aseo personal y gorros tejidos a mano para los niños, llevando alivio, cuidado y esperanza a las familias que más lo necesitan.',
   },
   {
     Icon: Palette,

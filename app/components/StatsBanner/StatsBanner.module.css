@@ -46,7 +46,7 @@
 }
 
 .number {
-  font-size: clamp(2.6rem, 5vw, 4rem);
+  font-size: clamp(3rem, 6vw, 5rem);
   font-weight: 800;
   color: #ffffff;
   line-height: 1;
@@ -56,7 +56,7 @@
 }
 
 .label {
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   color: rgba(255, 255, 255, 0.85);
   line-height: 1.5;
 }

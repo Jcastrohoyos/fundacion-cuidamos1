@@ -7,11 +7,11 @@
 :root {
   --font-poppins: var(--font-poppins);
   --font-inter: var(--font-inter);
-  --font-size-h1: clamp(2.75rem, 6vw, 5rem);
-  --font-size-h2: clamp(2rem, 4vw, 3rem);
-  --font-size-h3: clamp(1.5rem, 3vw, 2rem);
-  --font-size-h4: clamp(1.125rem, 2vw, 1.5rem);
-  --font-size-body: clamp(1.125rem, 2vw, 1.25rem);
+  --font-size-h1: clamp(3rem, 7vw, 5.5rem);
+  --font-size-h2: clamp(2.5rem, 5vw, 3.5rem);
+  --font-size-h3: clamp(1.8rem, 3.5vw, 2.5rem);
+  --font-size-h4: clamp(1.3rem, 2.5vw, 1.8rem);
+  --font-size-body: clamp(1.25rem, 2.5vw, 1.5rem);
   --breakpoint-mobile: 640px;
   --breakpoint-tablet: 1024px;
   --breakpoint-desktop: 1440px;
@@ -39,18 +39,18 @@ body {
 }
 
 main {
-  padding-top: 90px;
+  padding-top: 96px;
 }
 
 @media (max-width: 768px) {
   main {
-    padding-top: 76px;
+    padding-top: 72px;
   }
 }
 
 @media (max-width: 480px) {
   main {
-    padding-top: 68px;
+    padding-top: 64px;
   }
 }
 

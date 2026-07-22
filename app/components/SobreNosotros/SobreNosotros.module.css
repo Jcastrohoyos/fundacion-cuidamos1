@@ -22,7 +22,7 @@
 
 .label {
   display: inline-block;
-  font-size: 1.05rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: var(--color-primary);
   margin-bottom: 1rem;
@@ -31,7 +31,7 @@
 }
 
 .title {
-  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 800;
   color: var(--color-primary);
   margin-bottom: 1.5rem;
@@ -59,14 +59,14 @@
 }
 
 .description p {
-  font-size: 1.1rem;
+  font-size: 1.45rem;
   line-height: 1.7;
   color: var(--color-text);
   font-weight: 500;
 }
 
 .text {
-  font-size: 1rem;
+  font-size: 1.35rem;
   line-height: 1.7;
   color: var(--color-text-light);
   margin-bottom: 2rem;
@@ -108,14 +108,14 @@
 }
 
 .statValue {
-  font-size: 1.05rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: var(--color-primary);
   line-height: 1.3;
 }
 
 .statLabel {
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   color: var(--color-text-light);
   line-height: 1.4;
 }
@@ -128,8 +128,8 @@
 .teamGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  max-width: 450px;
+  gap: 2rem;
+  max-width: 550px;
 }
 
 .member {
@@ -144,8 +144,8 @@
 }
 
 .memberAvatar {
-  width: 90px;
-  height: 90px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   background-color: var(--color-secondary-light);
   display: flex;
@@ -173,7 +173,7 @@
 }
 
 .memberName {
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--color-text);
   margin-bottom: 0.2rem;
@@ -181,7 +181,7 @@
 }
 
 .memberRole {
-  font-size: 1rem;
+  font-size: 1.15rem;
   color: var(--color-text-light);
   text-transform: uppercase;
 }
@@ -213,25 +213,25 @@
 
   .teamGrid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+    gap: 1.5rem;
     max-width: 100%;
   }
 
   .memberAvatar {
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
   }
 
   .memberInitial {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
   }
 
   .memberName {
-    font-size: 1.05rem;
+    font-size: 1.2rem;
   }
 
   .memberRole {
-    font-size: 1.05rem;
+    font-size: 1.15rem;
   }
 
   .stats {
@@ -244,6 +244,14 @@
     flex-direction: row;
     justify-content: center;
   }
+
+  .description p {
+    font-size: 1.35rem;
+  }
+
+  .text {
+    font-size: 1.25rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -253,23 +261,31 @@
 
   .teamGrid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
+    gap: 1rem;
   }
 
   .memberAvatar {
-    width: 60px;
-    height: 60px;
+    width: 90px;
+    height: 90px;
   }
 
   .memberInitial {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
 
   .memberName {
-    font-size: 1rem;
+    font-size: 1.15rem;
   }
 
   .memberRole {
-    font-size: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .description p {
+    font-size: 1.2rem;
+  }
+
+  .text {
+    font-size: 1.15rem;
   }
 }
