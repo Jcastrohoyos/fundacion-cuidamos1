@@ -107,7 +107,7 @@ export default function Footer() {
 
             <div className={styles.socialRow}>
               <a
-                href="https://www.instagram.com/fundacioncuidamosconamor"
+                href="https://www.instagram.com/cuidamosconamor_fundacion/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.socialIcon}
@@ -223,16 +223,24 @@ export default function Footer() {
 
         {/* ── Bottom bar ── */}
         <div className={`${styles.bottomSection} footer-bottom`}>
-          <p className={styles.copyright}>
-            © {new Date().getFullYear()} Fundación Cuidamos con Amor · Todos los derechos reservados.
-          </p>
-          <p className={styles.tagline}>
-            Cuidamos con amor y alimentamos la esperanza · NIT 901868580-4 · Bogotá, Colombia
-          </p>
-          <div className={styles.bottomLinks}>
-            <a href="#" className={styles.bottomLink}>Política de Privacidad</a>
-            <span className={styles.bottomSeparator} />
-            <a href="#" className={styles.bottomLink}>Términos y Condiciones</a>
+          <div className={styles.bottomTop}>
+            <p className={styles.copyright}>
+              © {new Date().getFullYear()} Fundación Cuidamos con Amor
+            </p>
+            <div className={styles.bottomLinks}>
+              <a href="#" className={styles.bottomLink}>Política de Privacidad</a>
+              <span className={styles.bottomSeparator} />
+              <a href="#" className={styles.bottomLink}>Términos y Condiciones</a>
+            </div>
+          </div>
+          <div className={styles.bottomBottom}>
+            <p className={styles.tagline}>
+              Cuidamos con amor y alimentamos la esperanza
+            </p>
+            <span className={styles.bottomDot} />
+            <p className={styles.tagline}>
+              NIT 901868580-4 · Bogotá, Colombia
+            </p>
           </div>
         </div>
       </div>
