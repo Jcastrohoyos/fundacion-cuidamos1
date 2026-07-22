@@ -5,6 +5,7 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { Heart } from 'lucide-react'
 import styles from './Donaciones.module.css'
+import { openDonationModal } from '../DonationModal/DonationModal'
 
 export default function Donaciones() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -45,17 +46,16 @@ export default function Donaciones() {
           <p className={styles.tagline}>
             Hoy puedes ser la razón por la que alguien no se rinda.
           </p>
-          <a
-            href="https://checkout.wompi.co/l/test_VPOS_wIY2x7"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={openDonationModal}
             className={`${styles.button} donaciones-button`}
           >
             <Heart size={20} />
             Dona ahora
-          </a>
+          </button>
         </div>
       </div>
     </section>
   )
 }
+

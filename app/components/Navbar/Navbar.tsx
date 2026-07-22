@@ -6,6 +6,7 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { Mail, Camera } from 'lucide-react'
 import styles from './Navbar.module.css'
+import { openDonationModal } from '../DonationModal/DonationModal'
 
 function FacebookIcon() {
   return (
@@ -69,14 +70,12 @@ export default function Navbar() {
               priority
             />
           </div>
-          <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSct44ShJq2kK0DELwxdJBMrpYaGQdYpi1ZbNKFyzrjCNWCQcg/viewform?usp=header"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={openDonationModal}
             className={styles.donateButtonHeader}
           >
             Dona aquí
-          </a>
+          </button>
         </div>
 
         <button
@@ -166,3 +165,4 @@ export default function Navbar() {
     </nav>
   )
 }
+

@@ -4,6 +4,7 @@ import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import styles from './ComoApoyarnos.module.css'
+import { openDonationModal } from '../DonationModal/DonationModal'
 
 export default function ComoApoyarnos() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -83,16 +84,15 @@ export default function ComoApoyarnos() {
         
         <div className={styles.cta}>
           <p className={styles.clickText}>¡Haz clic aquí para donar!</p>
-          <a 
-            href="https://docs.google.com/forms/d/e/1FAIpQLSct44ShJq2kK0DELwxdJBMrpYaGQdYpi1ZbNKFyzrjCNWCQcg/viewform?usp=header"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button 
+            onClick={openDonationModal}
             className={`${styles.button} como-button`}
           >
             Dona aquí
-          </a>
+          </button>
         </div>
       </div>
     </section>
   )
 }
+
