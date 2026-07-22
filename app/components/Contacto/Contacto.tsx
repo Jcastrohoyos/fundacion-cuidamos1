@@ -36,8 +36,8 @@ const contactItems = [
   {
     icon: InstagramIcon,
     label: 'Instagram',
-    value: '@cuidamosconamor_gruposocial',
-    href: 'https://instagram.com/cuidamosconamor_gruposocial',
+    value: '@cuidamosconamor_fundacion',
+    href: 'https://www.instagram.com/cuidamosconamor_fundacion/',
     external: true,
   },
   {
