@@ -29,12 +29,8 @@
 }
 
 @keyframes pulse-donate {
-  0%, 100% {
-    box-shadow: 0 6px 25px rgba(255, 107, 107, 0.45);
-  }
-  50% {
-    box-shadow: 0 6px 35px rgba(255, 107, 107, 0.7);
-  }
+  0%, 100% { box-shadow: 0 6px 25px rgba(255, 107, 107, 0.45); }
+  50% { box-shadow: 0 6px 35px rgba(255, 107, 107, 0.7); }
 }
 
 .modalOverlay {
@@ -74,7 +70,6 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  font-size: 1.2rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -106,12 +101,8 @@
 }
 
 @keyframes heartbeat {
-  0%, 100% {
-    transform: scale(1);
-  }
-  25%, 75% {
-    transform: scale(1.1);
-  }
+  0%, 100% { transform: scale(1); }
+  25%, 75% { transform: scale(1.1); }
 }
 
 .donationTitle {
@@ -128,14 +119,219 @@
   line-height: 1.6;
 }
 
-.optionsGrid {
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.backButton:hover {
+  background-color: var(--color-bg);
+}
+
+.formSection {
+  margin-bottom: 1.5rem;
+}
+
+.sectionTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.amountGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.amountButton {
+  padding: 1rem;
+  border: 2px solid #e0e0e0;
+  background: white;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.amountButton:hover {
+  border-color: var(--color-primary);
+  background: #f0f8ff;
+}
+
+.amountButton.active {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: white;
+}
+
+.customAmountWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.customAmountWrapper:focus-within {
+  border-color: var(--color-primary);
+}
+
+.currencySymbol {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+}
+
+.customAmountInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  outline: none;
+}
+
+.customAmountInput::placeholder {
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.customAmountInput.active {
+  color: var(--color-primary);
+}
+
+.currencyLabel {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+  background: var(--color-bg);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.inputRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.input {
+  padding: 0.875rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.input:hover {
+  border-color: #ccc;
+}
+
+.input:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+.summarySection {
+  background: var(--color-bg);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summaryLabel {
+  font-size: 1rem;
+  color: var(--color-text-light);
+}
+
+.summaryValue {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.continueButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(12, 123, 147, 0.35);
+}
+
+.continueButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(12, 123, 147, 0.5);
+}
+
+.arrowRight {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.continueButton:hover .arrowRight {
+  transform: translateX(5px);
+}
+
+.paymentGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.25rem;
   margin-bottom: 1.5rem;
 }
 
-.optionCard {
+.paymentCard {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -145,18 +341,22 @@
   border-radius: 16px;
   border: 2px solid transparent;
   transition: all 0.3s ease;
-  text-decoration: none;
-  color: inherit;
+  cursor: pointer;
   position: relative;
 }
 
-.optionCard:hover {
+.paymentCard:hover:not(.disabled) {
   transform: translateY(-6px);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
   border-color: var(--color-primary);
 }
 
-.optionIcon {
+.paymentCard.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.paymentIcon {
   width: 64px;
   height: 64px;
   border-radius: 50%;
@@ -167,53 +367,63 @@
   transition: transform 0.3s ease;
 }
 
-.optionCard:hover .optionIcon {
+.paymentCard:hover:not(.disabled) .paymentIcon {
   transform: scale(1.1);
 }
 
-.optionTitle {
+.paymentTitle {
   font-size: 1.2rem;
   font-weight: 700;
   color: var(--color-text);
   margin-bottom: 0.5rem;
 }
 
-.optionDescription {
+.paymentDescription {
   font-size: 0.95rem;
   color: var(--color-text-light);
   line-height: 1.5;
   margin-bottom: 1rem;
 }
 
-.optionArrow {
+.paymentArrow {
   font-size: 1.5rem;
   color: var(--color-primary);
   transition: transform 0.3s ease;
 }
 
-.optionCard:hover .optionArrow {
+.paymentCard:hover:not(.disabled) .paymentArrow {
   transform: translateX(5px);
 }
 
-.donationFooter {
-  text-align: center;
+.comingSoon {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  background: rgba(0, 0, 0, 0.05);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+}
+
+.donationInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   font-size: 0.9rem;
   color: var(--color-text-muted);
   padding-top: 1rem;
   border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
+.checkIcon {
+  color: #4CAF50;
+}
+
 @media (max-width: 768px) {
   .stickyButton {
     bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
     padding: 0.85rem 1.5rem;
     font-size: 1rem;
-  }
-
-  .stickyButton:hover {
-    transform: translateX(-50%) translateY(-4px) scale(1.05);
   }
 
   .modalWrapper {
@@ -225,19 +435,27 @@
     padding: 1.5rem;
   }
 
-  .optionsGrid {
+  .amountGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .inputRow {
+    grid-template-columns: 1fr;
+  }
+
+  .paymentGrid {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
 
-  .optionCard {
+  .paymentCard {
     flex-direction: row;
     text-align: left;
     padding: 1.25rem;
     gap: 1rem;
   }
 
-  .optionIcon {
+  .paymentIcon {
     width: 50px;
     height: 50px;
     margin-bottom: 0;
@@ -252,15 +470,9 @@
 @media (max-width: 480px) {
   .stickyButton {
     bottom: 16px;
-    left: 50%;
-    transform: translateX(-50%);
     padding: 0.7rem 1.2rem;
     font-size: 0.9rem;
     border-radius: 40px;
-  }
-
-  .stickyButton:hover {
-    transform: translateX(-50%) translateY(-4px) scale(1.05);
   }
 
   .modalOverlay {
@@ -282,7 +494,6 @@
     right: 10px;
     width: 34px;
     height: 34px;
-    font-size: 1rem;
   }
 
   .donationTitle {
@@ -291,5 +502,19 @@
 
   .donationSubtitle {
     font-size: 1rem;
+  }
+
+  .amountGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .amountButton {
+    padding: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  .summaryValue {
+    font-size: 1.3rem;
   }
 }
