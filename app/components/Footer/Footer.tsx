@@ -138,7 +138,7 @@ export default function Footer() {
           <div className={`${styles.linkSection} footer-section`}>
             <h3 className={styles.sectionTitle}>
               <FileText size={14} className={styles.titleIcon} />
-              Documentos Legales
+              Documentos y Certificaciones
             </h3>
             <ul className={styles.linkList}>
               {[
