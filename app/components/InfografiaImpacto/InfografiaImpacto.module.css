@@ -1,0 +1,344 @@
+.section {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #e8f4f8 0%, #d1e8f0 50%, #c5d9e8 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(12, 123, 147, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(184, 169, 201, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.label {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.infografiaWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  height: 600px;
+  margin: 0 auto;
+}
+
+.conectionLines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.heartContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 160px;
+  height: 160px;
+  z-index: 10;
+}
+
+.heartGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(231, 76, 60, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+}
+
+.heartSvg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 8px 24px rgba(231, 76, 60, 0.4));
+}
+
+.handsContainer {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 80px;
+}
+
+.handsSvg {
+  width: 100%;
+  height: 100%;
+}
+
+.dataBlocks {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+}
+
+.dataBlock {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #1a5276 0%, #154360 100%);
+  padding: 12px 18px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(26, 82, 118, 0.35);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-width: 140px;
+}
+
+.dataBlock:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(26, 82, 118, 0.5);
+}
+
+.blockIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.blockContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.blockValue {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1.2;
+}
+
+.blockLabel {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.3;
+}
+
+/* Posiciones */
+.topLeft { top: 5%; left: 5%; }
+.topRight { top: 5%; right: 5%; }
+.midLeft { top: 28%; left: 2%; }
+.midRight { top: 28%; right: 2%; }
+.left { top: 48%; left: 0%; }
+.right { top: 48%; right: 0%; }
+.bottomLeft { top: 72%; left: 5%; }
+.bottomRight { top: 72%; right: 15%; }
+.bottomLeft2 { bottom: 5%; left: 15%; }
+.bottomMid { bottom: 2%; left: 50%; transform: translateX(-50%); }
+.bottomRight2 { bottom: 5%; right: 5%; }
+
+.ctaContainer {
+  text-align: center;
+  margin-top: 48px;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 16px 40px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 24px rgba(12, 123, 147, 0.4);
+}
+
+.ctaButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 32px rgba(12, 123, 147, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .infografiaWrapper {
+    height: 550px;
+  }
+
+  .dataBlock {
+    padding: 10px 14px;
+    min-width: 120px;
+  }
+
+  .blockValue {
+    font-size: 1.1rem;
+  }
+
+  .blockLabel {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 50px 0;
+  }
+
+  .infografiaWrapper {
+    height: auto;
+    min-height: 800px;
+  }
+
+  .heartContainer {
+    width: 120px;
+    height: 120px;
+    top: 50px;
+  }
+
+  .heartGlow {
+    width: 140px;
+    height: 140px;
+  }
+
+  .handsContainer {
+    width: 100px;
+    height: 60px;
+    bottom: -15px;
+  }
+
+  .conectionLines {
+    display: none;
+  }
+
+  .dataBlocks {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding-top: 180px;
+  }
+
+  .dataBlock {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+  }
+
+  .bottomMid {
+    grid-column: span 2;
+    justify-self: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 40px 0;
+  }
+
+  .header {
+    margin-bottom: 32px;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .infografiaWrapper {
+    min-height: 700px;
+  }
+
+  .heartContainer {
+    width: 100px;
+    height: 100px;
+    top: 30px;
+  }
+
+  .heartGlow {
+    width: 120px;
+    height: 120px;
+  }
+
+  .handsContainer {
+    width: 80px;
+    height: 50px;
+    bottom: -12px;
+  }
+
+  .dataBlocks {
+    padding-top: 150px;
+    grid-template-columns: 1fr;
+  }
+
+  .bottomMid {
+    grid-column: span 1;
+  }
+
+  .dataBlock {
+    padding: 10px 14px;
+    min-width: auto;
+  }
+
+  .blockValue {
+    font-size: 1rem;
+  }
+
+  .ctaButton {
+    padding: 14px 32px;
+    font-size: 1rem;
+  }
+}
