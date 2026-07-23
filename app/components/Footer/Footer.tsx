@@ -150,6 +150,8 @@ export default function Footer() {
                 { title: 'Política ingreso de actividades', href: '/documentos/05__Politica_Ingresos_de_Actividades_Ordinarias[1].pdf' },
                 { title: 'Acta de constitución y Estatutos', href: '/documentos/Acta y Estatutos  (1).pdf' },
                 { title: 'Certificado de Existencia y Repr. Legal', href: '/documentos/Certificado CCB (1).pdf' },
+                { title: 'Certificación cumplimiento requisitos RTE', href: '/documentos/Certificacion cumplimiento requisitos RTE.pdf' },
+                { title: 'Certificación de cargos directivos', href: '/documentos/Certificacion de  cargos directivos .pdf' },
               ].map((doc) => (
                 <li key={doc.title}>
                   <a href={doc.href} target="_blank" rel="noopener noreferrer" className={styles.link}>
