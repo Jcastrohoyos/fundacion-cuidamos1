@@ -151,7 +151,6 @@ export default function Footer() {
                 { title: 'Acta de constitución y Estatutos', href: '/documentos/Acta y Estatutos  (1).pdf' },
                 { title: 'Certificado de Existencia y Repr. Legal', href: '/documentos/Certificado CCB (1).pdf' },
                 { title: 'Certificación cumplimiento requisitos RTE', href: '/documentos/Certificacion cumplimiento requisitos RTE.pdf' },
-                { title: 'Certificación de cargos directivos', href: '/documentos/Certificacion de  cargos directivos .pdf' },
               ].map((doc) => (
                 <li key={doc.title}>
                   <a href={doc.href} target="_blank" rel="noopener noreferrer" className={styles.link}>
@@ -184,7 +183,27 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* ── Columna 4: Contacto ── */}
+          {/* ── Columna 4: Cargo Directivo ── */}
+          <div className={`${styles.linkSection} footer-section`}>
+            <h3 className={styles.sectionTitle}>
+              <FileText size={14} className={styles.titleIcon} />
+              Cargo Directivo
+            </h3>
+            <ul className={styles.linkList}>
+              {[
+                { title: 'Certificación de cargos directivos', href: '/documentos/Certificacion de  cargos directivos .pdf' },
+              ].map((item) => (
+                <li key={item.title}>
+                  <a href={item.href} target="_blank" rel="noopener noreferrer" className={styles.link}>
+                    <ChevronRight size={13} />
+                    {item.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* ── Columna 5: Contacto ── */}
           <div className={`${styles.linkSection} footer-section`}>
             <h3 className={styles.sectionTitle}>
               <Mail size={14} className={styles.titleIcon} />

@@ -15,6 +15,7 @@ const teamMembers = [
   { name: 'FABIOLA', role: 'ECONOMISTA', image: '/images/fabiola.webp' },
   { name: 'ANDREA', role: 'ADMIN. DE EMPRESAS', image: '/images/andrea.webp' },
   { name: 'MARIANA', role: 'ARQUITECTA', image: '/images/mariana.webp', gridColumn: 2 },
+  { name: 'PATRICIA', role: 'EDUCADORA INFANTIL', image: '/images/Patricia Suárez ,educadora infantil.webp' },
 ]
 
 const stats = [
