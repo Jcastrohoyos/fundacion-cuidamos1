@@ -74,15 +74,15 @@ export default function InfografiaImpacto() {
         <div className={styles.infografiaWrapper}>
           {/* Líneas conectoras */}
           <svg className={styles.conectionLines} viewBox="0 0 1000 600" fill="none">
-            <line className="infografia-line" x1="500" y1="300" x2="200" y2="80" stroke="#0C7B93" strokeWidth="2" strokeDasharray="8 4"/>
-            <line className="infografia-line" x1="500" y1="300" x2="800" y2="80" stroke="#0C7B93" strokeWidth="2" strokeDasharray="8 4"/>
-            <line className="infografia-line" x1="500" y1="300" x2="100" y2="250" stroke="#0C7B93" strokeWidth="2" strokeDasharray="8 4"/>
-            <line className="infografia-line" x1="500" y1="300" x2="900" y2="250" stroke="#0C7B93" strokeWidth="2" strokeDasharray="8 4"/>
-            <line className="infografia-line" x1="500" y1="300" x2="50" y2="400" stroke="#0C7B93" strokeWidth="2" strokeDasharray="8 4"/>
-            <line className="infografia-line" x1="500" y1="300" x2="950" y2="400" stroke="#0C7B93" strokeWidth="2" strokeDasharray="8 4"/>
-            <line className="infografia-line" x1="500" y1="300" x2="200" y2="520" stroke="#0C7B93" strokeWidth="2" strokeDasharray="8 4"/>
-            <line className="infografia-line" x1="500" y1="300" x2="500" y2="550" stroke="#0C7B93" strokeWidth="2" strokeDasharray="8 4"/>
-            <line className="infografia-line" x1="500" y1="300" x2="800" y2="520" stroke="#0C7B93" strokeWidth="2" strokeDasharray="8 4"/>
+            <line className="infografia-line" x1="500" y1="300" x2="200" y2="80" stroke="#096380" strokeWidth="2" strokeDasharray="8 4"/>
+            <line className="infografia-line" x1="500" y1="300" x2="800" y2="80" stroke="#096380" strokeWidth="2" strokeDasharray="8 4"/>
+            <line className="infografia-line" x1="500" y1="300" x2="100" y2="250" stroke="#096380" strokeWidth="2" strokeDasharray="8 4"/>
+            <line className="infografia-line" x1="500" y1="300" x2="900" y2="250" stroke="#096380" strokeWidth="2" strokeDasharray="8 4"/>
+            <line className="infografia-line" x1="500" y1="300" x2="50" y2="400" stroke="#096380" strokeWidth="2" strokeDasharray="8 4"/>
+            <line className="infografia-line" x1="500" y1="300" x2="950" y2="400" stroke="#096380" strokeWidth="2" strokeDasharray="8 4"/>
+            <line className="infografia-line" x1="500" y1="300" x2="200" y2="520" stroke="#096380" strokeWidth="2" strokeDasharray="8 4"/>
+            <line className="infografia-line" x1="500" y1="300" x2="500" y2="550" stroke="#096380" strokeWidth="2" strokeDasharray="8 4"/>
+            <line className="infografia-line" x1="500" y1="300" x2="800" y2="520" stroke="#096380" strokeWidth="2" strokeDasharray="8 4"/>
           </svg>
 
           {/* Corazón central */}

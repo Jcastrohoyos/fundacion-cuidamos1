@@ -66,7 +66,7 @@
   content: '';
   width: 6px;
   height: 6px;
-  background: #7ee8ff;
+  background: var(--color-secondary-light);
   border-radius: 50%;
 }
 
@@ -84,7 +84,7 @@
   display: block;
   width: 56px;
   height: 4px;
-  background: linear-gradient(90deg, #7ee8ff, rgba(255,255,255,0.4));
+  background: linear-gradient(90deg, var(--color-secondary), rgba(255,255,255,0.4));
   margin: 0.85rem auto 0;
   border-radius: 4px;
 }
@@ -159,8 +159,8 @@
   width: 48px;
   height: 48px;
   border-radius: 12px;
-  background: rgba(126,232,255,0.15);
-  color: #7ee8ff;
+  background: rgba(179, 177, 255, 0.15);
+  color: var(--color-secondary);
 }
 
 .itemText {
@@ -321,7 +321,7 @@
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #096380, #7ee8ff);
+  background: linear-gradient(135deg, #096380, #05536c);
   color: #fff;
   display: flex;
   align-items: center;
