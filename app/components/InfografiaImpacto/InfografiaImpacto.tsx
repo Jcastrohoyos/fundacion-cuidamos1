@@ -7,17 +7,17 @@ import { Heart, Car, Truck, Mountain, TreePalm, Users, Home, MapPin } from 'luci
 import styles from './InfografiaImpacto.module.css'
 
 const dataBlocks = [
-  { id: 1, label: 'Sisben', value: '80%', icon: Car, position: 'topLeft', color: '#1a5276' },
-  { id: 2, label: 'Mujeres Cabeza + Familia', value: '65%', icon: Users, position: 'topRight', color: '#1a5276' },
-  { id: 3, label: 'Venezolanos', value: '14%', icon: Car, position: 'midLeft', color: '#1a5276' },
-  { id: 4, label: 'Afrodescendientes', value: '10%', icon: Users, position: 'midRight', color: '#1a5276' },
-  { id: 5, label: 'Desplazados', value: '5%', icon: Truck, position: 'left', color: '#1a5276' },
-  { id: 6, label: '', value: '243  24%', icon: TreePalm, position: 'right', color: '#1a5276' },
-  { id: 7, label: 'Región Andina', value: '454  45%', icon: Mountain, position: 'bottomLeft', color: '#1a5276' },
-  { id: 8, label: '', value: '157  15%', icon: MapPin, position: 'bottomRight', color: '#1a5276' },
-  { id: 9, label: 'Desplazados', value: '176  1%', icon: Truck, position: 'bottomLeft2', color: '#1a5276' },
-  { id: 10, label: '', value: '122  12%', icon: Home, position: 'bottomMid', color: '#1a5276' },
-  { id: 11, label: 'Campesinos', value: '147', icon: Users, position: 'bottomRight2', color: '#1a5276' },
+  { id: 1, label: 'Sisben', value: '80%', icon: Car, position: 'topLeft', color: '#096380' },
+  { id: 2, label: 'Mujeres Cabeza + Familia', value: '65%', icon: Users, position: 'topRight', color: '#096380' },
+  { id: 3, label: 'Venezolanos', value: '14%', icon: Car, position: 'midLeft', color: '#096380' },
+  { id: 4, label: 'Afrodescendientes', value: '10%', icon: Users, position: 'midRight', color: '#096380' },
+  { id: 5, label: 'Desplazados', value: '5%', icon: Truck, position: 'left', color: '#096380' },
+  { id: 6, label: '', value: '243  24%', icon: TreePalm, position: 'right', color: '#096380' },
+  { id: 7, label: 'Región Andina', value: '454  45%', icon: Mountain, position: 'bottomLeft', color: '#096380' },
+  { id: 8, label: '', value: '157  15%', icon: MapPin, position: 'bottomRight', color: '#096380' },
+  { id: 9, label: 'Desplazados', value: '176  1%', icon: Truck, position: 'bottomLeft2', color: '#096380' },
+  { id: 10, label: '', value: '122  12%', icon: Home, position: 'bottomMid', color: '#096380' },
+  { id: 11, label: 'Campesinos', value: '147', icon: Users, position: 'bottomRight2', color: '#096380' },
 ]
 
 export default function InfografiaImpacto() {
@@ -91,11 +91,11 @@ export default function InfografiaImpacto() {
             <svg viewBox="0 0 100 100" className={styles.heartSvg}>
               <defs>
                 <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#e74c3c" />
-                  <stop offset="100%" stopColor="#c0392b" />
+                  <stop offset="0%" stopColor="#096380" />
+                  <stop offset="100%" stopColor="#05536c" />
                 </linearGradient>
                 <filter id="heartShadow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feDropShadow dx="0" dy="4" stdDeviation="8" floodColor="#e74c3c" floodOpacity="0.4"/>
+                  <feDropShadow dx="0" dy="4" stdDeviation="8" floodColor="#05536c" floodOpacity="0.4"/>
                 </filter>
               </defs>
               <path 
