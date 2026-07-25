@@ -1,11 +1,11 @@
 .hero {
   background-color: var(--color-primary);
-  min-height: 85vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  padding: 0 0 60px;
+  padding: 96px 0 60px;
   position: relative;
   overflow: hidden;
 }
@@ -17,7 +17,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(ellipse at 30% 50%, rgba(184, 169, 201, 0.15) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 30% 50%, rgba(179, 177, 255, 0.15) 0%, transparent 60%);
   pointer-events: none;
 }
 
@@ -91,8 +91,8 @@
 
 @media (max-width: 1024px) {
   .hero {
-    min-height: 70vh;
-    padding: 0 0 50px;
+    min-height: 100vh;
+    padding: 72px 0 50px;
   }
 
   .content {
@@ -121,8 +121,8 @@
 
 @media (max-width: 768px) {
   .hero {
-    min-height: 60vh;
-    padding: 0 0 40px;
+    min-height: 100vh;
+    padding: 72px 0 40px;
   }
 
   .circularLogo {
@@ -144,8 +144,8 @@
 
 @media (max-width: 480px) {
   .hero {
-    min-height: 50vh;
-    padding: 0 0 30px;
+    min-height: 100vh;
+    padding: 64px 0 30px;
   }
 
   .circularLogo {
