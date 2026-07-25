@@ -64,13 +64,14 @@
   cursor: pointer;
   white-space: nowrap;
   box-shadow: 0 4px 15px rgba(255, 107, 107, 0.35);
-  animation: pulse-donate-nav 2.4s ease-in-out infinite;
+  animation: pulse-donate-nav 3.2s ease-in-out infinite;
+  will-change: transform, box-shadow;
 }
 
 .donateButtonHeader:hover {
   transform: translateY(-2px) scale(1.03);
   box-shadow: 0 8px 25px rgba(255, 107, 107, 0.5);
-  animation: none;
+  animation-play-state: paused;
 }
 
 @keyframes pulse-donate-nav {
@@ -79,8 +80,8 @@
     box-shadow: 0 4px 15px rgba(255, 107, 107, 0.35);
   }
   50% {
-    transform: translateY(-1px) scale(1.02);
-    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.45);
+    transform: translateY(-2px) scale(1.025);
+    box-shadow: 0 8px 22px rgba(255, 107, 107, 0.48);
   }
 }
 
