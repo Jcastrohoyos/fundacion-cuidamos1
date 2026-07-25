@@ -307,12 +307,12 @@
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 6px 20px rgba(12, 123, 147, 0.35);
+  box-shadow: 0 6px 20px rgba(9, 99, 128, 0.35);
 }
 
 .continueButton:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(12, 123, 147, 0.5);
+  box-shadow: 0 10px 30px rgba(9, 99, 128, 0.5);
 }
 
 .arrowRight {

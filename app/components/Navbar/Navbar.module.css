@@ -165,12 +165,12 @@
 
 .navLink:hover {
   color: var(--color-primary);
-  background: rgba(12, 123, 147, 0.06);
+  background: rgba(9, 99, 128, 0.06);
 }
 
 .navLink.active {
   color: var(--color-primary);
-  background: rgba(12, 123, 147, 0.08);
+  background: rgba(9, 99, 128, 0.08);
   font-weight: 600;
 }
 

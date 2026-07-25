@@ -113,7 +113,7 @@
 .button:hover {
   background-color: var(--color-primary-dark);
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(12, 123, 147, 0.3);
+  box-shadow: 0 4px 16px rgba(9, 99, 128, 0.3);
 }
 
 @media (max-width: 1024px) {

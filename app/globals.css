@@ -16,11 +16,11 @@
   --breakpoint-tablet: 1024px;
   --breakpoint-desktop: 1440px;
 
-  --color-primary: #0C7B93;
-  --color-primary-dark: #0A6578;
-  --color-secondary: #B8A9C9;
-  --color-secondary-light: #D4C5E2;
-  --color-secondary-dark: #9B8AB5;
+  --color-primary: #096380;
+  --color-primary-dark: #05536c;
+  --color-secondary: #b3b1ff;
+  --color-secondary-light: #c6c5ff;
+  --color-secondary-dark: #9b96ff;
   --color-bg: #F8F6F4;
   --color-bg-alt: #F0EDE8;
   --color-white: #FFFFFF;
