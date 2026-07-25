@@ -7,7 +7,14 @@ import Image from 'next/image'
 import { Calendar } from 'lucide-react'
 import styles from './SobreNosotros.module.css'
 
-const teamMembers = [
+interface TeamMember {
+  name: string
+  role: string
+  image: string
+  gridColumn?: string
+}
+
+const teamMembers: TeamMember[] = [
   { name: 'MYRIAM', role: 'PSICÓLOGA', image: '/images/Myriampsicologa.webp' },
   { name: 'GLORIA', role: 'TRABAJADORA SOCIAL', image: '/images/gloria.webp' },
   { name: 'YOLANDA', role: 'ADMIN. DE EMPRESAS', image: '/images/yolanda.webp' },
