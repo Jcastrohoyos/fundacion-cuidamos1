@@ -12,7 +12,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(10, 101, 120, 0.78);
+  background: rgba(9, 99, 128, 0.78);
   pointer-events: none;
 }
 
