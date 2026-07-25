@@ -26,7 +26,7 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://fundacioncuidamosconamor.org'),
+  metadataBase: new URL('https://www.cuidamosconamor.org'),
   title: {
     default: 'Fundación Cuidamos con Amor | Apoyo a niños y niñas con cáncer',
     template: '%s | Fundación Cuidamos con Amor',

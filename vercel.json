@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/colombia",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
+}

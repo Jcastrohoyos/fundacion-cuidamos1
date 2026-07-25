@@ -5,6 +5,15 @@ const nextConfig = {
     remotePatterns: [],
     unoptimized: true,
   },
+  async redirects() {
+    return [
+      {
+        source: '/colombia',
+        destination: '/',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig
