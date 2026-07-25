@@ -3,7 +3,7 @@
   bottom: 30px;
   left: 230px;
   z-index: 998;
-  background: linear-gradient(135deg, #096380, #0a7a9c);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 0.9rem 1.6rem;
@@ -112,7 +112,7 @@
 
 .totalLabel {
   font-weight: bold;
-  color: #0b3d52;
+  color: var(--color-primary-dark);
 }
 
 .totalValue {
@@ -138,7 +138,7 @@
   cursor: pointer;
 }
 .primaryAction:hover {
-  background: #075060;
+  background: var(--color-primary-dark);
 }
 
 @media (max-width: 768px) {
