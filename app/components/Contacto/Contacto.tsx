@@ -50,7 +50,7 @@ const contactItems = [
 
 export default function Contacto() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle')
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
 
   useGSAP(() => {
     gsap.from('.contacto-badge', {
@@ -73,10 +73,47 @@ export default function Contacto() {
     })
   }, { scope: containerRef })
 
+  async function sendToWeb3Forms(data: Record<string, unknown>) {
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
+    if (!accessKey || accessKey === 'TU_ACCESS_KEY_DE_WEB3FORMS') return false
+
+    const payload = {
+      access_key: accessKey,
+      from_name: 'Fundación Cuidamos con Amor - Sitio Web',
+      subject: 'Nuevo mensaje de contacto desde la web',
+      ...data,
+    }
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      const json = await res.json()
+      return res.status === 200 && json.success
+    } catch {
+      return false
+    }
+  }
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setStatus('sending')
-    setTimeout(() => setStatus('sent'), 1800)
+
+    const form = e.target as HTMLFormElement
+    const data = {
+      name: (form.querySelector('#contact-name') as HTMLInputElement)?.value || '',
+      email: (form.querySelector('#contact-email') as HTMLInputElement)?.value || '',
+      subject: (form.querySelector('#contact-subject') as HTMLInputElement)?.value || '',
+      message: (form.querySelector('#contact-message') as HTMLTextAreaElement)?.value || '',
+    }
+
+    sendToWeb3Forms(data).then((success) => {
+      setTimeout(() => {
+        setStatus(success ? 'sent' : 'error')
+      }, 800)
+    })
   }
 
   return (
@@ -141,6 +178,22 @@ export default function Contacto() {
                 <p className={styles.successText}>
                   Gracias por contactarnos. Te responderemos pronto con mucho amor.
                 </p>
+              </div>
+            ) : status === 'error' ? (
+              <div className={styles.errorBox}>
+                <div className={styles.errorIcon}>!</div>
+                <h3 className={styles.errorTitle}>Error al enviar</h3>
+                <p className={styles.errorText}>
+                  No pudimos enviar tu mensaje. Por favor inténtalo de nuevo más tarde o escríbenos directamente a
+                  <a href="mailto:contacto@cuidamosconamor.org"> contacto@cuidamosconamor.org</a>.
+                </p>
+                <button
+                  type="button"
+                  className={styles.retryButton}
+                  onClick={() => setStatus('idle')}
+                >
+                  Reintentar
+                </button>
               </div>
             ) : (
               <form className={styles.form} onSubmit={handleSubmit} noValidate>

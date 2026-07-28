@@ -34,6 +34,30 @@ export default function DonationForm({ onClose }: { onClose?: () => void }) {
     setFormData({ ...formData, customAmount: e.target.value, amount: 'custom' })
   }
 
+  async function sendToWeb3Forms(data: Record<string, unknown>) {
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
+    if (!accessKey || accessKey === 'TU_ACCESS_KEY_DE_WEB3FORMS') return false
+
+    const payload = {
+      access_key: accessKey,
+      from_name: 'Fundación Cuidamos con Amor - Donación',
+      subject: 'Nueva intención de donación desde la web',
+      ...data,
+    }
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      const json = await res.json()
+      return res.status === 200 && json.success
+    } catch {
+      return false
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
@@ -44,6 +68,20 @@ export default function DonationForm({ onClose }: { onClose?: () => void }) {
       alert('Selecciona un monto válido para donar.')
       return
     }
+
+    const submissionData = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      amount: numericAmount,
+      message: formData.message,
+    }
+
+    sendToWeb3Forms(submissionData).then((success) => {
+      if (!success) {
+        console.warn('No se pudo enviar la notificación de donación a Web3Forms.')
+      }
+    })
 
     const wompiLink = process.env.NEXT_PUBLIC_WOMPI_DONATION_LINK
       || 'https://checkout.wompi.co/l/test_VPOS_wIY2x7'

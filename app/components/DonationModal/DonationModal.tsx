@@ -138,11 +138,49 @@ export default function DonationModal() {
     setStep(2)
   }
 
+  async function sendToWeb3Forms(data: Record<string, unknown>) {
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
+    if (!accessKey || accessKey === 'TU_ACCESS_KEY_DE_WEB3FORMS') return false
+
+    const payload = {
+      access_key: accessKey,
+      from_name: 'Fundación Cuidamos con Amor - Donación',
+      subject: 'Nueva intención de donación desde la web',
+      ...data,
+    }
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      const json = await res.json()
+      return res.status === 200 && json.success
+    } catch {
+      return false
+    }
+  }
+
   const handlePaymentSelect = (methodId: string) => {
     const finalAmount = formData.amount
     const userName = encodeURIComponent(formData.name)
     const userEmail = encodeURIComponent(formData.email)
     const userPhone = encodeURIComponent(formData.phone)
+
+    const submissionData = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      amount: finalAmount,
+      payment_method: methodId,
+    }
+
+    sendToWeb3Forms(submissionData).then((success) => {
+      if (!success) {
+        console.warn('No se pudo enviar la notificación de donación a Web3Forms.')
+      }
+    })
 
     if (methodId === 'paypal') {
       const paypalLink = `https://www.paypal.com/ncp/payment/QBPMD9R97XNUL`
