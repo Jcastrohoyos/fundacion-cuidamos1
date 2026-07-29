@@ -4,6 +4,8 @@ import { useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import styles from './DonationForm.module.css'
+import { sendToWeb3Forms } from '../../utils/web3forms'
+import { DONATION_AMOUNTS } from '../../utils/donations'
 
 export default function DonationForm({ onClose }: { onClose?: () => void }) {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -15,6 +17,8 @@ export default function DonationForm({ onClose }: { onClose?: () => void }) {
     customAmount: '',
     message: ''
   })
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   useGSAP(() => {
     gsap.from('.donation-form-item', {
@@ -28,46 +32,42 @@ export default function DonationForm({ onClose }: { onClose?: () => void }) {
 
   const handleAmountChange = (amount: string) => {
     setFormData({ ...formData, amount, customAmount: '' })
+    setErrors(prev => ({ ...prev, amount: '' }))
   }
 
   const handleCustomAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, customAmount: e.target.value, amount: 'custom' })
+    setErrors(prev => ({ ...prev, amount: '' }))
   }
 
-  async function sendToWeb3Forms(data: Record<string, unknown>) {
-    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
-    if (!accessKey || accessKey === 'TU_ACCESS_KEY_DE_WEB3FORMS') return false
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {}
+    const finalAmount = formData.amount === 'custom' ? formData.customAmount : formData.amount
+    const numericAmount = parseFloat(finalAmount)
 
-    const payload = {
-      access_key: accessKey,
-      from_name: 'Fundación Cuidamos con Amor - Donación',
-      subject: 'Nueva intención de donación desde la web',
-      ...data,
+    if (!numericAmount || numericAmount <= 0) {
+      newErrors.amount = 'Selecciona un monto válido para donar.'
+    }
+    if (!formData.name.trim()) {
+      newErrors.name = 'Ingresa tu nombre completo.'
+    }
+    if (!formData.email.trim() || !formData.email.includes('@')) {
+      newErrors.email = 'Ingresa un correo electrónico válido.'
     }
 
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(payload),
-      })
-      const json = await res.json()
-      return res.status === 200 && json.success
-    } catch {
-      return false
-    }
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
+    if (!validateForm()) return
+
+    setIsSubmitting(true)
+
     const finalAmount = formData.amount === 'custom' ? formData.customAmount : formData.amount
     const numericAmount = parseFloat(finalAmount)
-
-    if (!numericAmount || numericAmount <= 0) {
-      alert('Selecciona un monto válido para donar.')
-      return
-    }
 
     const submissionData = {
       name: formData.name,
@@ -77,20 +77,18 @@ export default function DonationForm({ onClose }: { onClose?: () => void }) {
       message: formData.message,
     }
 
-    sendToWeb3Forms(submissionData).then((success) => {
-      if (!success) {
-        console.warn('No se pudo enviar la notificación de donación a Web3Forms.')
-      }
-    })
+    await sendToWeb3Forms(submissionData)
 
     const wompiLink = process.env.NEXT_PUBLIC_WOMPI_DONATION_LINK
       || 'https://checkout.wompi.co/l/test_VPOS_wIY2x7'
 
     window.open(wompiLink, '_blank', 'noopener,noreferrer')
+    setIsSubmitting(false)
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
+    setErrors(prev => ({ ...prev, [e.target.name]: '' }))
   }
 
   return (
@@ -98,18 +96,19 @@ export default function DonationForm({ onClose }: { onClose?: () => void }) {
       <h2 className={`${styles.title} donation-form-item`}>Haz tu donación</h2>
       <p className={`${styles.subtitle} donation-form-item`}>Tu apoyo transforma vidas</p>
 
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <form onSubmit={handleSubmit} className={styles.form} noValidate>
         <div className={`${styles.section} donation-form-item`}>
           <h3 className={styles.sectionTitle}>Selecciona el monto</h3>
           <div className={styles.amountOptions}>
-            {['10000', '25000', '50000', '100000'].map((amount) => (
+            {DONATION_AMOUNTS.map((item) => (
               <button
-                key={amount}
+                key={item.value}
                 type="button"
-                className={`${styles.amountButton} ${formData.amount === amount ? styles.active : ''}`}
-                onClick={() => handleAmountChange(amount)}
+                className={`${styles.amountButton} ${formData.amount === String(item.value) ? styles.active : ''}`}
+                onClick={() => handleAmountChange(String(item.value))}
+                aria-pressed={formData.amount === String(item.value)}
               >
-                ${parseInt(amount).toLocaleString('es-CO')}
+                {item.label}
               </button>
             ))}
             <input
@@ -118,8 +117,13 @@ export default function DonationForm({ onClose }: { onClose?: () => void }) {
               className={`${styles.customAmount} ${formData.amount === 'custom' ? styles.active : ''}`}
               value={formData.customAmount}
               onChange={handleCustomAmountChange}
+              aria-invalid={!!errors.amount}
+              aria-describedby={errors.amount ? 'form-amount-error' : undefined}
             />
           </div>
+          {errors.amount && (
+            <p className={styles.fieldError} id="form-amount-error" role="alert">{errors.amount}</p>
+          )}
         </div>
 
         <div className={`${styles.section} donation-form-item`}>
@@ -135,7 +139,12 @@ export default function DonationForm({ onClose }: { onClose?: () => void }) {
               value={formData.name}
               onChange={handleChange}
               placeholder="Tu nombre completo"
+              aria-invalid={!!errors.name}
+              aria-describedby={errors.name ? 'form-name-error' : undefined}
             />
+            {errors.name && (
+              <p className={styles.fieldError} id="form-name-error" role="alert">{errors.name}</p>
+            )}
           </div>
 
           <div className={styles.inputGroup}>
@@ -149,7 +158,12 @@ export default function DonationForm({ onClose }: { onClose?: () => void }) {
               value={formData.email}
               onChange={handleChange}
               placeholder="tu@email.com"
+              aria-invalid={!!errors.email}
+              aria-describedby={errors.email ? 'form-email-error' : undefined}
             />
+            {errors.email && (
+              <p className={styles.fieldError} id="form-email-error" role="alert">{errors.email}</p>
+            )}
           </div>
 
           <div className={styles.inputGroup}>
@@ -182,8 +196,9 @@ export default function DonationForm({ onClose }: { onClose?: () => void }) {
           <button
             type="submit"
             className={styles.submitButton}
+            disabled={isSubmitting}
           >
-            Donar Ahora
+            {isSubmitting ? 'Enviando...' : 'Donar Ahora'}
           </button>
           <p className={styles.disclaimer}>
             Tu donación es segura y privada. Aceptamos tarjetas de crédito, débito y transferencias bancarias.

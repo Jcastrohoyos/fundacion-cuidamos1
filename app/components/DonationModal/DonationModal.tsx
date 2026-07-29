@@ -1,16 +1,11 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import gsap from 'gsap'
 import { Heart, X, CreditCard, FileText, Building2, ArrowLeft, Check } from 'lucide-react'
 import styles from './DonationModal.module.css'
-
-const donationAmounts = [
-  { value: 10000, label: '$10.000' },
-  { value: 25000, label: '$25.000' },
-  { value: 50000, label: '$50.000' },
-  { value: 100000, label: '$100.000' },
-]
+import { sendToWeb3Forms } from '../../utils/web3forms'
+import { DONATION_AMOUNTS } from '../../utils/donations'
 
 const paymentMethods = [
   {
@@ -50,11 +45,47 @@ export default function DonationModal() {
     amount: 0,
     customAmount: '',
   })
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  const triggerRef = useRef<HTMLButtonElement | null>(null)
+  const modalRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const handleOpen = () => setIsOpen(true)
+    const handleOpen = () => {
+      triggerRef.current = document.activeElement as HTMLButtonElement | null
+      setIsOpen(true)
+    }
     window.addEventListener('openDonationModal', handleOpen)
     return () => window.removeEventListener('openDonationModal', handleOpen)
+  }, [])
+
+  const focusFirstElement = useCallback(() => {
+    if (modalRef.current) {
+      const focusable = modalRef.current.querySelector<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      )
+      if (focusable) focusable.focus()
+    }
+  }, [])
+
+  const trapFocus = useCallback((e: KeyboardEvent) => {
+    if (e.key !== 'Tab' || !modalRef.current) return
+    const focusableElements = modalRef.current.querySelectorAll<HTMLElement>(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    )
+    if (focusableElements.length === 0) return
+    const first = focusableElements[0]
+    const last = focusableElements[focusableElements.length - 1]
+    if (e.shiftKey) {
+      if (document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      }
+    } else {
+      if (document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
+    }
   }, [])
 
   useEffect(() => {
@@ -70,6 +101,9 @@ export default function DonationModal() {
         { opacity: 0 },
         { opacity: 1, duration: 0.3 }
       )
+      setTimeout(focusFirstElement, 50)
+      window.addEventListener('keydown', trapFocus)
+      return () => window.removeEventListener('keydown', trapFocus)
     } else {
       document.body.style.overflow = 'unset'
     }
@@ -77,9 +111,9 @@ export default function DonationModal() {
     return () => {
       document.body.style.overflow = 'unset'
     }
-  }, [isOpen])
+  }, [isOpen, focusFirstElement, trapFocus])
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     gsap.to(`.${styles.modalContent}`, {
       opacity: 0,
       scale: 0.9,
@@ -89,80 +123,69 @@ export default function DonationModal() {
       onComplete: () => {
         setIsOpen(false)
         setStep(1)
+        setErrors({})
         setFormData({ name: '', email: '', phone: '', amount: 0, customAmount: '' })
+        triggerRef.current?.focus()
       }
     })
     gsap.to(`.${styles.modalOverlay}`, {
       opacity: 0,
       duration: 0.3
     })
-  }
+  }, [])
 
-  const handleEscKey = (e: KeyboardEvent) => {
+  const handleEscKey = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Escape') handleClose()
-  }
+  }, [handleClose])
 
   useEffect(() => {
     if (isOpen) {
       window.addEventListener('keydown', handleEscKey)
       return () => window.removeEventListener('keydown', handleEscKey)
     }
-  }, [isOpen])
+  }, [isOpen, handleEscKey])
 
   const handleAmountSelect = (value: number) => {
     setFormData({ ...formData, amount: value, customAmount: '' })
+    setErrors(prev => ({ ...prev, amount: '' }))
   }
 
   const handleCustomAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/[^0-9]/g, '')
     setFormData({ ...formData, customAmount: value, amount: parseInt(value) || 0 })
+    setErrors(prev => ({ ...prev, amount: '' }))
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
+    setErrors(prev => ({ ...prev, [e.target.name]: '' }))
+  }
+
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {}
+    const finalAmount = formData.customAmount ? parseInt(formData.customAmount) || 0 : formData.amount
+
+    if (!finalAmount || finalAmount <= 0) {
+      newErrors.amount = 'Selecciona o ingresa un monto válido'
+    }
+    if (!formData.name.trim()) {
+      newErrors.name = 'Ingresa tu nombre completo'
+    }
+    if (!formData.email.trim() || !formData.email.includes('@')) {
+      newErrors.email = 'Ingresa un correo electrónico válido'
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
   }
 
   const handleContinue = () => {
-    if (!formData.amount || formData.amount <= 0) {
-      alert('Por favor selecciona o ingresa un monto válido')
-      return
-    }
-    if (!formData.name.trim()) {
-      alert('Por favor ingresa tu nombre completo')
-      return
-    }
-    if (!formData.email.trim() || !formData.email.includes('@')) {
-      alert('Por favor ingresa un correo electrónico válido')
-      return
-    }
-    setStep(2)
-  }
-
-  async function sendToWeb3Forms(data: Record<string, unknown>) {
-    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
-    if (!accessKey || accessKey === 'TU_ACCESS_KEY_DE_WEB3FORMS') return false
-
-    const payload = {
-      access_key: accessKey,
-      from_name: 'Fundación Cuidamos con Amor - Donación',
-      subject: 'Nueva intención de donación desde la web',
-      ...data,
-    }
-
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(payload),
-      })
-      const json = await res.json()
-      return res.status === 200 && json.success
-    } catch {
-      return false
+    if (validateForm()) {
+      setStep(2)
     }
   }
 
-  const handlePaymentSelect = (methodId: string) => {
+  async function handlePaymentSelect(methodId: string) {
     const finalAmount = formData.amount
     const userName = encodeURIComponent(formData.name)
     const userEmail = encodeURIComponent(formData.email)
@@ -176,14 +199,13 @@ export default function DonationModal() {
       payment_method: methodId,
     }
 
-    sendToWeb3Forms(submissionData).then((success) => {
-      if (!success) {
-        console.warn('No se pudo enviar la notificación de donación a Web3Forms.')
-      }
-    })
+    const success = await sendToWeb3Forms(submissionData)
+    if (!success) {
+      console.warn('No se pudo enviar la notificación de donación a Web3Forms.')
+    }
 
     if (methodId === 'paypal') {
-      const paypalLink = `https://www.paypal.com/ncp/payment/QBPMD9R97XNUL`
+      const paypalLink = 'https://www.paypal.com/ncp/payment/QBPMD9R97XNUL'
       window.open(paypalLink, '_blank', 'noopener,noreferrer')
     } else if (methodId === 'google') {
       const googleFormLink = `https://docs.google.com/forms/d/e/1FAIpQLSct44ShJq2kK0DELwxdJBMrpYaGQdYpi1ZbNKFyzrjCNWCQcg/viewform?entry.1234567890=${userName}&entry.0987654321=${userEmail}&entry.1122334455=${userPhone}&entry.5566778899=${finalAmount}`
@@ -219,8 +241,15 @@ export default function DonationModal() {
       </button>
 
       {isOpen && (
-        <div className={styles.modalOverlay} onClick={handleClose}>
-          <div className={styles.modalWrapper} onClick={(e) => e.stopPropagation()}>
+        <div className={styles.modalOverlay} onClick={handleClose} role="presentation">
+          <div
+            className={styles.modalWrapper}
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="donation-title"
+            ref={modalRef}
+          >
             <button
               className={styles.closeButton}
               onClick={handleClose}
@@ -234,7 +263,7 @@ export default function DonationModal() {
                 <>
                   <div className={styles.donationHeader}>
                     <Heart size={40} className={styles.heartIcon} />
-                    <h2 className={styles.donationTitle}>Haz tu donación</h2>
+                    <h2 className={styles.donationTitle} id="donation-title">Haz tu donación</h2>
                     <p className={styles.donationSubtitle}>
                       Selecciona el monto y completa tus datos para continuar
                     </p>
@@ -243,12 +272,13 @@ export default function DonationModal() {
                   <div className={styles.formSection}>
                     <h3 className={styles.sectionTitle}>Selecciona el monto</h3>
                     <div className={styles.amountGrid}>
-                      {donationAmounts.map((item) => (
+                      {DONATION_AMOUNTS.map((item) => (
                         <button
                           key={item.value}
                           type="button"
                           className={`${styles.amountButton} ${formData.amount === item.value && !formData.customAmount ? styles.active : ''}`}
                           onClick={() => handleAmountSelect(item.value)}
+                          aria-pressed={formData.amount === item.value && !formData.customAmount}
                         >
                           {item.label}
                         </button>
@@ -262,9 +292,14 @@ export default function DonationModal() {
                         className={`${styles.customAmountInput} ${formData.customAmount ? styles.active : ''}`}
                         value={formData.customAmount}
                         onChange={handleCustomAmount}
+                        aria-invalid={!!errors.amount}
+                        aria-describedby={errors.amount ? 'amount-error' : undefined}
                       />
                       <span className={styles.currencyLabel}>COP</span>
                     </div>
+                    {errors.amount && (
+                      <p className={styles.fieldError} id="amount-error" role="alert">{errors.amount}</p>
+                    )}
                   </div>
 
                   <div className={styles.formSection}>
@@ -280,7 +315,12 @@ export default function DonationModal() {
                         onChange={handleInputChange}
                         placeholder="Tu nombre completo"
                         required
+                        aria-invalid={!!errors.name}
+                        aria-describedby={errors.name ? 'name-error' : undefined}
                       />
+                      {errors.name && (
+                        <p className={styles.fieldError} id="name-error" role="alert">{errors.name}</p>
+                      )}
                     </div>
                     <div className={styles.inputRow}>
                       <div className={styles.inputGroup}>
@@ -294,7 +334,12 @@ export default function DonationModal() {
                           onChange={handleInputChange}
                           placeholder="tu@email.com"
                           required
+                          aria-invalid={!!errors.email}
+                          aria-describedby={errors.email ? 'email-error' : undefined}
                         />
+                        {errors.email && (
+                          <p className={styles.fieldError} id="email-error" role="alert">{errors.email}</p>
+                        )}
                       </div>
                       <div className={styles.inputGroup}>
                         <label htmlFor="donor-phone" className={styles.label}>Teléfono</label>
@@ -335,7 +380,7 @@ export default function DonationModal() {
                       Volver
                     </button>
                     <Heart size={40} className={styles.heartIcon} />
-                    <h2 className={styles.donationTitle}>Elige cómo donar</h2>
+                    <h2 className={styles.donationTitle} id="donation-title">Elige cómo donar</h2>
                     <p className={styles.donationSubtitle}>
                       Monto: <strong>${getFinalAmount().toLocaleString('es-CO')} COP</strong>
                     </p>

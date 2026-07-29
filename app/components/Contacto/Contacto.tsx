@@ -5,6 +5,7 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { Mail, FileText, MapPin } from 'lucide-react'
 import styles from './Contacto.module.css'
+import { sendToWeb3Forms } from '../../utils/web3forms'
 
 function InstagramIcon({ size = 22, strokeWidth = 1.8 }: { size?: number; strokeWidth?: number }) {
   return (
@@ -73,31 +74,7 @@ export default function Contacto() {
     })
   }, { scope: containerRef })
 
-  async function sendToWeb3Forms(data: Record<string, unknown>) {
-    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
-    if (!accessKey || accessKey === 'TU_ACCESS_KEY_DE_WEB3FORMS') return false
-
-    const payload = {
-      access_key: accessKey,
-      from_name: 'Fundación Cuidamos con Amor - Sitio Web',
-      subject: 'Nuevo mensaje de contacto desde la web',
-      ...data,
-    }
-
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(payload),
-      })
-      const json = await res.json()
-      return res.status === 200 && json.success
-    } catch {
-      return false
-    }
-  }
-
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setStatus('sending')
 
@@ -109,11 +86,14 @@ export default function Contacto() {
       message: (form.querySelector('#contact-message') as HTMLTextAreaElement)?.value || '',
     }
 
-    sendToWeb3Forms(data).then((success) => {
-      setTimeout(() => {
-        setStatus(success ? 'sent' : 'error')
-      }, 800)
+    const success = await sendToWeb3Forms({
+      ...data,
+      from_name: 'Fundación Cuidamos con Amor - Sitio Web',
+      subject: 'Nuevo mensaje de contacto desde la web',
     })
+    setTimeout(() => {
+      setStatus(success ? 'sent' : 'error')
+    }, 800)
   }
 
   return (
@@ -157,15 +137,15 @@ export default function Contacto() {
               ))}
 
               {/* PQRS card */}
-              <a href="#" className={`${styles.contactItem} ${styles.pqrs} contacto-item`}>
-                <div className={styles.iconBox}>
-                  <FileText size={22} strokeWidth={1.8} />
-                </div>
-                <div className={styles.itemText}>
-                  <span className={styles.itemLabel}>PQRS</span>
-                  <span className={styles.itemValue}>Haz clic para completar el formulario</span>
-                </div>
-              </a>
+               <a href="#contact-form" className={`${styles.contactItem} ${styles.pqrs} contacto-item`}>
+                 <div className={styles.iconBox}>
+                   <FileText size={22} strokeWidth={1.8} />
+                 </div>
+                 <div className={styles.itemText}>
+                   <span className={styles.itemLabel}>PQRS</span>
+                   <span className={styles.itemValue}>Haz clic para completar el formulario</span>
+                 </div>
+               </a>
             </div>
           </div>
 
@@ -196,7 +176,7 @@ export default function Contacto() {
                 </button>
               </div>
             ) : (
-              <form className={styles.form} onSubmit={handleSubmit} noValidate>
+              <form className={styles.form} onSubmit={handleSubmit} noValidate id="contact-form">
                 <div className={styles.row}>
                   <div className={styles.field}>
                     <label className={styles.label} htmlFor="contact-name">Nombre</label>

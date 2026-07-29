@@ -1,12 +1,14 @@
 'use client'
 
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { Mail, Camera } from 'lucide-react'
 import styles from './Navbar.module.css'
 import { openDonationModal } from '../DonationModal/DonationModal'
+
+const SECTIONS = ['hero', 'sobre-nosotros', 'nuestro-trabajo', 'impacto', 'datos', 'como-apoyarnos', 'galeria', 'contacto'] as const
 
 function FacebookIcon() {
   return (
@@ -18,8 +20,12 @@ function FacebookIcon() {
 
 export default function Navbar() {
   const containerRef = useRef<HTMLDivElement>(null)
+  const menuRef = useRef<HTMLUListElement>(null)
+  const toggleRef = useRef<HTMLButtonElement>(null)
+  const sectionRefs = useRef<Record<string, HTMLElement | null>>({})
+  const rafRef = useRef<number | null>(null)
   const [isOpen, setIsOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState('hero')
+  const [activeSection, setActiveSection] = useState<(typeof SECTIONS)[number]>('hero')
 
   useGSAP(() => {
     gsap.from('.navbar-item', {
@@ -33,26 +39,38 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['hero', 'sobre-nosotros', 'nuestro-trabajo', 'impacto', 'datos', 'como-apoyarnos', 'galeria', 'contacto']
-      const current = sections.find(section => {
-        const element = document.getElementById(section)
-        if (element) {
-          const rect = element.getBoundingClientRect()
-          return rect.top <= 100 && rect.bottom >= 100
-        }
-        return false
+      if (rafRef.current) return
+      rafRef.current = requestAnimationFrame(() => {
+        rafRef.current = null
+        const current = SECTIONS.find(section => {
+          let element = sectionRefs.current[section]
+          if (!element) {
+            const fallback = document.getElementById(section)
+            sectionRefs.current[section] = fallback
+            element = fallback
+          }
+          if (element) {
+            const rect = element.getBoundingClientRect()
+            return rect.top <= 100 && rect.bottom >= 100
+          }
+          return false
+        })
+        if (current) setActiveSection(current)
       })
-      if (current) setActiveSection(current)
     }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+    }
   }, [])
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
+    const element = sectionRefs.current[sectionId] || document.getElementById(sectionId)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
       setIsOpen(false)
+      toggleRef.current?.focus()
     }
   }
 
@@ -79,9 +97,13 @@ export default function Navbar() {
         </div>
 
         <button
+          ref={toggleRef}
           className={styles.menuToggle}
           onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
+          aria-expanded={isOpen}
+          aria-controls="main-menu"
+          aria-label="Abrir menú de navegación"
+          type="button"
         >
           <span className={`${styles.hamburger} ${isOpen ? styles.open : ''}`}>
             <span></span>
@@ -90,11 +112,17 @@ export default function Navbar() {
           </span>
         </button>
 
-        <ul className={`${styles.menu} ${isOpen ? styles.open : ''}`}>
+        <ul
+          id="main-menu"
+          ref={menuRef}
+          className={`${styles.menu} ${isOpen ? styles.open : ''}`}
+          aria-hidden={!isOpen}
+        >
           <li className="navbar-item">
             <button
               onClick={() => scrollToSection('hero')}
               className={`${styles.navLink} ${activeSection === 'hero' ? styles.active : ''}`}
+              aria-current={activeSection === 'hero' ? 'true' : undefined}
             >
               Inicio
             </button>
@@ -103,6 +131,7 @@ export default function Navbar() {
             <button
               onClick={() => scrollToSection('sobre-nosotros')}
               className={`${styles.navLink} ${activeSection === 'sobre-nosotros' ? styles.active : ''}`}
+              aria-current={activeSection === 'sobre-nosotros' ? 'true' : undefined}
             >
               Sobre Nosotros
             </button>
@@ -111,6 +140,7 @@ export default function Navbar() {
             <button
               onClick={() => scrollToSection('nuestro-trabajo')}
               className={`${styles.navLink} ${activeSection === 'nuestro-trabajo' ? styles.active : ''}`}
+              aria-current={activeSection === 'nuestro-trabajo' ? 'true' : undefined}
             >
               Nuestro Trabajo
             </button>
@@ -119,6 +149,7 @@ export default function Navbar() {
             <button
               onClick={() => scrollToSection('impacto')}
               className={`${styles.navLink} ${activeSection === 'impacto' ? styles.active : ''}`}
+              aria-current={activeSection === 'impacto' ? 'true' : undefined}
             >
               Impacto
             </button>
@@ -127,6 +158,7 @@ export default function Navbar() {
             <button
               onClick={() => scrollToSection('como-apoyarnos')}
               className={`${styles.navLink} ${activeSection === 'como-apoyarnos' ? styles.active : ''}`}
+              aria-current={activeSection === 'como-apoyarnos' ? 'true' : undefined}
             >
               Como Apoyar
             </button>
