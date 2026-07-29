@@ -1,0 +1,336 @@
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.modalWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 20px;
+  background-color: var(--color-white);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.closeButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10000;
+  background-color: var(--color-bg);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: var(--color-primary);
+}
+
+.closeButton:hover {
+  background-color: var(--color-primary);
+  color: white;
+  transform: rotate(90deg);
+}
+
+.modalContent {
+  padding: 2.5rem;
+  border-radius: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.headerIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #096380 0%, #05536c 100%);
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 1rem;
+  color: var(--color-text);
+  background: white;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.input:hover,
+.select:hover,
+.textarea:hover {
+  border-color: #ccc;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(9, 99, 128, 0.1);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.submitBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(9, 99, 128, 0.35);
+  margin-top: 0.5rem;
+}
+
+.submitBtn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(9, 99, 128, 0.5);
+}
+
+.submitBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.btnArrow {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.submitBtn:hover:not(:disabled) .btnArrow {
+  transform: translateX(5px);
+}
+
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid rgba(255, 255, 255, 0.4);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.successBox,
+.errorBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 2rem;
+  gap: 1rem;
+}
+
+.successIcon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #096380, #05536c);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.errorIcon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e53935, #c62828);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.successTitle,
+.errorTitle {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.errorTitle {
+  color: #e53935;
+}
+
+.successText,
+.errorText {
+  font-size: 1.1rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+  max-width: 320px;
+}
+
+.errorText a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.retryButton,
+.closeModalButton {
+  padding: 0.75rem 2rem;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.retryButton:hover,
+.closeModalButton:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .modalContent {
+    padding: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .input,
+  .select,
+  .textarea {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .modalOverlay {
+    padding: 12px;
+  }
+
+  .modalWrapper {
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 16px;
+  }
+
+  .modalContent {
+    padding: 1.25rem;
+  }
+
+  .closeButton {
+    top: 10px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .submitBtn {
+    padding: 0.9rem 1.5rem;
+    font-size: 1rem;
+  }
+}

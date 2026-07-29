@@ -37,12 +37,12 @@ export default function Donaciones() {
     <section className={styles.section} ref={containerRef}>
       <div className={styles.container}>
         <div className={`${styles.content} donaciones-content`}>
-          <p className={`${styles.title} donaciones-title`}>
+          <h2 className={`${styles.title} donaciones-title`}>
             ¿Quieres hacer una donación o necesitas un bono de apoyo?
-          </p>
-          <h2 className={`${styles.subtitle} donaciones-subtitle`}>
-            HAZ CLICK AQUÍ
           </h2>
+          <p className={`${styles.subtitle} donaciones-subtitle`}>
+            HAZ CLICK AQUÍ
+          </p>
           <p className={styles.tagline}>
             Hoy puedes ser la razón por la que alguien no se rinda.
           </p>

@@ -6,6 +6,7 @@ import gsap from 'gsap'
 import { Mail, FileText, MapPin } from 'lucide-react'
 import styles from './Contacto.module.css'
 import { sendToWeb3Forms } from '../../utils/web3forms'
+import PqrsModal from '../PqrsModal/PqrsModal'
 
 function InstagramIcon({ size = 22, strokeWidth = 1.8 }: { size?: number; strokeWidth?: number }) {
   return (
@@ -51,6 +52,7 @@ const contactItems = [
 
 export default function Contacto() {
   const containerRef = useRef<HTMLDivElement>(null)
+  const [isPqrsOpen, setIsPqrsOpen] = useState(false)
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
 
   useGSAP(() => {
@@ -137,20 +139,24 @@ export default function Contacto() {
               ))}
 
               {/* PQRS card */}
-               <a href="#contact-form" className={`${styles.contactItem} ${styles.pqrs} contacto-item`}>
-                 <div className={styles.iconBox}>
-                   <FileText size={22} strokeWidth={1.8} />
-                 </div>
-                 <div className={styles.itemText}>
-                   <span className={styles.itemLabel}>PQRS</span>
-                   <span className={styles.itemValue}>Haz clic para completar el formulario</span>
-                 </div>
-               </a>
+              <button
+                onClick={() => setIsPqrsOpen(true)}
+                className={`${styles.contactItem} ${styles.pqrs} contacto-item`}
+                type="button"
+              >
+                <div className={styles.iconBox}>
+                  <FileText size={22} strokeWidth={1.8} />
+                </div>
+                <div className={styles.itemText}>
+                  <span className={styles.itemLabel}>PQRS</span>
+                  <span className={styles.itemValue}>Haz clic para completar el formulario</span>
+                </div>
+              </button>
             </div>
           </div>
 
           {/* Right – contact form */}
-          <div className={`${styles.right} contacto-right`}>
+          <div className={`${styles.right} contacto-right`} id="contact-form">
             {status === 'sent' ? (
               <div className={styles.successBox}>
                 <div className={styles.successIcon}>✓</div>
@@ -176,7 +182,7 @@ export default function Contacto() {
                 </button>
               </div>
             ) : (
-              <form className={styles.form} onSubmit={handleSubmit} noValidate id="contact-form">
+              <form className={styles.form} onSubmit={handleSubmit} noValidate>
                 <div className={styles.row}>
                   <div className={styles.field}>
                     <label className={styles.label} htmlFor="contact-name">Nombre</label>
@@ -237,7 +243,8 @@ export default function Contacto() {
           </div>
         </div>
       </div>
+
+      <PqrsModal isOpen={isPqrsOpen} onClose={() => setIsPqrsOpen(false)} />
     </section>
   )
 }
-

@@ -77,8 +77,34 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'NGO',
+    name: 'Fundación Cuidamos con Amor',
+    url: 'https://www.cuidamosconamor.org',
+    logo: 'https://www.cuidamosconamor.org/images/logo.webp',
+    email: 'info@cuidamosconamor.org',
+    telephone: '+573135183817',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Bogotá',
+      addressCountry: 'CO',
+    },
+    sameAs: [
+      'https://www.instagram.com/cuidamosconamor_fundacion/',
+      'https://www.facebook.com/profile.php?id=61590375045310',
+    ],
+    description: 'Apoyo integral a niños y niñas con cáncer en Colombia. Entregamos bonos de alimentación, kits de aseo y apoyo psicosocial a familias.',
+  }
+
   return (
     <html lang="es" className={`${poppins.variable} ${inter.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="font-sans">
         <a href="#main-content" className="skipToContent">Saltar al contenido principal</a>
         <main id="main-content">{children}</main>

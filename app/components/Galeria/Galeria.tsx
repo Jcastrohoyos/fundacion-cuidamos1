@@ -49,11 +49,18 @@ export default function Galeria() {
         </p>
         
         <div className={styles.grid}>
-          {[1, 2, 3, 4, 5, 6].map((n) => (
+          {[
+            { src: '/images/galeria1.webp', alt: 'Niño mostrando un dibujo de color naranja en sala de quimioterapia ambulatoria' },
+            { src: '/images/galeria2.webp', alt: 'Mural colectivo realizado por niños y niñas durante taller de arte' },
+            { src: '/images/galeria3.webp', alt: 'Actividad recreativa con pinturas y manualidades en hospital' },
+            { src: '/images/galeria4.webp', alt: 'Niña sonriente con gorro tejido a mano en sesión de apoyo' },
+            { src: '/images/galeria5.webp', alt: 'Voluntarias acompañando a familiares en sala de espera' },
+            { src: '/images/galeria6.webp', alt: 'Obras de arte elaboradas por niños en tratamiento oncológico' },
+          ].map((item, n) => (
             <div key={n} className={styles.imageCard}>
               <img
-                src={`/images/galeria${n}.webp`}
-                alt={`Arte infantil ${n}`}
+                src={item.src}
+                alt={item.alt}
                 className={`${styles.image} galeria-image`}
                 loading="lazy"
               />
