@@ -45,7 +45,7 @@
 /* ---------- Header ---------- */
 .header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 80px;
 }
 
 .badge {
@@ -103,8 +103,8 @@
 /* ---------- Logo Grid ---------- */
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
 }
 
 .card {
@@ -112,10 +112,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 36px 28px;
+  padding: 48px 36px;
   background: #ffffff;
   border: 1px solid rgba(9, 99, 128, 0.1);
-  border-radius: 20px;
+  border-radius: 24px;
   box-shadow: 0 2px 8px rgba(9, 99, 128, 0.06);
   transition:
     transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
@@ -160,12 +160,12 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 90px;
+  height: 120px;
 }
 
 .logo {
-  max-width: 180px;
-  max-height: 78px;
+  max-width: 220px;
+  max-height: 100px;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -199,7 +199,7 @@
 /* ---------- CTA Row ---------- */
 .ctaRow {
   text-align: center;
-  margin-top: 52px;
+  margin-top: 72px;
 }
 
 .ctaText {
@@ -264,22 +264,22 @@
   }
 
   .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .card {
-    padding: 24px 16px;
-    border-radius: 14px;
+    padding: 36px 28px;
+    border-radius: 20px;
   }
 
   .logoWrapper {
-    height: 64px;
+    height: 90px;
   }
 
   .logo {
-    max-width: 120px;
-    max-height: 52px;
+    max-width: 180px;
+    max-height: 78px;
   }
 }
 

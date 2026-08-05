@@ -15,12 +15,12 @@ interface TeamMember {
 }
 
 const teamMembers: TeamMember[] = [
-  { name: 'MYRIAM', role: 'PSICÓLOGA', image: '/images/Myriampsicologa.webp' },
-  { name: 'GLORIA', role: 'TRABAJADORA SOCIAL', image: '/images/gloria.webp' },
-  { name: 'YOLANDA', role: 'ADMIN. DE EMPRESAS', image: '/images/yolanda.webp' },
-  { name: 'CLEMENCIA', role: 'INGENIERA DE SISTEMAS', image: '/images/clemencia.webp' },
   { name: 'FABIOLA', role: 'ECONOMISTA', image: '/images/fabiola.webp' },
+  { name: 'MYRIAM', role: 'PSICÓLOGA', image: '/images/Myriampsicologa.webp' },
+  { name: 'YOLANDA', role: 'ADMIN. DE EMPRESAS', image: '/images/yolanda.webp' },
+  { name: 'GLORIA', role: 'TRABAJADORA SOCIAL', image: '/images/gloria.webp' },
   { name: 'ANDREA', role: 'ADMIN. DE EMPRESAS', image: '/images/andrea.webp' },
+  { name: 'CLEMENCIA', role: 'INGENIERA DE SISTEMAS', image: '/images/clemencia.webp' },
   { name: 'PATRICIA', role: 'EDUCADORA INFANTIL', image: '/images/Patricia Suárez ,educadora infantil.webp' },
   { name: 'MARIANA', role: 'ARQUITECTA', image: '/images/mariana.webp' },
 ]

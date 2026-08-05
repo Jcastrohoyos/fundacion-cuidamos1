@@ -13,6 +13,8 @@ const aliados = [
   { id: 4, src: '/images/aliado4.webp', alt: 'Shopper Box' },
   { id: 5, src: '/images/aliado5.webp', alt: 'UMCOR' },
   { id: 6, src: '/images/aliado6.webp', alt: 'VAOVA' },
+  { id: 7, src: '/images/aliado7.webp', alt: 'Pet Suplet' },
+  { id: 8, src: '/images/aliado8.webp', alt: 'Trendy by Camila Orrego' },
 ]
 
 export default function Aliados() {
