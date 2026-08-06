@@ -2,17 +2,21 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import gsap from 'gsap'
-import { Heart, X, CreditCard, FileText, Building2, ArrowLeft, Check } from 'lucide-react'
+import { Heart, X, CreditCard, FileText, Building2, ArrowLeft, Check, Wallet, Copy, CheckCheck } from 'lucide-react'
+import Image from 'next/image'
 import styles from './DonationModal.module.css'
 import { sendToWeb3Forms } from '../../utils/web3forms'
 import { DONATION_AMOUNTS } from '../../utils/donations'
+
+const BREVE_ACCOUNT_NUMBER = '000000000000'
+const BREVE_KEY = 'https://breve.co/pay/...'
 
 const paymentMethods = [
   {
     id: 'paypal',
     title: 'PayPal',
     description: 'Dona a través de PayPal con tarjeta de crédito o débito',
-    icon: CreditCard,
+    image: '/images/PayPal-Logo.png',
     color: '#0070BA',
   },
   {
@@ -28,6 +32,13 @@ const paymentMethods = [
     description: 'Paga con tarjeta de crédito o débito de forma segura',
     icon: Building2,
     color: '#635BFF',
+  },
+  {
+    id: 'breve',
+    title: 'Breve',
+    description: 'Paga mediante transferencia Bancolombia',
+    image: '/images/breve%20logo.webp',
+    color: '#000000',
   },
 ]
 
@@ -46,6 +57,8 @@ export default function DonationModal() {
     customAmount: '',
   })
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const [selectedPayment, setSelectedPayment] = useState<string | null>(null)
+  const [copiedAccount, setCopiedAccount] = useState(false)
   const triggerRef = useRef<HTMLButtonElement | null>(null)
   const modalRef = useRef<HTMLDivElement>(null)
 
@@ -123,6 +136,8 @@ export default function DonationModal() {
       onComplete: () => {
         setIsOpen(false)
         setStep(1)
+        setSelectedPayment(null)
+        setCopiedAccount(false)
         setErrors({})
         setFormData({ name: '', email: '', phone: '', amount: 0, customAmount: '' })
         triggerRef.current?.focus()
@@ -213,9 +228,22 @@ export default function DonationModal() {
     } else if (methodId === 'stripe') {
       alert('Stripe está en configuración. Pronto estará disponible.')
       return
+    } else if (methodId === 'breve') {
+      setSelectedPayment('breve')
+      return
     }
 
     handleClose()
+  }
+
+  const copyToClipboard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopiedAccount(true)
+      setTimeout(() => setCopiedAccount(false), 2000)
+    } catch {
+      console.error('No se pudo copiar')
+    }
   }
 
   const handleBack = () => {
@@ -375,47 +403,115 @@ export default function DonationModal() {
               ) : (
                 <>
                   <div className={styles.donationHeader}>
-                    <button type="button" className={styles.backButton} onClick={handleBack}>
-                      <ArrowLeft size={20} />
-                      Volver
-                    </button>
+                    {selectedPayment === 'breve' ? (
+                      <button
+                        type="button"
+                        className={styles.backButton}
+                        onClick={() => setSelectedPayment(null)}
+                      >
+                        <ArrowLeft size={20} />
+                        Volver a métodos de pago
+                      </button>
+                    ) : (
+                      <button type="button" className={styles.backButton} onClick={handleBack}>
+                        <ArrowLeft size={20} />
+                        Volver
+                      </button>
+                    )}
                     <Heart size={40} className={styles.heartIcon} />
-                    <h2 className={styles.donationTitle} id="donation-title">Elige cómo donar</h2>
+                    <h2 className={styles.donationTitle} id="donation-title">
+                      {selectedPayment === 'breve' ? 'Paga con Breve' : 'Elige cómo donar'}
+                    </h2>
                     <p className={styles.donationSubtitle}>
                       Monto: <strong>${getFinalAmount().toLocaleString('es-CO')} COP</strong>
                     </p>
                   </div>
 
-                  <div className={styles.paymentGrid}>
-                    {paymentMethods.map((method) => {
-                      const Icon = method.icon
-                      const isDisabled = method.id === 'stripe'
-                      return (
+                  {selectedPayment === 'breve' ? (
+                    <div className={styles.breveInfoCard}>
+                      <div className={styles.breveLogoWrapper}>
+                        <Image
+                          src="/images/breve%20logo.webp"
+                          alt="Breve Logo"
+                          width={120}
+                          height={120}
+                          className={styles.breveLogo}
+                          priority
+                        />
+                      </div>
+                      <h3 className={styles.breveTitle}>Transferencia Bancolombia</h3>
+                      <p className={styles.breveDescription}>
+                        Realiza tu transferencia o depósito a la siguiente cuenta:
+                      </p>
+                      <div className={styles.breveAccountBox}>
+                        <span className={styles.breveAccountLabel}>Cuenta Bancolombia</span>
+                        <span className={styles.breveAccountNumber}>{BREVE_ACCOUNT_NUMBER}</span>
                         <button
-                          key={method.id}
                           type="button"
-                          className={`${styles.paymentCard} ${isDisabled ? styles.disabled : ''}`}
-                          onClick={() => !isDisabled && handlePaymentSelect(method.id)}
-                          disabled={isDisabled}
+                          className={styles.breveCopyButton}
+                          onClick={() => copyToClipboard(BREVE_ACCOUNT_NUMBER)}
                         >
-                          <div
-                            className={styles.paymentIcon}
-                            style={{ backgroundColor: `${method.color}15`, color: method.color }}
-                          >
-                            <Icon size={28} />
-                          </div>
-                          <h3 className={styles.paymentTitle}>{method.title}</h3>
-                          <p className={styles.paymentDescription}>{method.description}</p>
-                          {isDisabled && (
-                            <span className={styles.comingSoon}>Próximamente</span>
-                          )}
-                          {!isDisabled && (
-                            <span className={styles.paymentArrow}>→</span>
-                          )}
+                          {copiedAccount ? <CheckCheck size={18} /> : <Copy size={18} />}
+                          {copiedAccount ? 'Copiado' : 'Copiar número'}
                         </button>
-                      )
-                    })}
-                  </div>
+                      </div>
+                      <div className={styles.breveKeyBox}>
+                        <span className={styles.breveKeyLabel}>Llave Breve</span>
+                        <a
+                          href={BREVE_KEY}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={styles.breveKeyLink}
+                        >
+                          {BREVE_KEY}
+                        </a>
+                      </div>
+                      <p className={styles.breveInstructions}>
+                        Una vez realizada la transferencia, envía el comprobante al correo o WhatsApp
+                        de la fundación para confirmar tu donación.
+                      </p>
+                    </div>
+                  ) : (
+                    <div className={styles.paymentGrid}>
+                      {paymentMethods.map((method) => {
+                        const isDisabled = method.id === 'stripe'
+                        return (
+                          <button
+                            key={method.id}
+                            type="button"
+                            className={`${styles.paymentCard} ${isDisabled ? styles.disabled : ''}`}
+                            onClick={() => !isDisabled && handlePaymentSelect(method.id)}
+                            disabled={isDisabled}
+                          >
+                            <div
+                              className={styles.paymentIcon}
+                              style={{ backgroundColor: `${method.color}15`, color: method.color }}
+                            >
+                            {method.image ? (
+                              <Image
+                                src={method.image}
+                                alt={method.title}
+                                width={48}
+                                height={48}
+                                className={styles.paymentLogo}
+                              />
+                            ) : method.icon ? (
+                              <method.icon size={28} />
+                            ) : null}
+                            </div>
+                            <h3 className={styles.paymentTitle}>{method.title}</h3>
+                            <p className={styles.paymentDescription}>{method.description}</p>
+                            {isDisabled && (
+                              <span className={styles.comingSoon}>Próximamente</span>
+                            )}
+                            {!isDisabled && (
+                              <span className={styles.paymentArrow}>→</span>
+                            )}
+                          </button>
+                        )
+                      })}
+                    </div>
+                  )}
 
                   <div className={styles.donationInfo}>
                     <Check size={16} className={styles.checkIcon} />

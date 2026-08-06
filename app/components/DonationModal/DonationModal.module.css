@@ -372,6 +372,13 @@
   justify-content: center;
   margin-bottom: 1rem;
   transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+.paymentLogo {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
 }
 
 .paymentCard:hover:not(.disabled) .paymentIcon {
@@ -424,6 +431,142 @@
 
 .checkIcon {
   color: #4CAF50;
+}
+
+.breveInfoCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 16px;
+  border: 2px solid #dee2e6;
+  gap: 1.25rem;
+}
+
+.breveLogoWrapper {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 0.75rem;
+}
+
+.breveLogo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.breveTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.breveDescription {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 420px;
+}
+
+.breveAccountBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  background: white;
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  border: 2px dashed #ced4da;
+  width: 100%;
+  max-width: 380px;
+}
+
+.breveAccountLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.breveAccountNumber {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-text);
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.breveCopyButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.breveCopyButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(9, 99, 128, 0.35);
+}
+
+.breveKeyBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.breveKeyLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.breveKeyLink {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: none;
+  word-break: break-all;
+  transition: opacity 0.3s ease;
+}
+
+.breveKeyLink:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.breveInstructions {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+  max-width: 420px;
+  margin: 0;
+  padding: 1rem;
+  background: white;
+  border-radius: 12px;
+  border-left: 4px solid var(--color-primary);
 }
 
 @media (max-width: 768px) {
