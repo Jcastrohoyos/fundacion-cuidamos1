@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import gsap from 'gsap'
-import { Heart, X, CreditCard, FileText, Building2, ArrowLeft, Check, Wallet, Copy, CheckCheck } from 'lucide-react'
+import { Heart, X, CreditCard, Building2, ArrowLeft, Check, Wallet, Copy, CheckCheck } from 'lucide-react'
 import Image from 'next/image'
 import styles from './DonationModal.module.css'
 import { sendToWeb3Forms } from '../../utils/web3forms'
@@ -18,13 +18,6 @@ const paymentMethods = [
     description: 'Dona a través de PayPal con tarjeta de crédito o débito',
     image: '/images/PayPal-Logo.png',
     color: '#0070BA',
-  },
-  {
-    id: 'google',
-    title: 'Formulario',
-    description: 'Completa el formulario de donación',
-    icon: FileText,
-    color: '#34A853',
   },
   {
     id: 'stripe',
@@ -222,9 +215,6 @@ export default function DonationModal() {
     if (methodId === 'paypal') {
       const paypalLink = 'https://www.paypal.com/ncp/payment/QBPMD9R97XNUL'
       window.open(paypalLink, '_blank', 'noopener,noreferrer')
-    } else if (methodId === 'google') {
-      const googleFormLink = `https://docs.google.com/forms/d/e/1FAIpQLSct44ShJq2kK0DELwxdJBMrpYaGQdYpi1ZbNKFyzrjCNWCQcg/viewform?entry.1234567890=${userName}&entry.0987654321=${userEmail}&entry.1122334455=${userPhone}&entry.5566778899=${finalAmount}`
-      window.open(googleFormLink, '_blank', 'noopener,noreferrer')
     } else if (methodId === 'stripe') {
       alert('Stripe está en configuración. Pronto estará disponible.')
       return
