@@ -79,10 +79,10 @@ export default function DonationForm({ onClose }: { onClose?: () => void }) {
 
     await sendToWeb3Forms(submissionData)
 
-    const wompiLink = process.env.NEXT_PUBLIC_WOMPI_DONATION_LINK
-      || 'https://checkout.wompi.co/l/test_VPOS_wIY2x7'
+    const googleFormLink = process.env.NEXT_PUBLIC_DONATION_FORM_LINK
+      || 'https://docs.google.com/forms/d/e/1FAIpQLSct44ShJq2kK0DELwxdJBMrpYaGQdYpi1ZbNKFyzrjCNWCQcg/viewform'
 
-    window.open(wompiLink, '_blank', 'noopener,noreferrer')
+    window.open(googleFormLink, '_blank', 'noopener,noreferrer')
     setIsSubmitting(false)
   }
 

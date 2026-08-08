@@ -8,8 +8,10 @@ import styles from './DonationModal.module.css'
 import { sendToWeb3Forms } from '../../utils/web3forms'
 import { DONATION_AMOUNTS } from '../../utils/donations'
 
-const BREVE_ACCOUNT_NUMBER = '000000000000'
-const BREVE_KEY = 'https://breve.co/pay/...'
+const BREVE_ACCOUNT_NUMBER = '191-000032-72'
+const BREVE_BREB = '0067641241'
+const BREVE_SWIFT = 'COLOCOBM'
+const GOOGLE_FORM_LINK = 'https://docs.google.com/forms/d/e/1FAIpQLSct44ShJq2kK0DELwxdJBMrpYaGQdYpi1ZbNKFyzrjCNWCQcg/viewform'
 
 const paymentMethods = [
   {
@@ -212,9 +214,13 @@ export default function DonationModal() {
       console.warn('No se pudo enviar la notificación de donación a Web3Forms.')
     }
 
+    const googleFormLink = process.env.NEXT_PUBLIC_DONATION_FORM_LINK
+      || 'https://docs.google.com/forms/d/e/1FAIpQLSct44ShJq2kK0DELwxdJBMrpYaGQdYpi1ZbNKFyzrjCNWCQcg/viewform'
+
     if (methodId === 'paypal') {
       const paypalLink = 'https://www.paypal.com/ncp/payment/QBPMD9R97XNUL'
       window.open(paypalLink, '_blank', 'noopener,noreferrer')
+      handleClose()
     } else if (methodId === 'stripe') {
       alert('Stripe está en configuración. Pronto estará disponible.')
       return
@@ -222,8 +228,6 @@ export default function DonationModal() {
       setSelectedPayment('breve')
       return
     }
-
-    handleClose()
   }
 
   const copyToClipboard = async (text: string) => {
@@ -431,10 +435,11 @@ export default function DonationModal() {
                       </div>
                       <h3 className={styles.breveTitle}>Transferencia Bancolombia</h3>
                       <p className={styles.breveDescription}>
-                        Realiza tu transferencia o depósito a la siguiente cuenta:
+                        Realiza tu donación por transferencia a la siguiente cuenta:
                       </p>
+
                       <div className={styles.breveAccountBox}>
-                        <span className={styles.breveAccountLabel}>Cuenta Bancolombia</span>
+                        <span className={styles.breveAccountLabel}>Cuenta de ahorros BANCOLOMBIA</span>
                         <span className={styles.breveAccountNumber}>{BREVE_ACCOUNT_NUMBER}</span>
                         <button
                           type="button"
@@ -445,17 +450,43 @@ export default function DonationModal() {
                           {copiedAccount ? 'Copiado' : 'Copiar número'}
                         </button>
                       </div>
-                      <div className={styles.breveKeyBox}>
-                        <span className={styles.breveKeyLabel}>Llave Breve</span>
-                        <a
-                          href={BREVE_KEY}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={styles.breveKeyLink}
-                        >
-                          {BREVE_KEY}
-                        </a>
+
+                      <div className={styles.breveDetailBox}>
+                        <div className={styles.breveDetailRow}>
+                          <span className={styles.breveDetailLabel}>Bre-B:</span>
+                          <span className={styles.breveDetailValue}>{BREVE_BREB}</span>
+                          <button
+                            type="button"
+                            className={styles.breveCopyButton}
+                            onClick={() => copyToClipboard(BREVE_BREB)}
+                          >
+                            {copiedAccount ? <CheckCheck size={18} /> : <Copy size={18} />}
+                            {copiedAccount ? 'Copiado' : 'Copiar'}
+                          </button>
+                        </div>
+                        <div className={styles.breveDetailRow}>
+                          <span className={styles.breveDetailLabel}>Código Swift:</span>
+                          <span className={styles.breveDetailValue}>{BREVE_SWIFT}</span>
+                          <button
+                            type="button"
+                            className={styles.breveCopyButton}
+                            onClick={() => copyToClipboard(BREVE_SWIFT)}
+                          >
+                            {copiedAccount ? <CheckCheck size={18} /> : <Copy size={18} />}
+                            {copiedAccount ? 'Copiado' : 'Copiar'}
+                          </button>
+                        </div>
                       </div>
+
+                      <a
+                        href={GOOGLE_FORM_LINK}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.breveFormLink}
+                      >
+                        Abrir formulario de donación →
+                      </a>
+
                       <p className={styles.breveInstructions}>
                         Una vez realizada la transferencia, envía el comprobante al correo o WhatsApp
                         de la fundación para confirmar tu donación.

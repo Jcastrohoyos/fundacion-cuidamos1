@@ -569,6 +569,64 @@
   border-left: 4px solid var(--color-primary);
 }
 
+.breveDetailBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: white;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  border: 2px dashed #ced4da;
+  width: 100%;
+  max-width: 380px;
+}
+
+.breveDetailRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.breveDetailLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.breveDetailValue {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: 0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.breveFormLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: white;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(9, 99, 128, 0.35);
+}
+
+.breveFormLink:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(9, 99, 128, 0.5);
+  opacity: 0.95;
+}
+
 @media (max-width: 768px) {
   .stickyButton {
     bottom: 20px;
