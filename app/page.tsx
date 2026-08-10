@@ -5,6 +5,7 @@ import StatsBanner from './components/StatsBanner/StatsBanner'
 import NuestroTrabajo from './components/NuestroTrabajo/NuestroTrabajo'
 import Impacto from './components/Impacto/Impacto'
 import Datos from './components/Datos/Datos'
+import ProgresoPorAno from './components/ProgresoPorAno/ProgresoPorAno'
 import ComoApoyarnos from './components/ComoApoyarnos/ComoApoyarnos'
 import Donaciones from './components/Donaciones/Donaciones'
 import Empresa from './components/Empresa/Empresa'
@@ -23,6 +24,7 @@ export default function Home() {
       <StatsBanner />
       <NuestroTrabajo />
       <Impacto />
+      <ProgresoPorAno />
       <Datos />
       <ComoApoyarnos />
       <Donaciones />

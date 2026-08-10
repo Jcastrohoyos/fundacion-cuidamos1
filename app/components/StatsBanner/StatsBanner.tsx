@@ -6,10 +6,10 @@ import styles from './StatsBanner.module.css'
 
 const stats = [
   { value: 88,    label: 'Actividades\nrealizadas.' },
-  { value: 31692, label: 'Bonos de\nalimentación\ndistribuidos.' },
-  { value: 8614,  label: 'Beneficiarios\ntotales.' },
-  { value: 538,   label: 'Kits de aseo\nentregados.' },
-  { value: 1115,  label: 'Gorros tejidos\ndonados.' },
+  { value: 33297, label: 'Bonos de\nalimentación\ndistribuidos.' },
+  { value: 8944,  label: 'Beneficiarios\ntotales.' },
+  { value: 750,   label: 'Kits de aseo\nentregados.' },
+  { value: 1311,  label: 'Gorros tejidos\ndonados.' },
 ]
 
 export default function StatsBanner() {
