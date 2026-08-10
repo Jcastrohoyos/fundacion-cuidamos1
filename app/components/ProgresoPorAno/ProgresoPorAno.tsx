@@ -39,7 +39,7 @@ export default function ProgresoPorAno() {
           Nuestro progreso 
         </h2>
         <p className={`${styles.subtitle} progreso-title`}>
-          Cifras acumuladas desde 2022 hasta julio de 2026
+           Cifras acumuladas desde 2022 hasta julio de 2026
         </p>
 
         <div className={styles.tableWrapper}>
@@ -47,7 +47,7 @@ export default function ProgresoPorAno() {
             <thead>
               <tr>
                 <th>Año</th>
-                <th>Bonos</th>
+                <th>Bonos de almuerzo para cuidadores</th>
                 <th>Beneficiarios</th>
                 <th>Kits de aseo</th>
                 <th>Gorros</th>
