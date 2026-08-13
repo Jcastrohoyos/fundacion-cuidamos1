@@ -42,12 +42,6 @@ export default function TopBanner() {
   return (
     <div ref={bannerRef} className={styles.banner} role="banner">
       <div className={styles.inner}>
-        <span className={styles.text}>
-          <strong>Apoya nuestra causa:</strong> Tu donación transforma vidas. Donaciones para niños con cáncer en Colombia.
-        </span>
-        <a href="#donaciones" className={styles.link}>
-          Donar ahora
-        </a>
         <button
           type="button"
           className={styles.closeButton}
