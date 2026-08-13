@@ -10,15 +10,15 @@ import styles from './Empresa.module.css'
 const benefits = [
   {
     icon: Building2,
-    text: 'Con tu apoyo, ayudas a brindar alimentación y acompañamiento a cuidadores de niños con cáncer.'
+    text: 'Con tu apoyo ayudas a brindar alimentación y acompañamiento a cuidadores de niños con cáncer.'
   },
   {
     icon: TrendingUp,
-    text: 'Si eres empresa, puedes acceder a beneficios tributarios de acuerdo con la normativa vigente.'
+    text: 'Si eres empresa puedes acceder a beneficios tributarios de acuerdo con la normativa vigente.'
   },
   {
     icon: Shield,
-    text: 'Tu aporte respalda una causa transparente, con un impacto social real y reportes claros sobre el uso de los recursos.'
+    text: 'Tu aporte respalda una causa transparente con un impacto social real y reportes claros sobre el uso de los recursos.'
   },
   {
     icon: Award,
