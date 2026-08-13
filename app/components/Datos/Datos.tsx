@@ -9,7 +9,7 @@ export default function Datos() {
       <div className={styles.container}>
         <div className={styles.datosWrapper}>
           <Image
-            src="/images/datos.png"
+            src="/images/datos.jpeg"
             alt="Datos Fundación Cuidamos con Amor"
             width={1200}
             height={800}

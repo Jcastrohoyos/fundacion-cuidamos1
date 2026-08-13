@@ -80,8 +80,9 @@ export default function Impacto() {
 
             <div className={`${styles.block} impacto-block`}>
               <p className={styles.blockText}>
-                <strong>Kits de higiene personal</strong> que promueven el bienestar y el autocuidado de
-                las familias que atraviesan esta difícil situación.
+                <strong>Kits de higiene personal</strong>
+                Hemos entregado 538 kits que promueven el bienestar y el
+                 autocuidado de las familias que atraviesan esta difícil situación.
               </p>
             </div>
 

@@ -25,62 +25,11 @@
   margin-bottom: 2.5rem;
 }
 
-.tableWrapper {
-  overflow-x: auto;
+.chartWrapper {
+  background: white;
   border-radius: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-}
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
-  font-size: 1rem;
-}
-
-.table thead {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-  color: white;
-}
-
-.table th {
-  padding: 1rem;
-  text-align: center;
-  font-weight: 700;
-  font-size: 0.95rem;
-  letter-spacing: 0.03em;
-}
-
-.table th:first-child {
-  text-align: left;
-  padding-left: 1.5rem;
-}
-
-.table td {
-  padding: 1rem;
-  text-align: center;
-  border-bottom: 1px solid #e9ecef;
-  color: var(--color-text);
-  font-weight: 500;
-}
-
-.table td:first-child {
-  text-align: left;
-  padding-left: 1.5rem;
-  font-weight: 700;
-}
-
-.table tbody tr:last-child td {
-  border-bottom: none;
-}
-
-.table tbody tr:hover {
-  background-color: #f8f9fa;
-}
-
-.yearCell {
-  color: var(--color-primary);
-  font-weight: 700;
+  padding: 24px;
 }
 
 @media (max-width: 768px) {
@@ -97,15 +46,8 @@
     margin-bottom: 1.5rem;
   }
 
-  .table th,
-  .table td {
-    padding: 0.75rem 0.5rem;
-    font-size: 0.9rem;
-  }
-
-  .table th:first-child,
-  .table td:first-child {
-    padding-left: 1rem;
+  .chartWrapper {
+    padding: 16px;
   }
 }
 
@@ -117,15 +59,5 @@
   .title {
     font-size: 1.5rem;
   }
-
-  .table th,
-  .table td {
-    padding: 0.6rem 0.4rem;
-    font-size: 0.8rem;
-  }
-
-  .table th:first-child,
-  .table td:first-child {
-    padding-left: 0.75rem;
-  }
 }
+

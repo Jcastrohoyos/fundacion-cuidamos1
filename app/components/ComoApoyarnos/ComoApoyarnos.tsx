@@ -41,13 +41,6 @@ export default function ComoApoyarnos() {
         
         <div className={styles.grid}>
           <div className={`${styles.card} como-card`}>
-            <h3 className={styles.cardTitle}>Material recreativo para manualidades</h3>
-            <p className={styles.cardText}>
-              Una forma de contribuir es a través de la donación de materiales recreativos como papeles, colores, libros para colorear y otros suministros creativos. Estos insumos son esenciales para las actividades manuales, proporcionando a los niños y niñas la oportunidad de expresarse creativamente.
-            </p>
-          </div>
-          
-          <div className={`${styles.card} como-card`}>
             <h3 className={styles.cardTitle}>Donación monetaria</h3>
             <p className={styles.cardText}>
               Tu contribución económica es fundamental para el funcionamiento de nuestros programas. Gracias a tu generoso apoyo, podemos adquirir bonos de alimentación para los cuidadores que no pueden costear su almuerzo. Además, tu donación nos permite comprar los implementos necesarios para los kits de aseo personal para los cuidadores.
@@ -58,12 +51,19 @@ export default function ComoApoyarnos() {
           </div>
           
           <div className={`${styles.card} como-card`}>
-            <h3 className={styles.cardTitle}>Bonos de Alimentación para Cuidadores</h3>
+            <h3 className={styles.cardTitle}>Bonos conmemorativos</h3>
             <p className={styles.cardText}>
               Otra forma de colaborar es adquiriendo nuestros bonos de apoyo, que pueden llevar el nombre de un ser querido y ser entregados para conmemorar o celebrar fechas importantes. Estos bonos ofrecen a las familias una manera significativa de honrar a sus seres queridos o celebrar momentos.
             </p>
             <p className={styles.cardText}>
               Para solicitarlos, contáctanos a través de Instagram o nuestro correo.
+            </p>
+          </div>
+          
+          <div className={`${styles.card} como-card`}>
+            <h3 className={styles.cardTitle}>Material recreativo para manualidades</h3>
+            <p className={styles.cardText}>
+              Una forma de contribuir es a través de la donación de materiales recreativos como papeles, colores, libros para colorear y otros suministros creativos. Estos insumos son esenciales para las actividades manuales, proporcionando a los niños y niñas la oportunidad de expresarse creativamente.
             </p>
           </div>
 

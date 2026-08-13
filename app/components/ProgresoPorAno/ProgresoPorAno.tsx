@@ -3,6 +3,16 @@
 import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from 'recharts'
 import styles from './ProgresoPorAno.module.css'
 
 const yearData = [
@@ -12,6 +22,8 @@ const yearData = [
   { year: '2025', bonos: 14482, beneficiarios: 3367, kits: 286, gorros: 395 },
   { year: 'A julio 2026', bonos: 5679, beneficiarios: 1349, kits: 212, gorros: 196 },
 ]
+
+const formatNumber = (value: number) => value.toLocaleString('es-CO')
 
 export default function ProgresoPorAno() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -23,11 +35,10 @@ export default function ProgresoPorAno() {
       duration: 0.7,
       ease: 'power3.out',
     })
-    gsap.from('.progreso-row', {
+    gsap.from('.chart-enter', {
       opacity: 0,
-      x: -20,
-      duration: 0.5,
-      stagger: 0.1,
+      y: 30,
+      duration: 0.8,
       ease: 'power3.out',
     })
   }, { scope: containerRef })
@@ -36,35 +47,34 @@ export default function ProgresoPorAno() {
     <section className={styles.section} ref={containerRef} id="progreso-por-ano">
       <div className={styles.container}>
         <h2 className={`${styles.title} progreso-title`}>
-          Nuestro progreso 
+          Nuestro progreso
         </h2>
         <p className={`${styles.subtitle} progreso-title`}>
            Cifras acumuladas desde 2022 hasta julio de 2026
         </p>
 
-        <div className={styles.tableWrapper}>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>Año</th>
-                <th>Bonos de almuerzo para cuidadores</th>
-                <th>Beneficiarios</th>
-                <th>Kits de aseo</th>
-                <th>Gorros</th>
-              </tr>
-            </thead>
-            <tbody>
-              {yearData.map((row) => (
-                <tr key={row.year} className="progreso-row">
-                  <td className={styles.yearCell}>{row.year}</td>
-                  <td>{row.bonos.toLocaleString('es-CO')}</td>
-                  <td>{row.beneficiarios.toLocaleString('es-CO')}</td>
-                  <td>{row.kits.toLocaleString('es-CO')}</td>
-                  <td>{row.gorros.toLocaleString('es-CO')}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className={`${styles.chartWrapper} chart-enter`}>
+          <ResponsiveContainer width="100%" height={420}>
+            <BarChart data={yearData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#e9ecef" />
+              <XAxis dataKey="year" stroke="var(--color-text-light)" tick={{ fill: 'var(--color-text-light)' }} />
+              <YAxis stroke="var(--color-text-light)" tick={{ fill: 'var(--color-text-light)' }} tickFormatter={formatNumber} />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: 'var(--color-primary)',
+                  border: 'none',
+                  borderRadius: '8px',
+                  color: 'white',
+                }}
+                labelStyle={{ color: 'white', fontWeight: 'bold' }}
+              />
+              <Legend />
+              <Bar dataKey="bonos" name="Bonos de almuerzo" fill="var(--color-primary)" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="beneficiarios" name="Beneficiarios" fill="var(--color-secondary)" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="kits" name="Kits de aseo" fill="var(--color-accent)" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="gorros" name="Gorros" fill="var(--color-text-light)" radius={[4, 4, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
         </div>
       </div>
     </section>
