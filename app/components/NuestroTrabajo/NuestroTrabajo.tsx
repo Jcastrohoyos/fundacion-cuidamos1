@@ -17,7 +17,7 @@ const pillars = [
     Icon: Palette,
     title: 'Actividades recreativas y educativas',
     description:
-      'Proporcionamos materiales recreativos como libros para colorear y actividades, brindando momentos de relajación a cuidadores y niños hospitalizados, mejorando su bienestar emocional.',
+      ' Proporcionamos materiales recreativos, como libros para colorear y actividades lúdicas, a cuidadores de niños hospitalizados y a niños que se encuentran en tratamiento de quimioterapia, brindándoles momentos de distracción y relajación que contribuyen a mejorar su bienestar emocional.',
   },
   {
     Icon: Users,
