@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar/Navbar'
 import Hero from './components/Hero/Hero'
+import TopBanner from './components/TopBanner/TopBanner'
 import SobreNosotros from './components/SobreNosotros/SobreNosotros'
 import StatsBanner from './components/StatsBanner/StatsBanner'
 import NuestroTrabajo from './components/NuestroTrabajo/NuestroTrabajo'
@@ -18,6 +19,7 @@ import BackToTop from './components/BackToTop/BackToTop'
 export default function Home() {
   return (
     <>
+      <TopBanner />
       <Navbar />
       <Hero />
       <SobreNosotros />

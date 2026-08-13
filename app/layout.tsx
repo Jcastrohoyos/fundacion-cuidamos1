@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Poppins, Inter } from 'next/font/google'
 import DonationModal from './components/DonationModal/DonationModal'
 import WhatsAppButton from './components/WhatsAppButton/WhatsAppButton'
+import CookieBanner from './components/CookieBanner/CookieBanner'
 import './globals.css'
 
 const poppins = Poppins({
@@ -110,6 +111,7 @@ export default function RootLayout({
         <main id="main-content">{children}</main>
         <WhatsAppButton />
         <DonationModal />
+        <CookieBanner />
       </body>
     </html>
   )
