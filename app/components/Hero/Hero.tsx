@@ -58,7 +58,7 @@ export default function Hero() {
           </div>
           
           <div className={styles.textSection}>
-            <p className={`${styles.welcome} hero-welcome`}>Bienvenid@</p>
+            <p className={`${styles.welcome} hero-welcome`}>Bienvenidos a la Fundación</p>
             <h1 className={`${styles.title} hero-title`}>
               CUIDAMOS<br />
               CON<br />

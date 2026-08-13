@@ -28,8 +28,8 @@ const teamMembers: TeamMember[] = [
 const stats = [
   {
     icon: Calendar,
-    value: 'Octubre 2022',
-    label: 'Nuestra labor empezó en',
+    value: 'Nuestra labor empezó en Octubre 2022',
+    
   },
 ]
 
@@ -96,7 +96,7 @@ export default function SobreNosotros() {
 
             <p className={`${styles.text} sobre-text`}>
               Nuestro propósito es brindar apoyo integral a familias en situación de vulnerabilidad. 
-              A través de nuestra Fundación, trabajamos con dedicación para ofrecer soluciones que 
+              A través de nuestra Fundación trabajamos con dedicación para ofrecer soluciones que 
               transformen vidas, proporcionando cuidado, nutrición y apoyo emocional a quienes más lo necesitan.
               Cada donación se transforma en un bono de alimentación que brinda alivio, fortaleza y esperanza
               a quienes más lo necesitan.
@@ -111,8 +111,7 @@ export default function SobreNosotros() {
                       <Icon size={24} strokeWidth={1.8} />
                     </div>
                     <div className={styles.statContent}>
-                      <span className={styles.statValue}>{stat.value}</span>
-                      <span className={styles.statLabel}>{stat.label}</span>
+                      <span className={styles.statValue}>{stat.value}</span>            
                     </div>
                   </div>
                 )

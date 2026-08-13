@@ -63,14 +63,16 @@ export default function ComoApoyarnos() {
               Otra forma de colaborar es adquiriendo nuestros bonos de apoyo, que pueden llevar el nombre de un ser querido y ser entregados para conmemorar o celebrar fechas importantes. Estos bonos ofrecen a las familias una manera significativa de honrar a sus seres queridos o celebrar momentos.
             </p>
             <p className={styles.cardText}>
-              Para solicitarlo, contáctanos a través de Instagram o nuestro correo.
+              Para solicitarlos, contáctanos a través de Instagram o nuestro correo.
             </p>
           </div>
 
           <div className={`${styles.card} como-card`}>
             <h3 className={styles.cardTitle}>Kits de aseo para cuidadores</h3>
             <p className={styles.cardText}>
-              Ayúdanos a entregar kits de aseo personal a los cuidadores que acompañan a los niños y niñas durante su tratamiento. Estos kits les brindan bienestar y dignidad en los momentos más difíciles.
+              Kits de aseo para cuidadores
+
+Con tu donación podemos entregar kits de aseo personal a los cuidadores que acompañan a los niños y niñas durante su tratamiento, brindándoles bienestar y dignidad en momentos difíciles.
             </p>
           </div>
 
