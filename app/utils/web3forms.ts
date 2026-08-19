@@ -1,18 +1,21 @@
 export async function sendToWeb3Forms(data: Record<string, unknown>): Promise<boolean> {
-  const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
-  if (!accessKey || accessKey === 'TU_ACCESS_KEY_DE_WEB3FORMS') return false
-
-  const payload = {
-    access_key: accessKey,
-    ...data,
-  }
-
   try {
-    const res = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify(payload),
+    const payload: Record<string, string> = {}
+    Object.entries(data).forEach(([key, value]) => {
+      if (value !== undefined && value !== null && value !== '') {
+        payload[key] = String(value)
+      }
     })
+
+    const res = await fetch('https://formsubmit.co/ajax/info@cuidamosconamor.org', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Accept: 'application/json',
+      },
+      body: new URLSearchParams(payload).toString(),
+    })
+
     const json = await res.json()
     return res.status === 200 && json.success
   } catch {
