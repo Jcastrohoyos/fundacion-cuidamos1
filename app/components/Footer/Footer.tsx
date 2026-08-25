@@ -125,7 +125,7 @@ export default function Footer() {
                 <FacebookIcon />
               </a>
               <a
-                href="mailto:info@cuidamosconamor.org"
+                href="mailto:contacto@cuidamosconamor.org"
                 className={styles.socialIcon}
                 aria-label="Correo electrónico"
               >
@@ -212,13 +212,13 @@ export default function Footer() {
             <ul className={styles.contactList}>
               <li>
                 <a
-                  href="mailto:info@cuidamosconamor.org"
+                  href="mailto:contacto@cuidamosconamor.org"
                   className={styles.contactItem}
                 >
                   <div className={styles.iconCircle}>
                     <Mail size={15} />
                   </div>
-                  <span>info@cuidamosconamor.org</span>
+                  <span>contacto@cuidamosconamor.org</span>
                 </a>
               </li>
               <li>

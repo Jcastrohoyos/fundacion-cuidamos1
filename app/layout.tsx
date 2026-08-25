@@ -85,7 +85,7 @@ export default function RootLayout({
     name: 'Fundación Cuidamos con Amor',
     url: 'https://www.cuidamosconamor.org',
     logo: 'https://www.cuidamosconamor.org/images/logo.webp',
-    email: 'info@cuidamosconamor.org',
+    email: 'contacto@cuidamosconamor.org',
     telephone: '+573135183817',
     address: {
       '@type': 'PostalAddress',

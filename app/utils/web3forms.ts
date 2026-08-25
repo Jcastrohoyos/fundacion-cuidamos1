@@ -7,7 +7,7 @@ export async function sendToWeb3Forms(data: Record<string, unknown>): Promise<bo
       }
     })
 
-    const res = await fetch('https://formsubmit.co/ajax/info@cuidamosconamor.org', {
+    const res = await fetch('https://formsubmit.co/ajax/contacto@cuidamosconamor.org', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
