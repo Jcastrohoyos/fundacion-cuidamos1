@@ -39,7 +39,7 @@ const nextConfig = {
               "img-src 'self' data: https: blob:",
               "font-src 'self' data:",
               "connect-src 'self' https://formsubmit.co https://www.google-analytics.com https://www.google.com https://vercel.live",
-              "frame-src 'self'",
+              "frame-src 'self' https://vercel.live",
               "media-src 'self'",
               "object-src 'none'",
               "base-uri 'self'",
