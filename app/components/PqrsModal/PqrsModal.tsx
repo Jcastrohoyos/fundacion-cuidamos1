@@ -99,13 +99,71 @@ export default function PqrsModal({ isOpen, onClose }: { isOpen: boolean; onClos
     setStatus('sending')
 
     const form = e.target as HTMLFormElement
+    const typeInput = form.querySelector('#pqrs-type') as HTMLSelectElement
+    const subjectInput = form.querySelector('#pqrs-subject') as HTMLInputElement
+    const nameInput = form.querySelector('#pqrs-name') as HTMLInputElement
+    const emailInput = form.querySelector('#pqrs-email') as HTMLInputElement
+    const phoneInput = form.querySelector('#pqrs-phone') as HTMLInputElement
+    const messageInput = form.querySelector('#pqrs-message') as HTMLTextAreaElement
+
+    const pqrs_type = typeInput?.value?.trim() || ''
+    const subject = subjectInput?.value?.trim() || ''
+    const name = nameInput?.value?.trim() || ''
+    const email = emailInput?.value?.trim() || ''
+    const phone = phoneInput?.value?.trim() || ''
+    const message = messageInput?.value?.trim() || ''
+
+    // Validation
+    if (!pqrs_type) {
+      setStatus('error')
+      alert('Por favor selecciona el tipo de solicitud')
+      setStatus('idle')
+      return
+    }
+
+    if (subject.length < 3) {
+      setStatus('error')
+      alert('Por favor ingresa un asunto')
+      setStatus('idle')
+      return
+    }
+
+    if (name.length < 2) {
+      setStatus('error')
+      alert('Por favor ingresa tu nombre completo')
+      setStatus('idle')
+      return
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) {
+      setStatus('error')
+      alert('Por favor ingresa un correo electrónico válido')
+      setStatus('idle')
+      return
+    }
+
+    if (phone && phone.length < 10) {
+      setStatus('error')
+      alert('Por favor ingresa un número de teléfono válido (mínimo 10 dígitos)')
+      setStatus('idle')
+      return
+    }
+
+    if (message.length < 10) {
+      setStatus('error')
+      alert('Por favor ingresa una descripción más detallada (mínimo 10 caracteres)')
+      setStatus('idle')
+      return
+    }
+
     const data = {
-      name: (form.querySelector('#pqrs-name') as HTMLInputElement)?.value || '',
-      email: (form.querySelector('#pqrs-email') as HTMLInputElement)?.value || '',
-      phone: (form.querySelector('#pqrs-phone') as HTMLInputElement)?.value || '',
-      pqrs_type: (form.querySelector('#pqrs-type') as HTMLSelectElement)?.value || '',
-      subject: (form.querySelector('#pqrs-subject') as HTMLInputElement)?.value || '',
-      message: (form.querySelector('#pqrs-message') as HTMLTextAreaElement)?.value || '',
+      name,
+      email,
+      phone,
+      pqrs_type,
+      subject,
+      message,
     }
 
     const success = await sendToWeb3Forms({

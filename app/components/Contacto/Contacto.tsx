@@ -81,11 +81,51 @@ export default function Contacto() {
     setStatus('sending')
 
     const form = e.target as HTMLFormElement
+    const nameInput = form.querySelector('#contact-name') as HTMLInputElement
+    const emailInput = form.querySelector('#contact-email') as HTMLInputElement
+    const subjectInput = form.querySelector('#contact-subject') as HTMLInputElement
+    const messageInput = form.querySelector('#contact-message') as HTMLTextAreaElement
+
+    const name = nameInput?.value?.trim() || ''
+    const email = emailInput?.value?.trim() || ''
+    const subject = subjectInput?.value?.trim() || ''
+    const message = messageInput?.value?.trim() || ''
+
+    // Validation
+    if (name.length < 2) {
+      setStatus('error')
+      alert('Por favor ingresa tu nombre completo')
+      setStatus('idle')
+      return
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) {
+      setStatus('error')
+      alert('Por favor ingresa un correo electrónico válido')
+      setStatus('idle')
+      return
+    }
+
+    if (subject.length < 3) {
+      setStatus('error')
+      alert('Por favor ingresa un asunto')
+      setStatus('idle')
+      return
+    }
+
+    if (message.length < 10) {
+      setStatus('error')
+      alert('Por favor ingresa un mensaje más detallado (mínimo 10 caracteres)')
+      setStatus('idle')
+      return
+    }
+
     const data = {
-      name: (form.querySelector('#contact-name') as HTMLInputElement)?.value || '',
-      email: (form.querySelector('#contact-email') as HTMLInputElement)?.value || '',
-      subject: (form.querySelector('#contact-subject') as HTMLInputElement)?.value || '',
-      message: (form.querySelector('#contact-message') as HTMLTextAreaElement)?.value || '',
+      name,
+      email,
+      subject,
+      message,
     }
 
     const success = await sendToWeb3Forms({
