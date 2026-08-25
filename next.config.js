@@ -34,11 +34,11 @@ const nextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://vercel.live",
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: https: blob:",
               "font-src 'self' data:",
-              "connect-src 'self' https://formsubmit.co",
+              "connect-src 'self' https://formsubmit.co https://www.google-analytics.com https://www.google.com https://vercel.live",
               "frame-src 'self'",
               "media-src 'self'",
               "object-src 'none'",
