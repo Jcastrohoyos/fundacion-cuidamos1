@@ -13,6 +13,7 @@ import {
   Phone,
   ChevronRight,
 } from 'lucide-react'
+import { siteConfig, mailtoHref, telHref } from '../../utils/siteConfig'
 
 function FacebookIcon() {
   return (
@@ -98,16 +99,16 @@ export default function Footer() {
 
             <div className={styles.brandBadges}>
               <span className={styles.badge}>
-                <Heart size={13} /> NIT 901868580-4
+                <Heart size={13} /> NIT {siteConfig.nit}
               </span>
               <span className={styles.badge}>
-                <MapPin size={13} /> Bogotá, Colombia
+                <MapPin size={13} /> {siteConfig.location.display}
               </span>
             </div>
 
             <div className={styles.socialRow}>
               <a
-                href="https://www.instagram.com/cuidamosconamor_fundacion/"
+                href={siteConfig.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.socialIcon}
@@ -116,7 +117,7 @@ export default function Footer() {
                 <InstagramIcon />
               </a>
               <a
-                href="https://www.facebook.com/profile.php?id=61590375045310"
+                href={siteConfig.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.socialIcon}
@@ -125,7 +126,7 @@ export default function Footer() {
                 <FacebookIcon />
               </a>
               <a
-                href="mailto:contacto@cuidamosconamor.org"
+                href={mailtoHref}
                 className={styles.socialIcon}
                 aria-label="Correo electrónico"
               >
@@ -212,21 +213,21 @@ export default function Footer() {
             <ul className={styles.contactList}>
               <li>
                 <a
-                  href="mailto:contacto@cuidamosconamor.org"
+                  href={mailtoHref}
                   className={styles.contactItem}
                 >
                   <div className={styles.iconCircle}>
                     <Mail size={15} />
                   </div>
-                  <span>contacto@cuidamosconamor.org</span>
+                  <span>{siteConfig.email}</span>
                 </a>
               </li>
               <li>
-                <a href="tel:+573135183817" className={styles.contactItem}>
+                <a href={telHref} className={styles.contactItem}>
                   <div className={styles.iconCircle}>
                     <Phone size={15} />
                   </div>
-                  <span>313 518 3817</span>
+                  <span>{siteConfig.phone.display}</span>
                 </a>
               </li>
               <li>
@@ -234,7 +235,7 @@ export default function Footer() {
                   <div className={styles.iconCircle}>
                     <MapPin size={15} />
                   </div>
-                  <span>Bogotá, Colombia</span>
+                  <span>{siteConfig.location.display}</span>
                 </div>
               </li>
             </ul>
@@ -246,7 +247,7 @@ export default function Footer() {
         <div className={`${styles.bottomSection} footer-bottom`}>
           <div className={styles.bottomTop}>
             <p className={styles.copyright}>
-              © {new Date().getFullYear()} Fundación Cuidamos con Amor
+              © {new Date().getFullYear()} {siteConfig.name}
             </p>
             <div className={styles.bottomLinks}>
               <a href="#" className={styles.bottomLink}>Política de Privacidad</a>
@@ -260,7 +261,7 @@ export default function Footer() {
             </p>
             <span className={styles.bottomDot} />
             <p className={styles.tagline}>
-              NIT 901868580-4 · Bogotá, Colombia
+              NIT {siteConfig.nit} · {siteConfig.location.display}
             </p>
           </div>
         </div>

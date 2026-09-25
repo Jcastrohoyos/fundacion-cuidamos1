@@ -4,6 +4,7 @@ import DonationModal from './components/DonationModal/DonationModal'
 import WhatsAppButton from './components/WhatsAppButton/WhatsAppButton'
 import CookieBanner from './components/CookieBanner/CookieBanner'
 import Script from 'next/script'
+import { siteConfig } from './utils/siteConfig'
 import './globals.css'
 
 const poppins = Poppins({
@@ -28,14 +29,14 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.cuidamosconamor.org'),
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: 'Fundación Cuidamos con Amor | Apoyo a niños y niñas con cáncer',
-    template: '%s | Fundación Cuidamos con Amor',
+    default: `${siteConfig.name} | Apoyo a niños y niñas con cáncer`,
+    template: `%s | ${siteConfig.name}`,
   },
   description: 'Fundación Cuidamos con Amor: apoyo integral a niños y niñas con cáncer en Colombia. Transformamos vidas con atención en salud, orientación familiar y esperanza.',
   keywords: ['fundación', 'cáncer infantil', 'niños con cáncer', 'donaciones Colombia', 'apoyo a familias', 'oncología pediátrica', 'Bogotá'],
-  authors: [{ name: 'Fundación Cuidamos con Amor' }],
+  authors: [{ name: siteConfig.name }],
   category: 'ONG / Fundación sin ánimo de lucro',
   robots: {
     index: true,
@@ -57,10 +58,10 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'Fundación Cuidamos con Amor',
+    title: siteConfig.name,
     description: 'Cuidamos con amor y alimentamos la esperanza. Apoyamos a niños y niñas con cáncer en Colombia.',
     url: '/',
-    siteName: 'Fundación Cuidamos con Amor',
+    siteName: siteConfig.name,
     locale: 'es_CO',
     type: 'website',
     images: [
@@ -68,7 +69,7 @@ export const metadata: Metadata = {
         url: '/images/logo.webp',
         width: 1200,
         height: 630,
-        alt: 'Fundación Cuidamos con Amor',
+        alt: siteConfig.name,
       },
     ],
   },
@@ -82,20 +83,17 @@ export default function RootLayout({
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'NGO',
-    name: 'Fundación Cuidamos con Amor',
-    url: 'https://www.cuidamosconamor.org',
-    logo: 'https://www.cuidamosconamor.org/images/logo.webp',
-    email: 'contacto@cuidamosconamor.org',
-    telephone: '+573135183817',
+    name: siteConfig.name,
+    url: siteConfig.url,
+    logo: `${siteConfig.url}/images/logo.webp`,
+    email: siteConfig.email,
+    telephone: siteConfig.phone.e164,
     address: {
       '@type': 'PostalAddress',
-      addressLocality: 'Bogotá',
-      addressCountry: 'CO',
+      addressLocality: siteConfig.location.city,
+      addressCountry: siteConfig.location.countryCode,
     },
-    sameAs: [
-      'https://www.instagram.com/cuidamosconamor_fundacion/',
-      'https://www.facebook.com/profile.php?id=61590375045310',
-    ],
+    sameAs: [siteConfig.social.instagram, siteConfig.social.facebook],
     description: 'Apoyo integral a niños y niñas con cáncer en Colombia. Entregamos bonos de alimentación, kits de aseo y apoyo psicosocial a familias.',
   }
 
@@ -106,10 +104,10 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+        {process.env.GA_MEASUREMENT_ID && (
           <>
             <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_MEASUREMENT_ID}`}
               strategy="afterInteractive"
             />
             <Script id="google-analytics" strategy="afterInteractive">
@@ -117,7 +115,7 @@ export default function RootLayout({
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}');
+                gtag('config', '${process.env.GA_MEASUREMENT_ID}');
               `}
             </Script>
           </>

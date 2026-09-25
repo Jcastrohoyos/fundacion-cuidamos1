@@ -2,14 +2,15 @@
 
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
+import { totals } from '../../utils/impactData'
 import styles from './StatsBanner.module.css'
 
 const stats = [
-  { value: 88,    label: 'Actividades\nrealizadas.' },
-  { value: 33297, label: 'Bonos de\nalimentación\ndistribuidos.' },
-  { value: 8944,  label: 'Beneficiarios\ntotales.' },
-  { value: 750,   label: 'Kits de aseo\nentregados.' },
-  { value: 1311,  label: 'Gorros tejidos\ndonados.' },
+  { value: totals.actividades,   label: 'Actividades\nrealizadas.' },
+  { value: totals.bonos,         label: 'Bonos de\nalimentación\ndistribuidos.' },
+  { value: totals.beneficiarios, label: 'Beneficiarios\ntotales.' },
+  { value: totals.kits,          label: 'Kits de aseo\nentregados.' },
+  { value: totals.gorros,        label: 'Gorros tejidos\ndonados.' },
 ]
 
 export default function StatsBanner() {

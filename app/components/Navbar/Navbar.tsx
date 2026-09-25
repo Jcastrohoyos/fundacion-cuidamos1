@@ -7,6 +7,7 @@ import gsap from 'gsap'
 import { Mail, Camera } from 'lucide-react'
 import styles from './Navbar.module.css'
 import { openDonationModal } from '../DonationModal/DonationModal'
+import { siteConfig, mailtoHref } from '../../utils/siteConfig'
 
 const SECTIONS = ['hero', 'sobre-nosotros', 'nuestro-trabajo', 'impacto', 'datos', 'como-apoyarnos', 'galeria', 'contacto'] as const
 
@@ -166,14 +167,14 @@ export default function Navbar() {
           <li className={styles.navRight}>
             <div className={styles.navActions}>
               <a
-                href="mailto:contacto@cuidamosconamor.org"
+                href={mailtoHref}
                 className={styles.iconLink}
                 aria-label="Enviar correo electronico"
               >
                 <Mail size={18} />
               </a>
               <a
-                href="https://www.facebook.com/profile.php?id=61590375045310"
+                href={siteConfig.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.iconLink}
@@ -182,7 +183,7 @@ export default function Navbar() {
                 <FacebookIcon />
               </a>
               <a
-                href="https://www.instagram.com/cuidamosconamor_fundacion/"
+                href={siteConfig.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.iconLink}

@@ -5,6 +5,7 @@ import gsap from 'gsap'
 import { X, FileText } from 'lucide-react'
 import styles from './PqrsModal.module.css'
 import { sendToWeb3Forms } from '../../utils/web3forms'
+import { siteConfig, mailtoHref } from '../../utils/siteConfig'
 
 export default function PqrsModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
@@ -215,7 +216,7 @@ export default function PqrsModal({ isOpen, onClose }: { isOpen: boolean; onClos
               <h3 className={styles.errorTitle}>Error al enviar</h3>
               <p className={styles.errorText}>
                 No pudimos enviar tu PQRS. Por favor inténtalo de nuevo más tarde o escríbenos a
-                <a href="mailto:contacto@cuidamosconamor.org"> contacto@cuidamosconamor.org</a>.
+                <a href={mailtoHref}> {siteConfig.email}</a>.
               </p>
               <button type="button" className={styles.retryButton} onClick={() => setStatus('idle')}>
                 Reintentar

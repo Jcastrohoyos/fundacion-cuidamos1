@@ -6,6 +6,7 @@ import gsap from 'gsap'
 import { Mail, FileText, MapPin } from 'lucide-react'
 import styles from './Contacto.module.css'
 import { sendToWeb3Forms } from '../../utils/web3forms'
+import { siteConfig, mailtoHref } from '../../utils/siteConfig'
 import PqrsModal from '../PqrsModal/PqrsModal'
 
 function InstagramIcon({ size = 22, strokeWidth = 1.8 }: { size?: number; strokeWidth?: number }) {
@@ -32,20 +33,20 @@ const contactItems = [
   {
     icon: Mail,
     label: 'Correo electrónico',
-    value: 'contacto@cuidamosconamor.org',
-    href: 'mailto:contacto@cuidamosconamor.org',
+    value: siteConfig.email,
+    href: mailtoHref,
   },
   {
     icon: InstagramIcon,
     label: 'Instagram',
-    value: '@cuidamosconamor_fundacion',
-    href: 'https://www.instagram.com/cuidamosconamor_fundacion/',
+    value: siteConfig.social.instagramHandle,
+    href: siteConfig.social.instagram,
     external: true,
   },
   {
     icon: MapPin,
     label: 'Ubicación',
-    value: 'Colombia',
+    value: siteConfig.location.country,
     href: '#',
   },
 ]
@@ -211,7 +212,7 @@ export default function Contacto() {
                 <h3 className={styles.errorTitle}>Error al enviar</h3>
                 <p className={styles.errorText}>
                   No pudimos enviar tu mensaje. Por favor inténtalo de nuevo más tarde o escríbenos directamente a
-                  <a href="mailto:contacto@cuidamosconamor.org"> contacto@cuidamosconamor.org</a>.
+                  <a href={mailtoHref}> {siteConfig.email}</a>.
                 </p>
                 <button
                   type="button"

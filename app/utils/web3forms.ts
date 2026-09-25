@@ -1,4 +1,5 @@
 import DOMPurify from 'isomorphic-dompurify'
+import { siteConfig } from './siteConfig'
 
 // Validation functions
 function validateEmail(email: string): boolean {
@@ -40,7 +41,7 @@ export async function sendToWeb3Forms(data: Record<string, unknown>): Promise<bo
       return false
     }
 
-    const res = await fetch('https://formsubmit.co/ajax/contacto@cuidamosconamor.org', {
+    const res = await fetch(`https://formsubmit.co/ajax/${siteConfig.email}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',

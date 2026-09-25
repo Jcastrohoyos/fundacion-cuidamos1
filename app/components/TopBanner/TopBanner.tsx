@@ -13,9 +13,9 @@ export default function TopBanner() {
 
   useEffect(() => {
     const dismissed = localStorage.getItem(STORAGE_KEY)
-    if (!dismissed) {
-      setIsVisible(true)
-    }
+    if (dismissed) return
+    const frame = requestAnimationFrame(() => setIsVisible(true))
+    return () => cancelAnimationFrame(frame)
   }, [])
 
   useEffect(() => {

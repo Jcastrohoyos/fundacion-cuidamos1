@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
+import { totals, formatNumber } from '../../utils/impactData'
 import styles from './Impacto.module.css'
 
 export default function Impacto() {
@@ -72,7 +73,7 @@ export default function Impacto() {
 
             <div className={`${styles.block} impacto-block`}>
               <p className={styles.blockText}>
-                <strong>33.297 bonos de alimentación</strong> entregados a cuidadores de niños
+                <strong>{formatNumber(totals.bonos)} bonos de alimentación</strong> entregados a cuidadores de niños
                 con cáncer, brindando un alivio económico para que puedan permanecer al lado de sus hijos
                 durante el tratamiento.
               </p>
@@ -81,21 +82,21 @@ export default function Impacto() {
             <div className={`${styles.block} impacto-block`}>
               <p className={styles.blockText}>
                 <strong>Kits de higiene personal</strong>
-                Hemos entregado 538 kits que promueven el bienestar y el
+                Hemos entregado {formatNumber(totals.kits)} kits que promueven el bienestar y el
                  autocuidado de las familias que atraviesan esta difícil situación.
               </p>
             </div>
 
             <div className={`${styles.blockAccent} impacto-block`}>
               <p className={styles.blockText}>
-                <strong>1.311 gorros tejidos a mano por voluntarias</strong>, elaborados con amor para brindar
+                <strong>{formatNumber(totals.gorros)} gorros tejidos a mano por voluntarias</strong>, elaborados con amor para brindar
                 abrigo, fortalecer la autoestima y acompañar a los niños durante su tratamiento.
               </p>
             </div>
 
             <div className={`${styles.block} impacto-block`}>
               <p className={styles.blockText}>
-                <strong>8.944 familias</strong> que han recibido nuestro apoyo, evidenciando un
+                <strong>{formatNumber(totals.beneficiarios)} beneficiarios</strong> que han recibido nuestro apoyo, evidenciando un
                 acompañamiento sostenido que fortalece la estabilidad de quienes más lo necesitan.
               </p>
             </div>

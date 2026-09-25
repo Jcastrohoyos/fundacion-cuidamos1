@@ -13,9 +13,9 @@ export default function CookieBanner() {
 
   useEffect(() => {
     const consent = localStorage.getItem(COOKIE_CONSENT_KEY)
-    if (!consent) {
-      setVisible(true)
-    }
+    if (consent) return
+    const frame = requestAnimationFrame(() => setVisible(true))
+    return () => cancelAnimationFrame(frame)
   }, [])
 
   useEffect(() => {
