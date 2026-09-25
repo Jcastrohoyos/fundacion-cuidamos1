@@ -260,17 +260,21 @@ npm audit fix
 ✅ **Correctamente configuradas**
 
 ### Análisis
-- No se encontraron archivos `.env` en el repositorio (correcto)
-- Se usa `process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID` (variable pública, correcto)
+- Se usa `process.env.GA_MEASUREMENT_ID` en `app/layout.tsx` (Server Component, se lee en build; **sin** prefijo `NEXT_PUBLIC_`)
 - No hay secretos expuestos en el código
 
 ### Recomendación
-Crear `.env.example` para documentación:
+Documentar en `.env.example`:
 
 ```bash
 # Google Analytics
-NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
+
+> **Corrección posterior:** este informe afirmó que no había archivos `.env` en el
+> repositorio, pero `.env.local` estaba versionado desde el commit inicial y
+> contenía `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`. Ya fue removido del índice con
+> `git rm --cached .env.local` (la clave debe rotarse: sigue en el historial).
 
 **Prioridad:** **BAJA**
 
