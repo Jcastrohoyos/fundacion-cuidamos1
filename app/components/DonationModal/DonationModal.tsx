@@ -99,6 +99,7 @@ export default function DonationModal() {
     personalMessage: '',
   })
   const [showingMemorialForm, setShowingMemorialForm] = useState(false)
+  const [mealVoucherPaymentMethod, setMealVoucherPaymentMethod] = useState<'paypal' | 'breve' | null>(null)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [selectedPayment, setSelectedPayment] = useState<string | null>(null)
   const [copiedAccount, setCopiedAccount] = useState(false)
@@ -267,12 +268,30 @@ export default function DonationModal() {
     setMealVoucherQuantity(q)
   }
 
-  const handleMealVoucherContinue = () => {
+  const handleMealVoucherPaypal = () => {
     const total = mealVoucherQuantity * MEAL_VOUCHER_PRICE
-    const plural = mealVoucherQuantity > 1 ? 's' : ''
     const paypalUrl = `${paypalLink}?amount=${total}`
     window.open(paypalUrl, '_blank', 'noopener noreferrer')
     handleClose()
+  }
+
+  const handleMealVoucherBreve = () => {
+    setMealVoucherPaymentMethod('breve')
+  }
+
+  const handleMealVoucherBreveConfirm = () => {
+    const total = mealVoucherQuantity * MEAL_VOUCHER_PRICE
+    const message = `Hola, he realizado una donación por transferencia Breve de $${total.toLocaleString('es-CO')} COP para comprar ${mealVoucherQuantity} bono${mealVoucherQuantity > 1 ? 's' : ''} de almuerzo de la Fundación Cuidamos con Amor.
+
+Monto: $${total.toLocaleString('es-CO')} COP
+Cantidad: ${mealVoucherQuantity} bono${mealVoucherQuantity > 1 ? 's' : ''} de almuerzo ($13.900 COP c/u)
+Método: Breve - Transferencia Bancolombia`
+    window.open(buildWhatsappLink(message), '_blank', 'noopener noreferrer')
+    handleClose()
+  }
+
+  const handleMealVoucherContinue = () => {
+    setMealVoucherPaymentMethod(null)
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -383,47 +402,135 @@ export default function DonationModal() {
           Volver
         </button>
         <div className={styles.mealVoucherOptions}>
-          <h3 className={styles.sectionTitle}>Bono de almuerzo</h3>
-          <p className={styles.mealVoucherPrice}>
-            Valor de cada bono: <strong>$13.900 COP</strong>
-          </p>
-          <div className={styles.quantityGrid}>
-            {MEAL_VOUCHER_QUANTITIES.map((q) => {
-              const total = q * MEAL_VOUCHER_PRICE
-              const isSelected = mealVoucherQuantity === q
-              return (
+          {mealVoucherPaymentMethod === null ? (
+            <>
+              <h3 className={styles.sectionTitle}>Bono de almuerzo</h3>
+              <p className={styles.mealVoucherPrice}>
+                Valor de cada bono: <strong>$13.900 COP</strong>
+              </p>
+              <div className={styles.quantityGrid}>
+                {MEAL_VOUCHER_QUANTITIES.map((q) => {
+                  const total = q * MEAL_VOUCHER_PRICE
+                  const isSelected = mealVoucherQuantity === q
+                  return (
+                    <button
+                      key={q}
+                      type="button"
+                      className={`${styles.quantityButton} ${isSelected ? styles.quantityActive : ''}`}
+                      onClick={() => handleMealVoucherQuantity(q)}
+                      aria-pressed={isSelected}
+                    >
+                      <span>{q} bono{q > 1 ? 's' : ''}</span>
+                      <span className={styles.quantityTotal}>
+                        $${total.toLocaleString('es-CO')} COP
+                      </span>
+                    </button>
+                  )
+                })}
+              </div>
+              <div className={styles.mealVoucherTotal}>
+                <span className={styles.mealVoucherTotalLabel}>Total:</span>
+                <span className={styles.mealVoucherTotalValue}>
+                  $${(mealVoucherQuantity * MEAL_VOUCHER_PRICE).toLocaleString('es-CO')} COP
+                </span>
+              </div>
+              <div className={styles.mealVoucherPaymentButtons}>
                 <button
-                  key={q}
                   type="button"
-                  className={`${styles.quantityButton} ${isSelected ? styles.quantityActive : ''}`}
-                  onClick={() => handleMealVoucherQuantity(q)}
-                  aria-pressed={isSelected}
+                  className={`${styles.continueButton} ${styles.paymentPaypalButton}`}
+                  onClick={handleMealVoucherPaypal}
                 >
-                  <span>{q} bono{q > 1 ? 's' : ''}</span>
-                  <span className={styles.quantityTotal}>
-                    $${total.toLocaleString('es-CO')} COP
-                  </span>
+                  Pagar con PayPal
+                  <span className={styles.arrowRight}>→</span>
                 </button>
-              )
-            })}
-          </div>
-          <div className={styles.mealVoucherTotal}>
-            <span className={styles.mealVoucherTotalLabel}>Total:</span>
-            <span className={styles.mealVoucherTotalValue}>
-              $${(mealVoucherQuantity * MEAL_VOUCHER_PRICE).toLocaleString('es-CO')} COP
-            </span>
-          </div>
-          <p className={styles.mealVoucherBreveNote}>
-            También puedes hacer tu aporte con <strong>Breve por transferencia Bancolombia</strong>.
-          </p>
-          <button
-            type="button"
-            className={styles.continueButton}
-            onClick={handleMealVoucherContinue}
-          >
-            Continuar con el aporte
-            <span className={styles.arrowRight}>→</span>
-          </button>
+                <button
+                  type="button"
+                  className={`${styles.continueButton} ${styles.paymentBreveButton}`}
+                  onClick={handleMealVoucherBreve}
+                >
+                  Pagar con Breve
+                  <span className={styles.arrowRight}>→</span>
+                </button>
+              </div>
+            </>
+          ) : mealVoucherPaymentMethod === 'breve' ? (
+            <>
+              <button
+                type="button"
+                className={styles.backButton}
+                onClick={() => setMealVoucherPaymentMethod(null)}
+              >
+                <ArrowLeft size={20} />
+                Volver
+              </button>
+              <div className={styles.mealVoucherBreveCard}>
+                <h3 className={styles.sectionTitle}>Pagar con Breve</h3>
+                <p className={styles.mealVoucherBreveDescription}>
+                  Realiza tu transferencia a la siguiente cuenta y luego confirma por WhatsApp.
+                </p>
+                <div className={styles.breveAccountBox}>
+                  <span className={styles.breveAccountLabel}>Cuenta de ahorros BANCOLOMBIA</span>
+                  <span className={styles.breveAccountNumber}>{BREVE_ACCOUNT_NUMBER}</span>
+                  <button
+                    type="button"
+                    className={styles.breveCopyButton}
+                    onClick={() => copyToClipboard(BREVE_ACCOUNT_NUMBER)}
+                  >
+                    {copiedAccount ? <CheckCheck size={18} /> : <Copy size={18} />}
+                    {copiedAccount ? 'Copiado' : 'Copiar número'}
+                  </button>
+                </div>
+                <div className={styles.breveDetailBox}>
+                  <div className={styles.breveDetailRow}>
+                    <span className={styles.breveDetailLabel}>Bre-B:</span>
+                    <span className={styles.breveDetailValue}>{BREVE_BREB}</span>
+                    <button
+                      type="button"
+                      className={styles.breveCopyButton}
+                      onClick={() => copyToClipboard(BREVE_BREB)}
+                    >
+                      {copiedAccount ? <CheckCheck size={18} /> : <Copy size={18} />}
+                      {copiedAccount ? 'Copiado' : 'Copiar'}
+                    </button>
+                  </div>
+                  <div className={styles.breveDetailRow}>
+                    <span className={styles.breveDetailLabel}>Código Swift:</span>
+                    <span className={styles.breveDetailValue}>{BREVE_SWIFT}</span>
+                    <button
+                      type="button"
+                      className={styles.breveCopyButton}
+                      onClick={() => copyToClipboard(BREVE_SWIFT)}
+                    >
+                      {copiedAccount ? <CheckCheck size={18} /> : <Copy size={18} />}
+                      {copiedAccount ? 'Copiado' : 'Copiar'}
+                    </button>
+                  </div>
+                </div>
+                <p className={styles.breveInstructions}>
+                  Monto a transferir: <strong>$${(mealVoucherQuantity * MEAL_VOUCHER_PRICE).toLocaleString('es-CO')} COP</strong>
+                </p>
+                <a
+                  href={googleFormLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.breveFormLink}
+                >
+                  Abrir formulario de confirmación →
+                </a>
+                <p className={styles.breveInstructions}>
+                  Una vez realizada la transferencia, completa el formulario para confirmar tu donación.
+                </p>
+                <button
+                  type="button"
+                  className={styles.continueButton}
+                  onClick={handleMealVoucherBreveConfirm}
+                >
+                  He hecho la transferencia
+                  <span className={styles.arrowRight}>→</span>
+                </button>
+              </div>
+            </>
+          ) : null}
         </div>
       </>
     )
