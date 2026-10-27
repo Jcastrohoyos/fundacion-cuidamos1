@@ -59,34 +59,37 @@ export default function Galeria() {
   const [currentImage, setCurrentImage] = useState(0)
 
   useGSAP(() => {
-    gsap.from('.galeria-title', {
-      opacity: 0,
-      y: 30,
-      duration: 0.8,
-      ease: 'power3.out'
-    })
-    gsap.from('.galeria-subtitle', {
-      opacity: 0,
-      y: 20,
-      duration: 0.8,
-      delay: 0.2,
-      ease: 'power3.out'
-    })
-    gsap.from('.galeria-description', {
-      opacity: 0,
-      y: 20,
-      duration: 0.8,
-      delay: 0.3,
-      ease: 'power3.out'
-    })
-    gsap.from('.gallery-card', {
-      opacity: 0,
-      y: 30,
-      duration: 0.6,
-      stagger: 0.1,
-      delay: 0.4,
-      ease: 'power2.out'
-    })
+    const cards = document.querySelectorAll('.gallery-card')
+    if (cards.length > 0) {
+      gsap.from('.galeria-title', {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        ease: 'power3.out'
+      })
+      gsap.from('.galeria-subtitle', {
+        opacity: 0,
+        y: 20,
+        duration: 0.8,
+        delay: 0.2,
+        ease: 'power3.out'
+      })
+      gsap.from('.galeria-description', {
+        opacity: 0,
+        y: 20,
+        duration: 0.8,
+        delay: 0.3,
+        ease: 'power3.out'
+      })
+      gsap.from('.gallery-card', {
+        opacity: 0,
+        y: 30,
+        duration: 0.6,
+        stagger: 0.1,
+        delay: 0.4,
+        ease: 'power2.out'
+      })
+    }
   }, { scope: containerRef })
 
   const openLightbox = (index: number) => {
@@ -119,7 +122,7 @@ export default function Galeria() {
           {galleryItems.map((item, index) => (
             <div
               key={index}
-              className={styles.imageCard}
+              className={`${styles.imageCard} gallery-card`}
               onClick={() => openLightbox(index)}
               role="button"
               tabIndex={0}
