@@ -138,7 +138,6 @@ export default function Galeria() {
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   loading="lazy"
-                  priority={index < 2}
                 />
               </div>
               <div className={styles.cardInfo}>
