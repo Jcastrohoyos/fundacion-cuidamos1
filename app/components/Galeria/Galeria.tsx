@@ -2,8 +2,6 @@
 
 import Image from 'next/image'
 import { useRef, useState } from 'react'
-import { useGSAP } from '@gsap/react'
-import gsap from 'gsap'
 import { ArrowLeft, ArrowRight, X } from 'lucide-react'
 import styles from './Galeria.module.css'
 
@@ -54,43 +52,8 @@ const galleryItems: GalleryItem[] = [
 ]
 
 export default function Galeria() {
-  const containerRef = useRef<HTMLDivElement>(null)
   const [isLightboxOpen, setIsLightboxOpen] = useState(false)
   const [currentImage, setCurrentImage] = useState(0)
-
-  useGSAP(() => {
-    const cards = document.querySelectorAll('.gallery-card')
-    if (cards.length > 0) {
-      gsap.from('.galeria-title', {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        ease: 'power3.out'
-      })
-      gsap.from('.galeria-subtitle', {
-        opacity: 0,
-        y: 20,
-        duration: 0.8,
-        delay: 0.2,
-        ease: 'power3.out'
-      })
-      gsap.from('.galeria-description', {
-        opacity: 0,
-        y: 20,
-        duration: 0.8,
-        delay: 0.3,
-        ease: 'power3.out'
-      })
-      gsap.from('.gallery-card', {
-        opacity: 0,
-        y: 30,
-        duration: 0.6,
-        stagger: 0.1,
-        delay: 0.4,
-        ease: 'power2.out'
-      })
-    }
-  }, { scope: containerRef })
 
   const openLightbox = (index: number) => {
     setCurrentImage(index)
@@ -108,7 +71,7 @@ export default function Galeria() {
   }
 
   return (
-    <section className={styles.galeria} ref={containerRef} id="galeria">
+    <section className={styles.galeria} id="galeria">
       <div className={styles.container}>
         <div className={styles.headerContent}>
           <h2 className={`${styles.title} galeria-title`}>Galería</h2>

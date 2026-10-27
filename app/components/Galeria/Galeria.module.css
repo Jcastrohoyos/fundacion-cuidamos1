@@ -23,6 +23,7 @@
   text-align: center;
   position: relative;
   display: block;
+  animation: fadeInUp 0.8s ease-out both;
 }
 
 .title::after {
@@ -41,6 +42,8 @@
   color: var(--color-primary);
   font-weight: 600;
   text-align: center;
+  animation: fadeInUp 0.8s ease-out both;
+  animation-delay: 0.2s;
 }
 
 .description {
@@ -52,6 +55,8 @@
   margin-left: auto;
   margin-right: auto;
   line-height: 1.7;
+  animation: fadeInUp 0.8s ease-out both;
+  animation-delay: 0.4s;
 }
 
 .grid {
@@ -73,6 +78,27 @@
   border: 1px solid rgba(0, 0, 0, 0.04);
   display: flex;
   flex-direction: column;
+  animation: fadeInUp 0.6s ease-out both;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.imageCard:nth-child(1) { animation-delay: 0.1s; }
+.imageCard:nth-child(2) { animation-delay: 0.2s; }
+.imageCard:nth-child(3) { animation-delay: 0.3s; }
+.imageCard:nth-child(4) { animation-delay: 0.4s; }
+.imageCard:nth-child(5) { animation-delay: 0.5s; }
+.imageCard:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .imageCard:hover {
