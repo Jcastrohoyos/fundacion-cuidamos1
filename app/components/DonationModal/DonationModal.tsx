@@ -16,6 +16,7 @@ const GOOGLE_FORM_LINK = 'https://docs.google.com/forms/d/e/1FAIpQLSct44ShJq2kK0
 const googleFormLink = process.env.NEXT_PUBLIC_DONATION_FORM_LINK || GOOGLE_FORM_LINK
 
 const MEAL_VOUCHER_PRICE = 13900
+const MEMORIAL_VOUCHER_PRICE = 20000
 const MEAL_VOUCHER_QUANTITIES = [1, 2, 4] as const
 
 type SupportMode = 'money' | 'gifts'
@@ -99,7 +100,9 @@ export default function DonationModal() {
     personalMessage: '',
   })
   const [showingMemorialForm, setShowingMemorialForm] = useState(false)
+  const [memorialPaymentMethod, setMemorialPaymentMethod] = useState<'paypal' | 'breve' | null>(null)
   const [mealVoucherPaymentMethod, setMealVoucherPaymentMethod] = useState<'paypal' | 'breve' | null>(null)
+
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [selectedPayment, setSelectedPayment] = useState<string | null>(null)
   const [copiedAccount, setCopiedAccount] = useState(false)
@@ -262,7 +265,7 @@ export default function DonationModal() {
     setErrors(prev => ({ ...prev, [e.target.name]: '' }))
   }
 
-  const handleMemorialDonate = () => {
+  const handleMemorialDonate = async () => {
     const newErrors: Record<string, string> = {}
     if (!memorialFormData.donorName.trim()) newErrors.donorName = 'Ingresa tu nombre'
     if (!memorialFormData.recipientName.trim()) newErrors.recipientName = 'Ingresa el nombre del homenajeado'
@@ -270,7 +273,45 @@ export default function DonationModal() {
     setErrors(newErrors)
     if (Object.keys(newErrors).length > 0) return
 
+    setIsProcessing(true)
+
+    const submissionData = {
+      name: memorialFormData.donorName,
+      email: memorialFormData.recipientName,
+      phone: '',
+      amount: MEMORIAL_VOUCHER_PRICE,
+      payment_method: 'memorial-voucher',
+      message: `Bono conmemorativo - Donante: ${memorialFormData.donorName}, Homenajeado: ${memorialFormData.recipientName}, Ocasión: ${memorialFormData.occasion}, Mensaje: ${memorialFormData.personalMessage || '(sin mensaje)'}`,
+    }
+
+    const success = await sendToWeb3Forms(submissionData)
+    if (!success) {
+      console.warn('No se pudo enviar la notificación de donación a Web3Forms.')
+    }
+
+    setMemorialPaymentMethod('paypal')
+    setIsProcessing(false)
+  }
+
+  const handleMemorialPaypal = () => {
     window.open(paypalLink, '_blank', 'noopener noreferrer')
+    handleClose()
+  }
+
+  const handleMemorialBreve = () => {
+    setMemorialPaymentMethod('breve')
+  }
+
+  const handleMemorialBreveConfirm = () => {
+    const message = `Hola, he realizado una donación por transferencia Breve de $${MEMORIAL_VOUCHER_PRICE.toLocaleString('es-CO')} COP para un bono conmemorativo de la Fundación Cuidamos con Amor.
+
+Donante: ${memorialFormData.donorName}
+Homenajeado: ${memorialFormData.recipientName}
+Ocasión / Fecha: ${memorialFormData.occasion}
+Mensaje personal: ${memorialFormData.personalMessage || '(sin mensaje)'}
+Monto: $${MEMORIAL_VOUCHER_PRICE.toLocaleString('es-CO')} COP
+Método: Breve - Transferencia Bancolombia`
+    window.open(buildWhatsappLink(message), '_blank', 'noopener noreferrer')
     handleClose()
   }
 
@@ -551,111 +592,225 @@ Método: Breve - Transferencia Bancolombia`
           <ArrowLeft size={20} />
           Volver
         </button>
-        <div className={styles.memorialForm}>
-          <h3 className={styles.sectionTitle}>Bono conmemorativo</h3>
-          <p className={styles.memorialFormDescription}>
-            Llena tus datos antes de continuar con tu aporte.
-          </p>
-          <div className={styles.inputGroup}>
-            <label htmlFor="memorial-donor" className={styles.label}>
-              Tu nombre completo *
-            </label>
-            <input
-              type="text"
-              id="memorial-donor"
-              name="donorName"
-              className={`${styles.input} ${errors.donorName ? styles.inputError : ''}`}
-              value={memorialFormData.donorName}
-              onChange={handleMemorialInputChange}
-              placeholder="Tu nombre completo"
-              required
-              aria-invalid={!!errors.donorName}
-              aria-describedby={errors.donorName ? 'memorial-donor-error' : undefined}
-            />
-            {errors.donorName && (
-              <p className={styles.fieldError} id="memorial-donor-error" role="alert">
-                {errors.donorName}
-              </p>
-            )}
+          <div className={styles.memorialForm}>
+            {memorialPaymentMethod === null ? (
+              <>
+                <h3 className={styles.sectionTitle}>Bono conmemorativo</h3>
+                <p className={styles.memorialFormDescription}>
+                  Llena tus datos antes de continuar con tu aporte.
+                </p>
+                <div className={styles.inputGroup}>
+                  <label htmlFor="memorial-donor" className={styles.label}>
+                    Tu nombre completo *
+                  </label>
+                  <input
+                    type="text"
+                    id="memorial-donor"
+                    name="donorName"
+                    className={`${styles.input} ${errors.donorName ? styles.inputError : ''}`}
+                    value={memorialFormData.donorName}
+                    onChange={handleMemorialInputChange}
+                    placeholder="Tu nombre completo"
+                    required
+                    aria-invalid={!!errors.donorName}
+                    aria-describedby={errors.donorName ? 'memorial-donor-error' : undefined}
+                  />
+                  {errors.donorName && (
+                    <p className={styles.fieldError} id="memorial-donor-error" role="alert">
+                      {errors.donorName}
+                    </p>
+                  )}
+                </div>
+                <div className={styles.inputGroup}>
+                  <label htmlFor="memorial-recipient" className={styles.label}>
+                    Nombre del homenajeado *
+                  </label>
+                  <input
+                    type="text"
+                    id="memorial-recipient"
+                    name="recipientName"
+                    className={`${styles.input} ${errors.recipientName ? styles.inputError : ''}`}
+                    value={memorialFormData.recipientName}
+                    onChange={handleMemorialInputChange}
+                    placeholder="Nombre del ser querido"
+                    required
+                    aria-invalid={!!errors.recipientName}
+                    aria-describedby={errors.recipientName ? 'memorial-recipient-error' : undefined}
+                  />
+                  {errors.recipientName && (
+                    <p className={styles.fieldError} id="memorial-recipient-error" role="alert">
+                      {errors.recipientName}
+                    </p>
+                  )}
+                </div>
+                <div className={styles.inputGroup}>
+                  <label htmlFor="memorial-occasion" className={styles.label}>
+                    Ocasión o fecha especial *
+                  </label>
+                  <input
+                    type="text"
+                    id="memorial-occasion"
+                    name="occasion"
+                    className={`${styles.input} ${errors.occasion ? styles.inputError : ''}`}
+                    value={memorialFormData.occasion}
+                    onChange={handleMemorialInputChange}
+                    placeholder="Ej. Cumpleaños, aniversario, fallecimiento"
+                    required
+                    aria-invalid={!!errors.occasion}
+                    aria-describedby={errors.occasion ? 'memorial-occasion-error' : undefined}
+                  />
+                  {errors.occasion && (
+                    <p className={styles.fieldError} id="memorial-occasion-error" role="alert">
+                      {errors.occasion}
+                    </p>
+                  )}
+                </div>
+                <div className={styles.inputGroup}>
+                  <label htmlFor="memorial-message" className={styles.label}>
+                    Mensaje personal
+                  </label>
+                  <textarea
+                    id="memorial-message"
+                    name="personalMessage"
+                    className={`${styles.input} ${errors.personalMessage ? styles.inputError : ''}`}
+                    value={memorialFormData.personalMessage}
+                    onChange={handleMemorialInputChange}
+                    placeholder="Un mensaje corto para acompañar el bono"
+                    rows={3}
+                    aria-invalid={!!errors.personalMessage}
+                    aria-describedby={errors.personalMessage ? 'memorial-message-error' : undefined}
+                  />
+                  {errors.personalMessage && (
+                    <p className={styles.fieldError} id="memorial-message-error" role="alert">
+                      {errors.personalMessage}
+                    </p>
+                  )}
+                </div>
+                <p className={styles.memorialBreveNote}>
+                  También puedes hacer tu aporte con <strong>Breve por transferencia Bancolombia</strong>.
+                </p>
+                <button
+                  type="button"
+                  className={styles.continueButton}
+                  onClick={handleMemorialDonate}
+                  disabled={Object.keys(errors).length > 0 || isProcessing}
+                >
+                  {isProcessing ? 'Enviando...' : 'Continuar con mi aporte'}
+                  <span className={styles.arrowRight}>→</span>
+                </button>
+              </>
+            ) : memorialPaymentMethod === 'paypal' ? (
+              <>
+                <button
+                  type="button"
+                  className={styles.backButton}
+                  onClick={() => setMemorialPaymentMethod(null)}
+                >
+                  <ArrowLeft size={20} />
+                  Volver
+                </button>
+                <div className={styles.mealVoucherBreveCard}>
+                  <h3 className={styles.sectionTitle}>Pagar con PayPal</h3>
+                  <p className={styles.mealVoucherBreveDescription}>
+                    Monto del bono conmemorativo: <strong>$${MEMORIAL_VOUCHER_PRICE.toLocaleString('es-CO')} COP</strong>
+                  </p>
+                  <button
+                    type="button"
+                    className={`${styles.continueButton} ${styles.paymentPaypalButton}`}
+                    onClick={handleMemorialPaypal}
+                  >
+                    Pagar con PayPal
+                    <span className={styles.arrowRight}>→</span>
+                  </button>
+                  <button
+                    type="button"
+                    className={`${styles.continueButton} ${styles.paymentBreveButton}`}
+                    onClick={handleMemorialBreve}
+                  >
+                    Pagar con Breve
+                    <span className={styles.arrowRight}>→</span>
+                  </button>
+                </div>
+              </>
+            ) : memorialPaymentMethod === 'breve' ? (
+              <>
+                <button
+                  type="button"
+                  className={styles.backButton}
+                  onClick={() => setMemorialPaymentMethod(null)}
+                >
+                  <ArrowLeft size={20} />
+                  Volver
+                </button>
+                <div className={styles.mealVoucherBreveCard}>
+                  <h3 className={styles.sectionTitle}>Pagar con Breve</h3>
+                  <p className={styles.mealVoucherBreveDescription}>
+                    Realiza tu transferencia a la siguiente cuenta y luego confirma por WhatsApp.
+                  </p>
+                  <div className={styles.breveAccountBox}>
+                    <span className={styles.breveAccountLabel}>Cuenta de ahorros BANCOLOMBIA</span>
+                    <span className={styles.breveAccountNumber}>{BREVE_ACCOUNT_NUMBER}</span>
+                    <button
+                      type="button"
+                      className={styles.breveCopyButton}
+                      onClick={() => copyToClipboard(BREVE_ACCOUNT_NUMBER)}
+                    >
+                      {copiedAccount ? <CheckCheck size={18} /> : <Copy size={18} />}
+                      {copiedAccount ? 'Copiado' : 'Copiar número'}
+                    </button>
+                  </div>
+                  <div className={styles.breveDetailBox}>
+                    <div className={styles.breveDetailRow}>
+                      <span className={styles.breveDetailLabel}>Bre-B:</span>
+                      <span className={styles.breveDetailValue}>{BREVE_BREB}</span>
+                      <button
+                        type="button"
+                        className={styles.breveCopyButton}
+                        onClick={() => copyToClipboard(BREVE_BREB)}
+                      >
+                        {copiedAccount ? <CheckCheck size={18} /> : <Copy size={18} />}
+                        {copiedAccount ? 'Copiado' : 'Copiar'}
+                      </button>
+                    </div>
+                    <div className={styles.breveDetailRow}>
+                      <span className={styles.breveDetailLabel}>Código Swift:</span>
+                      <span className={styles.breveDetailValue}>{BREVE_SWIFT}</span>
+                      <button
+                        type="button"
+                        className={styles.breveCopyButton}
+                        onClick={() => copyToClipboard(BREVE_SWIFT)}
+                      >
+                        {copiedAccount ? <CheckCheck size={18} /> : <Copy size={18} />}
+                        {copiedAccount ? 'Copiado' : 'Copiar'}
+                      </button>
+                    </div>
+                  </div>
+                  <p className={styles.breveInstructions}>
+                    Monto a transferir: <strong>$${MEMORIAL_VOUCHER_PRICE.toLocaleString('es-CO')} COP</strong>
+                  </p>
+                  <a
+                    href={googleFormLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.breveFormLink}
+                  >
+                    Abrir formulario de confirmación →
+                  </a>
+                  <p className={styles.breveInstructions}>
+                    Una vez realizada la transferencia, completa el formulario para confirmar tu donación.
+                  </p>
+                  <button
+                    type="button"
+                    className={styles.continueButton}
+                    onClick={handleMemorialBreveConfirm}
+                  >
+                    He hecho la transferencia
+                    <span className={styles.arrowRight}>→</span>
+                  </button>
+                </div>
+              </>
+            ) : null}
           </div>
-          <div className={styles.inputGroup}>
-            <label htmlFor="memorial-recipient" className={styles.label}>
-              Nombre del homenajeado *
-            </label>
-            <input
-              type="text"
-              id="memorial-recipient"
-              name="recipientName"
-              className={`${styles.input} ${errors.recipientName ? styles.inputError : ''}`}
-              value={memorialFormData.recipientName}
-              onChange={handleMemorialInputChange}
-              placeholder="Nombre del ser querido"
-              required
-              aria-invalid={!!errors.recipientName}
-              aria-describedby={errors.recipientName ? 'memorial-recipient-error' : undefined}
-            />
-            {errors.recipientName && (
-              <p className={styles.fieldError} id="memorial-recipient-error" role="alert">
-                {errors.recipientName}
-              </p>
-            )}
-          </div>
-          <div className={styles.inputGroup}>
-            <label htmlFor="memorial-occasion" className={styles.label}>
-              Ocasión o fecha especial *
-            </label>
-            <input
-              type="text"
-              id="memorial-occasion"
-              name="occasion"
-              className={`${styles.input} ${errors.occasion ? styles.inputError : ''}`}
-              value={memorialFormData.occasion}
-              onChange={handleMemorialInputChange}
-              placeholder="Ej. Cumpleaños, aniversario, fallecimiento"
-              required
-              aria-invalid={!!errors.occasion}
-              aria-describedby={errors.occasion ? 'memorial-occasion-error' : undefined}
-            />
-            {errors.occasion && (
-              <p className={styles.fieldError} id="memorial-occasion-error" role="alert">
-                {errors.occasion}
-              </p>
-            )}
-          </div>
-          <div className={styles.inputGroup}>
-            <label htmlFor="memorial-message" className={styles.label}>
-              Mensaje personal
-            </label>
-            <textarea
-              id="memorial-message"
-              name="personalMessage"
-              className={`${styles.input} ${errors.personalMessage ? styles.inputError : ''}`}
-              value={memorialFormData.personalMessage}
-              onChange={handleMemorialInputChange}
-              placeholder="Un mensaje corto para acompañar el bono"
-              rows={3}
-              aria-invalid={!!errors.personalMessage}
-              aria-describedby={errors.personalMessage ? 'memorial-message-error' : undefined}
-            />
-            {errors.personalMessage && (
-              <p className={styles.fieldError} id="memorial-message-error" role="alert">
-                {errors.personalMessage}
-              </p>
-            )}
-          </div>
-          <p className={styles.memorialBreveNote}>
-            También puedes hacer tu aporte con <strong>Breve por transferencia Bancolombia</strong>.
-          </p>
-          <button
-            type="button"
-            className={styles.continueButton}
-            onClick={handleMemorialDonate}
-            disabled={Object.keys(errors).length > 0}
-          >
-            Continuar con mi aporte
-            <span className={styles.arrowRight}>→</span>
-          </button>
-        </div>
       </>
     )
   } else {
