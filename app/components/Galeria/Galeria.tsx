@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import { ArrowLeft, ArrowRight, X, Heart } from 'lucide-react'
+import { ArrowLeft, ArrowRight, X } from 'lucide-react'
 import styles from './Galeria.module.css'
 
 interface GalleryItem {
@@ -119,7 +119,7 @@ export default function Galeria() {
           {galleryItems.map((item, index) => (
             <div
               key={index}
-              className={`${styles.imageCard} gallery-card`}
+              className={styles.imageCard}
               onClick={() => openLightbox(index)}
               role="button"
               tabIndex={0}
@@ -138,7 +138,7 @@ export default function Galeria() {
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   loading="lazy"
-                  decoding="async"
+                  priority={index < 2}
                 />
               </div>
               <div className={styles.cardInfo}>
@@ -174,9 +174,6 @@ export default function Galeria() {
                   sizes="(max-width: 768px) 100vw, 800px"
                   loading="lazy"
                 />
-                <div className={styles.lightboxHeart}>
-                  <Heart size={20} strokeWidth={2} />
-                </div>
               </div>
 
               <button
@@ -196,27 +193,6 @@ export default function Galeria() {
                   {currentImage + 1} de {galleryItems.length}
                 </div>
               </div>
-            </div>
-
-            <div className={styles.lightboxThumbnails}>
-              {galleryItems.map((_, index) => (
-                <button
-                  key={index}
-                  type="button"
-                  className={`${styles.lightboxThumb} ${index === currentImage ? styles.lightboxThumbActive : ''}`}
-                  onClick={(e) => { e.stopPropagation(); setCurrentImage(index) }}
-                  aria-label={`Imagen ${index + 1}`}
-                >
-                  <Image
-                    src={galleryItems[index].src}
-                    alt={`Miniatura ${index + 1}`}
-                    className={styles.lightboxThumbImg}
-                    fill
-                    sizes="64px"
-                    loading="lazy"
-                  />
-                </button>
-              ))}
             </div>
           </div>
         )}
