@@ -20,27 +20,30 @@ function sanitizeInput(input: string): string {
 }
 
 export async function sendToWeb3Forms(data: Record<string, unknown>): Promise<boolean> {
+  const payload: Record<string, string> = {}
+  Object.entries(data).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && value !== '') {
+      // Sanitize all inputs
+      payload[key] = sanitizeInput(String(value))
+    }
+  })
+
+  // Validate email if present
+  if (payload.email && !validateEmail(payload.email)) {
+    console.error('Invalid email format')
+    return false
+  }
+
+  // Validate phone if present
+  if (payload.phone && !validatePhone(payload.phone)) {
+    console.error('Invalid phone format')
+    return false
+  }
+
+  const controller = new AbortController()
+  const timeout = setTimeout(() => controller.abort(), 10000)
+
   try {
-    const payload: Record<string, string> = {}
-    Object.entries(data).forEach(([key, value]) => {
-      if (value !== undefined && value !== null && value !== '') {
-        // Sanitize all inputs
-        payload[key] = sanitizeInput(String(value))
-      }
-    })
-
-    // Validate email if present
-    if (payload.email && !validateEmail(payload.email)) {
-      console.error('Invalid email format')
-      return false
-    }
-
-    // Validate phone if present
-    if (payload.phone && !validatePhone(payload.phone)) {
-      console.error('Invalid phone format')
-      return false
-    }
-
     const res = await fetch(`https://formsubmit.co/ajax/${siteConfig.email}`, {
       method: 'POST',
       headers: {
@@ -48,11 +51,14 @@ export async function sendToWeb3Forms(data: Record<string, unknown>): Promise<bo
         Accept: 'application/json',
       },
       body: new URLSearchParams(payload).toString(),
+      signal: controller.signal,
     })
 
     const json = await res.json()
     return res.status === 200 && json.success
   } catch {
     return false
+  } finally {
+    clearTimeout(timeout)
   }
 }

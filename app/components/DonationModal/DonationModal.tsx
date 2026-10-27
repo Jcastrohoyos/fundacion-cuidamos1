@@ -95,6 +95,7 @@ export default function DonationModal() {
   const [mealVoucherQuantity, setMealVoucherQuantity] = useState(1)
   const [memorialFormData, setMemorialFormData] = useState({
     donorName: '',
+    donorEmail: '',
     recipientName: '',
     occasion: '',
     personalMessage: '',
@@ -209,6 +210,7 @@ export default function DonationModal() {
         setMemorialPaymentMethod(null)
         setIsProcessing(false)
         setFormData({ name: '', email: '', phone: '', amount: 0, customAmount: '' })
+        setMemorialFormData({ donorName: '', donorEmail: '', recipientName: '', occasion: '', personalMessage: '' })
         triggerRef.current?.focus()
       }
     })
@@ -248,6 +250,7 @@ export default function DonationModal() {
   }
 
   const handleSelectGift = (id: string) => {
+    setErrors({})
     if (id === 'meal-voucher') {
       setSelectedGiftId(id)
       setMealVoucherQuantity(1)
@@ -271,33 +274,31 @@ export default function DonationModal() {
   const handleMemorialDonate = async () => {
     const newErrors: Record<string, string> = {}
     if (!memorialFormData.donorName.trim()) newErrors.donorName = 'Ingresa tu nombre'
+    if (!memorialFormData.donorEmail.trim()) newErrors.donorEmail = 'Ingresa tu correo electrónico'
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(memorialFormData.donorEmail.trim())) newErrors.donorEmail = 'Ingresa un correo electrónico válido'
     if (!memorialFormData.recipientName.trim()) newErrors.recipientName = 'Ingresa el nombre del homenajeado'
     if (!memorialFormData.occasion.trim()) newErrors.occasion = 'Ingresa la fecha u ocasión especial'
     setErrors(newErrors)
     if (Object.keys(newErrors).length > 0) return
 
-    setIsProcessing(true)
-
-    try {
-      const submissionData = {
-        name: memorialFormData.donorName,
-        email: memorialFormData.recipientName,
-        phone: '',
-        amount: MEMORIAL_VOUCHER_PRICE,
-        payment_method: 'memorial-voucher',
-        message: `Bono conmemorativo - Donante: ${memorialFormData.donorName}, Homenajeado: ${memorialFormData.recipientName}, Ocasión: ${memorialFormData.occasion}, Mensaje: ${memorialFormData.personalMessage || '(sin mensaje)'}`,
-      }
-
-      const success = await sendToWeb3Forms(submissionData)
-      if (!success) {
-        console.warn('No se pudo enviar la notificación de donación a Web3Forms.')
-      }
-    } catch (err) {
-      console.error('Error enviando formulario conmemorativo:', err)
-    } finally {
-      setMemorialPaymentMethod('paypal')
-      setIsProcessing(false)
+    const submissionData = {
+      name: memorialFormData.donorName,
+      email: memorialFormData.donorEmail,
+      phone: '',
+      amount: MEMORIAL_VOUCHER_PRICE,
+      payment_method: 'memorial-voucher',
+      message: `Bono conmemorativo - Donante: ${memorialFormData.donorName}, Homenajeado: ${memorialFormData.recipientName}, Ocasión: ${memorialFormData.occasion}, Mensaje: ${memorialFormData.personalMessage || '(sin mensaje)'}`,
     }
+
+    setMemorialPaymentMethod('paypal')
+
+    sendToWeb3Forms(submissionData)
+      .then(success => {
+        if (!success) console.warn('No se pudo enviar la notificación del bono conmemorativo.')
+      })
+      .catch(err => {
+        console.error('Error enviando el bono conmemorativo:', err)
+      })
   }
 
   const handleMemorialPaypal = () => {
@@ -629,6 +630,28 @@ Método: Breve - Transferencia Bancolombia`
                   )}
                 </div>
                 <div className={styles.inputGroup}>
+                  <label htmlFor="memorial-donor-email" className={styles.label}>
+                    Tu correo electrónico *
+                  </label>
+                  <input
+                    type="email"
+                    id="memorial-donor-email"
+                    name="donorEmail"
+                    className={`${styles.input} ${errors.donorEmail ? styles.inputError : ''}`}
+                    value={memorialFormData.donorEmail}
+                    onChange={handleMemorialInputChange}
+                    placeholder="tu@correo.com"
+                    required
+                    aria-invalid={!!errors.donorEmail}
+                    aria-describedby={errors.donorEmail ? 'memorial-donor-email-error' : undefined}
+                  />
+                  {errors.donorEmail && (
+                    <p className={styles.fieldError} id="memorial-donor-email-error" role="alert">
+                      {errors.donorEmail}
+                    </p>
+                  )}
+                </div>
+                <div className={styles.inputGroup}>
                   <label htmlFor="memorial-recipient" className={styles.label}>
                     Nombre del homenajeado *
                   </label>
@@ -699,8 +722,8 @@ Método: Breve - Transferencia Bancolombia`
                 <button
                   type="button"
                   className={styles.continueButton}
-                  onClick={() => handleMemorialDonate()}
-                  disabled={Object.keys(errors).length > 0}
+                  onClick={handleMemorialDonate}
+                  disabled={Object.values(errors).some(value => value.length > 0)}
                 >
                   Continuar con mi aporte
                   <span className={styles.arrowRight}>→</span>
