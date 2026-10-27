@@ -1,5 +1,5 @@
 .galeria {
-  padding: 80px 0;
+  padding: 96px 0;
   background-color: var(--color-white);
 }
 
@@ -7,6 +7,11 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
+}
+
+.headerContent {
+  text-align: center;
+  margin-bottom: 4rem;
 }
 
 .title {
@@ -34,39 +39,56 @@
   font-size: 1.5rem;
   margin-bottom: 0.75rem;
   color: var(--color-primary);
-  text-align: center;
   font-weight: 600;
+  text-align: center;
 }
 
 .description {
-  font-size: 1.35rem;
-  margin-bottom: 2.5rem;
-  color: var(--color-text);
+  font-size: 1.25rem;
+  margin-bottom: 0;
+  color: var(--color-text-light);
   text-align: center;
-  max-width: 600px;
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
 }
 
 .imageCard {
-  border-radius: 14px;
+  border-radius: 16px;
   overflow: hidden;
   aspect-ratio: 1 / 1;
   background-color: var(--color-bg);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  transition: all 0.4s ease;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .imageCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 32px rgba(9, 99, 128, 0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(9, 99, 128, 0.12);
+  border-color: var(--color-primary);
+}
+
+.imageCard:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .image {
@@ -74,22 +96,93 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .imageCard:hover .image {
-  transform: scale(1.06);
+  transform: scale(1.1);
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    transparent 100%
+  );
+  display: flex;
+  align-items: flex-end;
+  padding: 1.25rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.imageCard:hover .imageOverlay {
+  opacity: 1;
+}
+
+.overlayContent {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.cardInfo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  transform: translateY(10px);
+}
+
+.imageCard:hover .cardInfo {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cardCategory {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.cardTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 @media (max-width: 1024px) {
   .grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
   }
 }
 
 @media (max-width: 768px) {
   .galeria {
-    padding: 50px 0;
+    padding: 60px 0;
   }
 
   .grid {
@@ -98,13 +191,270 @@
   }
 }
 
-@media (max-width: 480px) {
-  .galeria {
-    padding: 40px 0;
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto 3rem;
   }
 
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
+  .galeria {
+    padding: 50px 0;
+  }
+}
+
+/* Lightbox */
+.lightboxOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 8, 12, 0.92);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: lightboxFadeIn 0.3s ease;
+}
+
+@keyframes lightboxFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lightboxClose {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 10010;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.lightboxClose:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+.lightboxContent {
+  position: relative;
+  z-index: 10005;
+  max-width: 900px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.lightboxNavPrev,
+.lightboxNavNext {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10008;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.lightboxNavPrev:hover,
+.lightboxNavNext:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.lightboxNavPrev {
+  left: 24px;
+}
+
+.lightboxNavNext {
+  right: 24px;
+}
+
+.lightboxImageWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 4 / 3;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  background: #0a0a0a;
+}
+
+.lightboxImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background: #0a0a0a;
+}
+
+.lightboxHeart {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10008;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.lightboxHeart:hover {
+  background: white;
+  transform: scale(1.05);
+}
+
+.lightboxInfo {
+  margin-top: 1.5rem;
+  max-width: 700px;
+  padding: 0 1rem;
+}
+
+.lightboxCategory {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  background: rgba(9, 99, 128, 0.1);
+  color: var(--color-primary);
+}
+
+.lightboxTitle {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: white;
+  margin: 0.25rem 0 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.lightboxAlt {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.lightboxCounter {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+}
+
+.lightboxThumbnails {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+  scrollbar-width: none;
+}
+
+.lightboxThumbnails::-webkit-scrollbar {
+  display: none;
+}
+
+.lightboxThumb {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.lightboxThumb:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-4px);
+}
+
+.lightboxThumbActive {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary);
+}
+
+.lightboxThumbImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .lightboxOverlay {
+    padding: 20px;
+  }
+
+  .lightboxImageWrapper {
+    aspect-ratio: 3 / 4;
+    max-width: 100%;
+  }
+
+  .lightboxNavPrev,
+  .lightboxNavNext {
+    width: 44px;
+    height: 44px;
+  }
+
+  .lightboxNavPrev {
+    left: 8px;
+  }
+
+  .lightboxNavNext {
+    right: 8px;
+  }
+
+  .lightboxTitle {
+    font-size: 1.25rem;
+  }
+
+  .lightboxThumbnails {
+    gap: 0.5rem;
+  }
+
+  .lightboxThumb {
+    width: 48px;
+    height: 48px;
   }
 }
