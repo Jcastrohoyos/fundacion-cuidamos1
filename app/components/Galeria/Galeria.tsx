@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import { ArrowLeft, ArrowRight, X, Eye, Heart } from 'lucide-react'
+import { ArrowLeft, ArrowRight, X, Heart } from 'lucide-react'
 import styles from './Galeria.module.css'
 
 interface GalleryItem {
@@ -140,16 +140,10 @@ export default function Galeria() {
                   loading="lazy"
                   decoding="async"
                 />
-                <div className={styles.imageOverlay}>
-                  <div className={styles.overlayContent}>
-                    <Eye size={16} strokeWidth={1.5} />
-                    <span>Ver obra</span>
-                  </div>
-                </div>
-                <div className={styles.cardInfo}>
-                  <span className={styles.cardCategory}>{item.category}</span>
-                  <h3 className={styles.cardTitle}>{item.title}</h3>
-                </div>
+              </div>
+              <div className={styles.cardInfo}>
+                <span className={styles.cardCategory}>{item.category}</span>
+                <h3 className={styles.cardTitle}>{item.title}</h3>
               </div>
             </div>
           ))}
