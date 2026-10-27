@@ -111,17 +111,18 @@ export default function DonationModal() {
   const modalRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const handleOpen = (e: CustomEvent<{ giftId?: string }>) => {
+    const handleOpen = (e: Event) => {
+      const customEvent = e as CustomEvent<{ giftId?: string }>
       triggerRef.current = document.activeElement as HTMLButtonElement | null
       setIsOpen(true)
-      if (e.detail?.giftId === 'memorial-voucher') {
+      if (customEvent.detail?.giftId === 'memorial-voucher') {
         setSupportMode('gifts')
         setSelectedGiftId('memorial-voucher')
         setShowingMemorialForm(true)
       }
     }
-    window.addEventListener('openDonationModal', handleOpen)
-    return () => window.removeEventListener('openDonationModal', handleOpen)
+    window.addEventListener('openDonationModal', handleOpen as EventListener)
+    return () => window.removeEventListener('openDonationModal', handleOpen as EventListener)
   }, [])
 
   const focusFirstElement = useCallback(() => {
@@ -382,7 +383,7 @@ Aporte con PayPal.`
     return formData.amount
   }
 
-  let giftSectionContent: JSX.Element
+  let giftSectionContent: React.ReactNode
   if (selectedGiftId === 'meal-voucher') {
     giftSectionContent = (
       <>

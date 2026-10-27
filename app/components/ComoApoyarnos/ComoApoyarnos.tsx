@@ -109,7 +109,7 @@ Con tu donación podemos entregar kits de aseo personal a los cuidadores que aco
         <div className={styles.cta}>
           <p className={styles.clickText}>¡Haz clic aquí para donar!</p>
           <button
-            onClick={openDonationModal}
+            onClick={() => openDonationModal()}
             className={`${styles.button} como-button`}
           >
             Dona aquí

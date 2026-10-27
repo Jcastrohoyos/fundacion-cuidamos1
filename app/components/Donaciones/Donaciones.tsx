@@ -47,7 +47,7 @@ export default function Donaciones() {
             Hoy puedes ser la razón por la que alguien no se rinda.
           </p>
           <button
-            onClick={openDonationModal}
+            onClick={() => openDonationModal()}
             className={`${styles.button} donaciones-button`}
           >
             <Heart size={20} />

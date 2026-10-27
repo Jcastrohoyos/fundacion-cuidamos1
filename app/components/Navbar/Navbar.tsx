@@ -90,7 +90,7 @@ export default function Navbar() {
             />
           </div>
           <button
-            onClick={openDonationModal}
+            onClick={() => openDonationModal()}
             className={styles.donateButtonHeader}
           >
             Dona aquí
