@@ -83,7 +83,6 @@ export default function Footer() {
                   height={52}
                   className={styles.logoImage}
                   priority
-                  style={{ width: 52, height: 52 }}
                 />
               </div>
               <div className={styles.brandName}>

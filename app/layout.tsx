@@ -1,18 +1,11 @@
 import type { Metadata, Viewport } from 'next'
-import { Poppins, Inter } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import DonationModal from './components/DonationModal/DonationModal'
 import WhatsAppButton from './components/WhatsAppButton/WhatsAppButton'
 import CookieBanner from './components/CookieBanner/CookieBanner'
 import Script from 'next/script'
 import { siteConfig } from './utils/siteConfig'
 import './globals.css'
-
-const poppins = Poppins({
-  weight: ['400', '600', '700', '800'],
-  subsets: ['latin'],
-  variable: '--font-poppins',
-  display: 'swap',
-})
 
 const inter = Inter({
   weight: ['400', '500', '600'],
@@ -98,7 +91,7 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="es" className={`${poppins.variable} ${inter.variable}`}>
+    <html lang="es" className={inter.variable}>
       <head>
         <script
           type="application/ld+json"

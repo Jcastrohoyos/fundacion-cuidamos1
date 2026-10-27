@@ -79,6 +79,7 @@
   border-radius: 14px;
   padding: 0.6rem;
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   transition: background 0.3s ease;
@@ -92,6 +93,8 @@
   filter: brightness(0) invert(1);
   width: 52px;
   height: 52px;
+  max-width: none;
+  flex-shrink: 0;
   object-fit: contain;
 }
 
