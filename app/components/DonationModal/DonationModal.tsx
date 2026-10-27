@@ -206,6 +206,7 @@ export default function DonationModal() {
         setSelectedGiftId(null)
         setMealVoucherQuantity(1)
         setShowingMemorialForm(false)
+        setMemorialPaymentMethod(null)
         setIsProcessing(false)
         setFormData({ name: '', email: '', phone: '', amount: 0, customAmount: '' })
         triggerRef.current?.focus()
@@ -251,9 +252,11 @@ export default function DonationModal() {
       setSelectedGiftId(id)
       setMealVoucherQuantity(1)
       setShowingMemorialForm(false)
+      setMemorialPaymentMethod(null)
     } else if (id === 'memorial-voucher') {
       setSelectedGiftId(id)
       setShowingMemorialForm(true)
+      setMemorialPaymentMethod(null)
     } else {
       window.open(giftSupportOptions.find(o => o.id === id)?.href || '', '_blank', 'noopener noreferrer')
       handleClose()
@@ -696,10 +699,10 @@ Método: Breve - Transferencia Bancolombia`
                 <button
                   type="button"
                   className={styles.continueButton}
-                  onClick={handleMemorialDonate}
-                  disabled={Object.keys(errors).length > 0 || isProcessing}
+                  onClick={() => handleMemorialDonate()}
+                  disabled={Object.keys(errors).length > 0}
                 >
-                  {isProcessing ? 'Enviando...' : 'Continuar con mi aporte'}
+                  Continuar con mi aporte
                   <span className={styles.arrowRight}>→</span>
                 </button>
               </>
