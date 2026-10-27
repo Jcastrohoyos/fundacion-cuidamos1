@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import styles from './CookieBanner.module.css'
 
@@ -25,15 +25,13 @@ export default function CookieBanner() {
   const [visible, setVisible] = useState(false)
   const [showPreferences, setShowPreferences] = useState(false)
   const [preferences, setPreferences] = useState<CookiePreferences>(defaultPreferences)
+  const gsapCtxRef = useRef<any>(null)
 
   useEffect(() => {
-    const consent = localStorage.getItem(COOKIE_CONSENT_KEY)
-    const savedPrefs = localStorage.getItem(COOKIE_PREFERENCES_KEY)
-
-    if (consent || savedPrefs) return
-
-    const frame = requestAnimationFrame(() => setVisible(true))
-    return () => cancelAnimationFrame(frame)
+    gsapCtxRef.current = gsap.context()
+    return () => {
+      gsapCtxRef.current?.revert()
+    }
   }, [])
 
   useEffect(() => {
@@ -57,6 +55,7 @@ export default function CookieBanner() {
       localStorage.setItem(COOKIE_PREFERENCES_KEY, JSON.stringify(customPrefs))
     }
 
+    gsap.killTweensOf(`.${styles.banner}`)
     gsap.to(`.${styles.banner}`, {
       y: 100,
       opacity: 0,

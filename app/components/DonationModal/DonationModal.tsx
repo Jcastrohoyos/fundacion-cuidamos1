@@ -104,6 +104,7 @@ export default function DonationModal() {
   const [selectedPayment, setSelectedPayment] = useState<string | null>(null)
   const [copiedAccount, setCopiedAccount] = useState(false)
   const triggerRef = useRef<HTMLButtonElement | null>(null)
+  const gsapCtxRef = useRef<any>(null)
   const modalRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -176,7 +177,16 @@ export default function DonationModal() {
     }
   }, [isOpen, focusFirstElement, trapFocus])
 
+  useEffect(() => {
+    gsapCtxRef.current = gsap.context()
+    return () => {
+      gsapCtxRef.current?.revert()
+    }
+  }, [])
+
   const handleClose = useCallback(() => {
+    gsap.killTweensOf(`.${styles.modalContent}`)
+    gsap.killTweensOf(`.${styles.modalOverlay}`)
     gsap.to(`.${styles.modalContent}`, {
       opacity: 0,
       scale: 0.9,

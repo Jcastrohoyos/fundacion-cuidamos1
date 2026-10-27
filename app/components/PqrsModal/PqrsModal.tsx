@@ -11,8 +11,18 @@ export default function PqrsModal({ isOpen, onClose }: { isOpen: boolean; onClos
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
   const triggerRef = useRef<HTMLButtonElement | null>(null)
   const modalRef = useRef<HTMLDivElement>(null)
+  const gsapCtxRef = useRef<any>(null)
+
+  useEffect(() => {
+    gsapCtxRef.current = gsap.context()
+    return () => {
+      gsapCtxRef.current?.revert()
+    }
+  }, [])
 
   const handleClose = useCallback(() => {
+    gsap.killTweensOf(`.${styles.modalContent}`)
+    gsap.killTweensOf(`.${styles.modalOverlay}`)
     gsap.to(`.${styles.modalContent}`, {
       opacity: 0,
       scale: 0.9,
