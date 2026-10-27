@@ -264,15 +264,6 @@ export default function DonationModal() {
     setErrors(newErrors)
     if (Object.keys(newErrors).length > 0) return
 
-    const message = `Hola, quiero hacer un aporte con bono conmemorativo de la Fundación Cuidamos con Amor.
-
-Donante: ${memorialFormData.donorName}
-Homenajeado: ${memorialFormData.recipientName}
-Ocasión / Fecha: ${memorialFormData.occasion}
-Mensaje personal: ${memorialFormData.personalMessage || '(sin mensaje)'}
-
-Aporte con PayPal.`
-    window.open(buildWhatsappLink(message), '_blank', 'noopener noreferrer')
     window.open(paypalLink, '_blank', 'noopener noreferrer')
     handleClose()
   }
