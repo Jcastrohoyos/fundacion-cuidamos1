@@ -58,10 +58,11 @@ const giftSupportOptions = [
 
 const paymentMethods = [
   {
-    id: 'paypal',
-    title: 'PayPal',
-    description: 'Dona a través de PayPal con tarjeta de crédito o débito',
+    id: 'paypal-breve',
+    title: 'PayPal o Breve',
+    description: 'Dona con PayPal (tarjeta) o Breve (transferencia Bancolombia)',
     image: '/images/PayPal-Logo.png',
+    secondaryImage: '/images/breve%20logo.webp',
     color: '#0070BA',
   },
   {
@@ -70,13 +71,6 @@ const paymentMethods = [
     description: 'Dona con tarjeta de crédito o débito de forma segura',
     icon: Building2,
     color: '#635BFF',
-  },
-  {
-    id: 'breve',
-    title: 'Breve',
-    description: 'Dona mediante transferencia Bancolombia',
-    image: '/images/breve%20logo.webp',
-    color: '#000000',
   },
 ]
 
@@ -334,7 +328,7 @@ export default function DonationModal() {
       console.warn('No se pudo enviar la notificación de donación a Web3Forms.')
     }
 
-    if (methodId === 'paypal') {
+    if (methodId === 'paypal' || methodId === 'paypal-breve') {
       window.open(paypalLink, '_blank', 'noopener,noreferrer')
       setIsProcessing(false)
       handleClose()
@@ -1012,17 +1006,28 @@ export default function DonationModal() {
                               className={styles.paymentIcon}
                               style={{ backgroundColor: `${method.color}15`, color: method.color }}
                             >
-                            {method.image ? (
-                              <Image
-                                src={method.image}
-                                alt={method.title}
-                                width={48}
-                                height={48}
-                                className={styles.paymentLogo}
-                              />
-                            ) : method.icon ? (
-                              <method.icon size={28} />
-                            ) : null}
+                              {method.image ? (
+                                <div className={styles.paymentIconGroup}>
+                                  <Image
+                                    src={method.image}
+                                    alt={method.title}
+                                    width={40}
+                                    height={40}
+                                    className={styles.paymentLogo}
+                                  />
+                                  {method.secondaryImage && (
+                                    <Image
+                                      src={method.secondaryImage}
+                                      alt="Breve Logo"
+                                      width={32}
+                                      height={32}
+                                      className={styles.paymentSecondaryLogo}
+                                    />
+                                  )}
+                                </div>
+                              ) : method.icon ? (
+                                <method.icon size={28} />
+                              ) : null}
                             </div>
                             <h3 className={styles.paymentTitle}>{method.title}</h3>
                             <p className={styles.paymentDescription}>{method.description}</p>
