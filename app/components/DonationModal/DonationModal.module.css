@@ -284,6 +284,80 @@
   font-size: 0.85rem;
 }
 
+.whatsappConsultSection {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  border-radius: 12px;
+  color: white;
+}
+
+.whatsappConsultContent {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.whatsappConsultIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.whatsappConsultIcon svg {
+  color: white;
+  flex-shrink: 0;
+}
+
+.whatsappConsultText {
+  flex: 1;
+  min-width: 0;
+}
+
+.whatsappConsultTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem 0;
+  color: white;
+}
+
+.whatsappConsultDesc {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.whatsappConsultButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.whatsappConsultButton:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.whatsappConsultButton svg {
+  flex-shrink: 0;
+}
+
 .giftSelected {
   border-color: var(--color-primary);
   background: white;

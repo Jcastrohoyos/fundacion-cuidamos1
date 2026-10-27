@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import gsap from 'gsap'
-import { Heart, X, CreditCard, Building2, ArrowLeft, Check, Copy, CheckCheck, Gift, Utensils, Award, ArrowUpRight, ExternalLink } from 'lucide-react'
+import { Heart, X, CreditCard, Building2, ArrowLeft, Check, Copy, CheckCheck, Gift, Utensils, Award, ArrowUpRight, ExternalLink, MessageCircle, Phone } from 'lucide-react'
 import Image from 'next/image'
 import styles from './DonationModal.module.css'
 import { sendToWeb3Forms } from '../../utils/web3forms'
@@ -593,6 +593,30 @@ export default function DonationModal() {
         <div className={styles.giftNotice}>
           <ExternalLink size={17} />
           <span>Los enlaces se abrirán en una pestaña nueva.</span>
+        </div>
+        <div className={styles.whatsappConsultSection}>
+          <div className={styles.whatsappConsultContent}>
+            <div className={styles.whatsappConsultIcon}>
+              <MessageCircle size={24} />
+            </div>
+            <div className={styles.whatsappConsultText}>
+              <h4 className={styles.whatsappConsultTitle}>¿Tienes dudas?</h4>
+              <p className={styles.whatsappConsultDesc}>
+                Escríbenos por WhatsApp para cualquier consulta sobre donaciones, bonos o cómo ayudar.
+              </p>
+            </div>
+            <button
+              type="button"
+              className={styles.whatsappConsultButton}
+              onClick={() => {
+                window.open(buildWhatsappLink('Hola, tengo una consulta sobre las donaciones y bonos de la Fundación Cuidamos con Amor. Me gustaría más información.'), '_blank', 'noopener noreferrer')
+                handleClose()
+              }}
+            >
+              Chatear por WhatsApp
+              <Phone size={16} />
+            </button>
+          </div>
         </div>
       </>
     )
