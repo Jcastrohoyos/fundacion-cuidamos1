@@ -3,6 +3,7 @@
 import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
+import { Heart, CreditCard, Gift, Utensils, Award, ArrowRight, ShieldCheck } from 'lucide-react'
 import styles from './ComoApoyarnos.module.css'
 import { openDonationModal } from '../DonationModal/DonationModal'
 
@@ -38,9 +39,12 @@ export default function ComoApoyarnos() {
       <div className={styles.container}>
         <h2 className={`${styles.title} como-title`}>Un donante tiene el poder de cambiar el mundo</h2>
         <p className={`${styles.subtitle} como-subtitle`}>Cómo puedes apoyarnos...</p>
-        
+
         <div className={styles.grid}>
           <div className={`${styles.card} como-card`}>
+            <div className={styles.cardIconContainer}>
+              <CreditCard size={24} strokeWidth={2} />
+            </div>
             <h3 className={styles.cardTitle}>Donación monetaria</h3>
             <p className={styles.cardText}>
               Tu contribución económica es fundamental para el funcionamiento de nuestros programas. Gracias a tu generoso apoyo, podemos adquirir bonos de alimentación para los cuidadores que no pueden costear su almuerzo. Además, tu donación nos permite comprar los implementos necesarios para los kits de aseo personal para los cuidadores.
@@ -49,8 +53,11 @@ export default function ComoApoyarnos() {
               Cada aporte hace una gran diferencia al ofrecer no solo recursos básicos, sino también dignidad y cuidado a aquellos que atraviesan momentos difíciles.
             </p>
           </div>
-          
+
           <div className={`${styles.card} como-card`}>
+            <div className={styles.cardIconContainer}>
+              <Award size={24} strokeWidth={2} />
+            </div>
             <h3 className={styles.cardTitle}>Bonos conmemorativos</h3>
             <p className={styles.cardText}>
               Otra forma de colaborar es adquiriendo nuestros bonos de apoyo, que pueden llevar el nombre de un ser querido y ser entregados para conmemorar o celebrar fechas importantes. Estos bonos ofrecen a las familias una manera significativa de honrar a sus seres queridos o celebrar momentos.
@@ -58,9 +65,18 @@ export default function ComoApoyarnos() {
             <p className={styles.cardText}>
               Para solicitarlos, contáctanos a través de Instagram o nuestro correo.
             </p>
+            <button
+              onClick={() => openDonationModal('memorial-voucher')}
+              className={styles.memorialButton}
+            >
+              Aportar con bono conmemorativo
+            </button>
           </div>
-          
+
           <div className={`${styles.card} como-card`}>
+            <div className={styles.cardIconContainer}>
+              <Gift size={24} strokeWidth={2} />
+            </div>
             <h3 className={styles.cardTitle}>Material recreativo para manualidades</h3>
             <p className={styles.cardText}>
               Una forma de contribuir es a través de la donación de materiales recreativos como papeles, colores, libros para colorear y otros suministros creativos. Estos insumos son esenciales para las actividades manuales, proporcionando a los niños y niñas la oportunidad de expresarse creativamente.
@@ -68,6 +84,9 @@ export default function ComoApoyarnos() {
           </div>
 
           <div className={`${styles.card} como-card`}>
+            <div className={styles.cardIconContainer}>
+              <ShieldCheck size={24} strokeWidth={2} />
+            </div>
             <h3 className={styles.cardTitle}>Kits de aseo para cuidadores</h3>
             <p className={styles.cardText}>
               Kits de aseo para cuidadores
@@ -77,16 +96,19 @@ Con tu donación podemos entregar kits de aseo personal a los cuidadores que aco
           </div>
 
           <div className={`${styles.card} como-card`}>
+            <div className={styles.cardIconContainer}>
+              <Heart size={24} strokeWidth={2} />
+            </div>
             <h3 className={styles.cardTitle}>Gorros para niños con Cáncer</h3>
             <p className={styles.cardText}>
               Contribuye con la compra de gorros para los niños y niñas con cáncer, brindándoles calidez y alegría durante su tratamiento.
             </p>
           </div>
         </div>
-        
+
         <div className={styles.cta}>
           <p className={styles.clickText}>¡Haz clic aquí para donar!</p>
-          <button 
+          <button
             onClick={openDonationModal}
             className={`${styles.button} como-button`}
           >
@@ -97,4 +119,3 @@ Con tu donación podemos entregar kits de aseo personal a los cuidadores que aco
     </section>
   )
 }
-

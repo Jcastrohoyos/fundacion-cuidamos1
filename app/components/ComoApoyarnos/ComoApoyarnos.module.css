@@ -75,6 +75,42 @@
   margin-bottom: 0;
 }
 
+.memorialButton {
+  width: auto;
+  max-width: 100%;
+  margin: 1rem auto 0;
+  padding: 0.55rem 0.9rem;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: block;
+  text-align: center;
+  line-height: 1.25;
+  animation: donationPulse 2.5s ease-in-out infinite;
+}
+
+.memorialButton:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+  animation: none;
+}
+
+@keyframes donationPulse {
+  0%, 100% {
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.35);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 6px 30px rgba(255, 107, 107, 0.65);
+    transform: scale(1.03);
+  }
+}
+
 .cta {
   text-align: center;
 }
@@ -103,11 +139,13 @@
   opacity: 1;
   border: none;
   box-shadow: 0 6px 20px rgba(255, 107, 107, 0.35);
+  animation: donationPulse 2.5s ease-in-out infinite;
 }
 
 .button:hover {
   transform: translateY(-3px) scale(1.02);
   box-shadow: 0 10px 30px rgba(255, 107, 107, 0.5);
+  animation: none;
 }
 
 @media (max-width: 1024px) {
@@ -127,6 +165,16 @@
   .card {
     padding: 1.5rem;
   }
+
+  .memorialButton {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .button {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 @media (max-width: 480px) {
@@ -139,7 +187,7 @@
   }
 
   .button {
-    width: 100%;
-    text-align: center;
+    padding: 0.9rem 2rem;
+    font-size: 1.1rem;
   }
 }
