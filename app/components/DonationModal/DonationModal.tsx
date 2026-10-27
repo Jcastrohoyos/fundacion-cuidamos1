@@ -37,7 +37,7 @@ const giftSupportOptions = [
   },
   {
     id: 'gift-bag',
-    title: 'Bolsa de regalo',
+    title: 'Bolsa solidaria Cuidamos con Amor',
     description: 'Al realizar una donación de $20.000 COP o más, recibirás una bolsa reutilizable como símbolo de tu apoyo a nuestra misión.',
     icon: Gift,
     color: '#EC4899',
