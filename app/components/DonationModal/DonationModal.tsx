@@ -275,22 +275,26 @@ export default function DonationModal() {
 
     setIsProcessing(true)
 
-    const submissionData = {
-      name: memorialFormData.donorName,
-      email: memorialFormData.recipientName,
-      phone: '',
-      amount: MEMORIAL_VOUCHER_PRICE,
-      payment_method: 'memorial-voucher',
-      message: `Bono conmemorativo - Donante: ${memorialFormData.donorName}, Homenajeado: ${memorialFormData.recipientName}, Ocasión: ${memorialFormData.occasion}, Mensaje: ${memorialFormData.personalMessage || '(sin mensaje)'}`,
-    }
+    try {
+      const submissionData = {
+        name: memorialFormData.donorName,
+        email: memorialFormData.recipientName,
+        phone: '',
+        amount: MEMORIAL_VOUCHER_PRICE,
+        payment_method: 'memorial-voucher',
+        message: `Bono conmemorativo - Donante: ${memorialFormData.donorName}, Homenajeado: ${memorialFormData.recipientName}, Ocasión: ${memorialFormData.occasion}, Mensaje: ${memorialFormData.personalMessage || '(sin mensaje)'}`,
+      }
 
-    const success = await sendToWeb3Forms(submissionData)
-    if (!success) {
-      console.warn('No se pudo enviar la notificación de donación a Web3Forms.')
+      const success = await sendToWeb3Forms(submissionData)
+      if (!success) {
+        console.warn('No se pudo enviar la notificación de donación a Web3Forms.')
+      }
+    } catch (err) {
+      console.error('Error enviando formulario conmemorativo:', err)
+    } finally {
+      setMemorialPaymentMethod('paypal')
+      setIsProcessing(false)
     }
-
-    setMemorialPaymentMethod('paypal')
-    setIsProcessing(false)
   }
 
   const handleMemorialPaypal = () => {
