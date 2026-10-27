@@ -38,11 +38,12 @@ const giftSupportOptions = [
   {
     id: 'gift-bag',
     title: 'Bolsa de regalo',
-    description: 'Elige una bolsa con productos de aseo y cuidado para las familias.',
+    description: 'Al realizar una donación de $20.000 COP o más, recibirás una bolsa reutilizable como símbolo de tu apoyo a nuestra misión.',
     icon: Gift,
     color: '#EC4899',
-    href: paypalLink,
-    cta: 'Aportar con PayPal',
+    href: buildWhatsappLink('Hola, quiero realizar una donación para recibir la Bolsa Solidaria Cuidamos con Amor. ¿Cómo puedo hacerlo?'),
+    cta: 'Realizar donación',
+    image: '/images/bolsaderegalo.jpeg',
   },
   {
     id: 'memorial-voucher',
@@ -573,7 +574,18 @@ export default function DonationModal() {
                   className={styles.giftIcon}
                   style={{ backgroundColor: `${option.color}15`, color: option.color }}
                 >
-                  <OptionIcon size={28} />
+                  {option.image ? (
+                    <Image
+                      src={option.image}
+                      alt={option.title}
+                      width={28}
+                      height={28}
+                      className={styles.giftImage}
+                      priority
+                    />
+                  ) : (
+                    <OptionIcon size={28} />
+                  )}
                 </span>
                 <h3 className={styles.giftTitle}>{option.title}</h3>
                 <p className={styles.giftDescription}>{option.description}</p>
