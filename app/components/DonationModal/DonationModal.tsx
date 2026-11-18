@@ -1319,15 +1319,6 @@ Método: Breve - Transferencia Bancolombia`
                                     height={40}
                                     className={styles.paymentLogo}
                                   />
-                                  {method.secondaryImage && (
-                                    <Image
-                                      src={method.secondaryImage}
-                                      alt="Breve Logo"
-                                      width={32}
-                                      height={32}
-                                      className={styles.paymentSecondaryLogo}
-                                    />
-                                  )}
                                 </div>
                               ) : method.icon ? (
                                 <method.icon size={28} />
