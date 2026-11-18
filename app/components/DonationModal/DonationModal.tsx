@@ -59,12 +59,18 @@ const giftSupportOptions = [
 
 const paymentMethods = [
   {
-    id: 'paypal-breve',
-    title: 'PayPal o Breve',
-    description: 'Dona con PayPal (tarjeta) o Breve (transferencia Bancolombia)',
+    id: 'paypal',
+    title: 'PayPal',
+    description: 'Dona con PayPal o tarjeta de crédito/débito',
     image: '/images/PayPal-Logo.png',
-    secondaryImage: '/images/breve%20logo.webp',
     color: '#0070BA',
+  },
+  {
+    id: 'breve',
+    title: 'Breve',
+    description: 'Transferencia Bancolombia (Breve / Bre-B)',
+    image: '/images/breve%20logo.webp',
+    color: '#1E9E62',
   },
   {
     id: 'stripe',
@@ -402,13 +408,13 @@ Método: Breve - Transferencia Bancolombia`
       console.warn('No se pudo enviar la notificación de donación a Web3Forms.')
     }
 
-    if (methodId === 'paypal' || methodId === 'paypal-breve') {
+    if (methodId === 'paypal') {
       window.open(paypalLink, '_blank', 'noopener,noreferrer')
       setIsProcessing(false)
       handleClose()
     } else if (methodId === 'stripe') {
       setIsProcessing(false)
-      alert('Stripe está en configuración. Pronto estará disponible.')
+      alert('Tarjeta Bancaria está en configuración. Pronto estará disponible.')
       return
     } else if (methodId === 'breve') {
       setIsProcessing(false)
