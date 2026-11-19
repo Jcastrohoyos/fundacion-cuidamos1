@@ -13,7 +13,7 @@ export const yearData: ImpactRow[] = [
   { year: '2023', bonos: 4417, beneficiarios: 1472, kits: 0, gorros: 0 },
   { year: '2024', bonos: 8463, beneficiarios: 2628, kits: 252, gorros: 720 },
   { year: '2025', bonos: 14482, beneficiarios: 3367, kits: 286, gorros: 395 },
-  { year: 'Ene-Sep 2026', bonos: 7906, beneficiarios: 2026, kits: 163, gorros: 259 },
+  { year: 'Ene-Oct 2026', bonos: 8936, beneficiarios: 2185, kits: 181, gorros: 297 },
 ]
 
 const sumMetric = (metric: ImpactMetric): number =>
@@ -28,7 +28,7 @@ export const totals: Record<ImpactMetric, number> & {
   kits: sumMetric('kits'),
   gorros: sumMetric('gorros'),
   actividades: 88,
-  corte: 'septiembre de 2026',
+  corte: 'octubre de 2026',
 }
 
 export const formatNumber = (value: number): string =>

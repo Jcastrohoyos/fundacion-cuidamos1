@@ -7,7 +7,7 @@ export default function Datos() {
       <div className={styles.container}>
         <Image
           src="/images/indicadoresdemograficos.jpeg"
-          alt="Indicadores demográficos y regionales de beneficiarios y resultados de impacto social, enero a septiembre de 2026"
+          alt="Indicadores demográficos y regionales de beneficiarios y resultados de impacto social, enero a octubre de 2026"
           width={1366}
           height={768}
           className={styles.datosImage}
